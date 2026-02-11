@@ -1,0 +1,87 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+
+// Dummy data for homepage sections (replace with real data/components as needed)
+const organismeName = 'Nom de l’Organisme';
+const promesse = 'Votre réussite, notre engagement. Découvrez nos formations certifiées Qualiopi.';
+const qualiopiLogo = '/images/logos/qualiopi.svg';
+const qualiopiCertUrl = '/certificat-qualiopi.pdf';
+const formations = [
+  { title: 'Formation 1', description: 'Description courte de la formation 1', href: '/formations/1' },
+  { title: 'Formation 2', description: 'Description courte de la formation 2', href: '/formations/2' },
+  { title: 'Formation 3', description: 'Description courte de la formation 3', href: '/formations/3' },
+  { title: 'Formation 4', description: 'Description courte de la formation 4', href: '/formations/4' },
+];
+const quickLinks = [
+  { label: 'Résultats & Indicateurs', href: '/resultats-indicateurs' },
+  { label: 'Livret d’accueil', href: '/livret-accueil' },
+  { label: 'Réclamation', href: '/reclamation' },
+  { label: 'Accessibilité handicap', href: '/accessibilite' },
+];
+const testimonials = [
+  { quote: 'Une expérience de formation exceptionnelle !', author: 'Jean Dupont', company: 'Entreprise X' },
+  { quote: 'Des formateurs à l’écoute et un vrai suivi.', author: 'Marie Martin', company: 'Société Y' },
+];
+---
+
+
+<MarketingLayout title={`${organismeName} - ${promesse}`} description={promesse}>
+  {/* Hero Section */}
+  <section class="hero-section" style="padding: 4rem 0; text-align: center;">
+    <h1 style="font-size: 2.5rem; font-weight: bold;">{organismeName}</h1>
+    <p style="font-size: 1.25rem; margin: 1rem 0 2rem;">{promesse}</p>
+    <a href="/formations" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">Voir le catalogue</a>
+  </section>
+
+  {/* Qualiopi Block */}
+  <section class="qualiopi-block" style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin: 2rem 0;">
+    <img src={qualiopiLogo} alt="Logo Qualiopi" style="height: 60px;" />
+    <a href={qualiopiCertUrl} class="btn btn-outline" target="_blank" rel="noopener" style="margin-top: 0.5rem;">Voir le certificat</a>
+  </section>
+
+  {/* Formations Preview */}
+  <section class="formations-preview" style="margin: 3rem 0;">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Aperçu de nos formations</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      {formations.slice(0, 4).map((f) => (
+        <div class="formation-card" style="border: 1px solid #eee; border-radius: 12px; padding: 1.5rem; width: 260px; box-shadow: 0 2px 8px #0001;">
+          <h3 style="margin-bottom: 0.5rem;">{f.title}</h3>
+          <p style="margin-bottom: 1rem;">{f.description}</p>
+          <a href={f.href} class="btn btn-secondary">Voir la formation</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Quick Links RNQ */}
+  <section class="quick-links" style="margin: 3rem 0;">
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Liens rapides RNQ</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+      {quickLinks.map((l) => (
+        <a href={l.href} class="btn btn-link" style="font-size: 1.1rem; border: 1px solid #ddd; border-radius: 8px; padding: 0.75rem 1.5rem; background: #fafbfc;">{l.label}</a>
+      ))}
+    </div>
+  </section>
+
+  {/* Testimonials / Partners (optional) */}
+  <section class="testimonials" style="margin: 3rem 0;">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Témoignages</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      {testimonials.map((t) => (
+        <div class="testimonial-card" style="max-width: 320px; border: 1px solid #eee; border-radius: 12px; padding: 1.5rem; background: #f9f9fb;">
+          <blockquote style="font-style: italic; margin-bottom: 1rem;">“{t.quote}”</blockquote>
+          <div style="font-weight: bold;">{t.author}</div>
+          <div style="font-size: 0.95rem; color: #888;">{t.company}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* CTA Contact */}
+  <section class="cta-contact" style="margin: 4rem 0; text-align: center;">
+    <h2>Une question ? Besoin d’un conseil ?</h2>
+    <p style="margin: 1rem 0 2rem;">Notre équipe est à votre écoute pour vous accompagner dans votre projet de formation.</p>
+    <a href="/contact" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1.1rem;">Contactez-nous</a>
+  </section>
+</MarketingLayout>

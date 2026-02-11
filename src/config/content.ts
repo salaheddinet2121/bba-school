@@ -11,19 +11,19 @@ import type { AnnouncementConfig, ContentStrings } from '../lib/types';
 /** Announcement bar configuration */
 export const announcement: AnnouncementConfig = {
   /** Show/hide the announcement bar */
-  enabled: true,
+  enabled: false,
 
   /** Unique ID - change this to reset dismissal for new announcements */
-  id: 'launch-2025',
+  id: 'rnq-qualiopi-2026',
 
   /** Announcement text */
-  text: '🚀 Virex 2.0 is here!',
+  text: 'SODEVA est certifie Qualiopi',
 
   /** Optional link URL */
-  href: '/changelog',
+  href: '/#qualiopi',
 
   /** Optional link text */
-  linkText: "See what's new",
+  linkText: 'Voir le certificat',
 
   /** Visual style: 'primary' | 'secondary' | 'gradient' */
   variant: 'primary',
@@ -35,12 +35,12 @@ export const announcement: AnnouncementConfig = {
 /** Configurable content strings for various sections */
 export const content: ContentStrings = {
   newsletter: {
-    title: 'Stay in the loop',
-    description: 'Get the latest updates, tips, and news delivered to your inbox.',
-    placeholder: 'Enter your email',
-    buttonText: 'Subscribe',
-    successMessage: 'Thanks for subscribing! Check your inbox to confirm.',
-    errorMessage: 'Something went wrong. Please try again.',
-    privacyNote: 'We respect your privacy. Unsubscribe at any time.',
+    title: 'Recevoir nos informations',
+    description: 'Restez informe des nouvelles sessions et des informations pratiques.',
+    placeholder: 'Votre email',
+    buttonText: 'Envoyer',
+    successMessage: 'Merci, votre demande a bien ete prise en compte.',
+    errorMessage: 'Une erreur est survenue. Merci de reessayer.',
+    privacyNote: 'Vos donnees restent confidentielles.',
   },
 };

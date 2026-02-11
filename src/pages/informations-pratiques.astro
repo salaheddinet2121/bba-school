@@ -1,0 +1,53 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title={`Informations pratiques - ${siteConfig.name}`}
+  description="Informations RNQ: indicateurs, livret d accueil, reclamation et accessibilite."
+>
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-text">Informations pratiques</h1>
+      <p class="mt-4 text-text-muted max-w-3xl">
+        Cette page centralise les informations attendues dans le cadre RNQ et Qualiopi.
+      </p>
+
+      <div class="mt-10 space-y-6">
+        <article id="resultats-indicateurs" class="rounded-xl border border-border p-6 bg-surface">
+          <h2 class="text-2xl font-semibold text-text">Resultats & indicateurs</h2>
+          <p class="mt-3 text-sm text-text-muted">
+            Les indicateurs de satisfaction, de reussite et de suivi sont communiques sur demande.
+            Contactez notre equipe pour recevoir la derniere mise a jour.
+          </p>
+        </article>
+
+        <article id="livret-accueil" class="rounded-xl border border-border p-6 bg-surface">
+          <h2 class="text-2xl font-semibold text-text">Livret d accueil</h2>
+          <p class="mt-3 text-sm text-text-muted">
+            Le livret d accueil est transmis en amont de l entree en formation. Il precise le deroule,
+            les modalites d accompagnement et les regles de fonctionnement.
+          </p>
+        </article>
+
+        <article id="reclamation" class="rounded-xl border border-border p-6 bg-surface">
+          <h2 class="text-2xl font-semibold text-text">Reclamation</h2>
+          <p class="mt-3 text-sm text-text-muted">
+            Pour toute reclamation, ecrivez a
+            <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline"> contact@sodeva.fr</a>
+            avec l objet "Reclamation". Votre demande est tracee et traitee dans les meilleurs delais.
+          </p>
+        </article>
+
+        <article id="accessibilite" class="rounded-xl border border-border p-6 bg-surface">
+          <h2 class="text-2xl font-semibold text-text">Accessibilite handicap</h2>
+          <p class="mt-3 text-sm text-text-muted">
+            SODEVA prend en compte les situations de handicap. Les besoins d adaptation sont etudies
+            avant et pendant le parcours, avec un accompagnement dedie.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

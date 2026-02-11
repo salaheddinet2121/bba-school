@@ -40,7 +40,7 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
       <a href="/" class="flex items-center gap-2 font-semibold text-lg text-text">
         {
           siteConfig.logo ? (
-            <img src={siteConfig.logo} alt={siteConfig.name} class="h-8 w-auto" />
+            <img src={siteConfig.logo.replace(/\.svg$/, '.webp')} alt={siteConfig.name} class="h-8 w-auto" />
           ) : (
             siteConfig.name
           )
@@ -63,7 +63,6 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 
       <!-- Desktop Actions - Right -->
       <div class="hidden md:flex items-center gap-4">
-        <ThemeToggle />
         {
           ghostCTAs.map((cta) => (
             <a
@@ -88,7 +87,6 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 
       <!-- Mobile menu button -->
       <div class="flex items-center gap-2 md:hidden">
-        <ThemeToggle />
         <button
           id="mobile-menu-button"
           type="button"

@@ -10,15 +10,15 @@ import type { ContactInfo, ContactMethod, ContactFAQ } from '../lib/types';
 
 /** Contact information used across contact page and legal pages */
 export const contact: ContactInfo = {
-  email: 'hello@virex.example.com',
-  supportEmail: 'support@virex.example.com',
-  salesEmail: 'sales@virex.example.com',
+  email: 'contact@sodeva.fr',
+  supportEmail: 'contact@sodeva.fr',
+  salesEmail: 'contact@sodeva.fr',
   address: {
-    street: '123 Market Street, Suite 400',
-    city: 'San Francisco',
-    state: 'CA',
-    zip: '94102',
-    country: 'United States',
+    street: '1900 Avenue des Moulins',
+    city: 'Montpellier',
+    state: 'Occitanie',
+    zip: '34080',
+    country: 'France',
   },
 };
 
@@ -31,32 +31,33 @@ export const contactMethods: ContactMethod[] = [
     href: `mailto:${contact.email}`,
   },
   {
-    icon: 'simple-icons:discord',
-    label: 'Discord',
-    value: 'Join Discord',
-    href: 'https://discord.gg/virex',
+    icon: 'lucide:phone',
+    label: 'Telephone',
+    value: '04 65 84 77 00',
+    href: 'tel:+33465847700',
   },
   {
-    icon: 'lucide:twitter',
-    label: 'Twitter',
-    value: '@virex',
-    href: 'https://twitter.com/virex',
+    icon: 'lucide:map-pin',
+    label: 'Adresse',
+    value: '1900 Avenue des Moulins, 34080 Montpellier',
+    href: 'https://maps.google.com/?q=1900+Avenue+des+Moulins+34080+Montpellier',
   },
 ];
 
 /** FAQ items displayed on the contact page */
 export const contactFAQs: ContactFAQ[] = [
   {
-    question: "What's your typical response time?",
-    answer: 'We respond to most inquiries within 24 hours during business days.',
+    question: 'Sous quel delai recevez-vous une reponse ?',
+    answer: 'Nous vous repondons generalement sous 48 heures ouvrees.',
   },
   {
-    question: 'Do you offer phone support?',
+    question: 'Comment faire une reclamation ?',
     answer:
-      'Phone support is available for Enterprise customers. Others can reach us via email or Discord.',
+      'Envoyez votre demande a contact@sodeva.fr avec "Reclamation" dans l objet. Un accuse de reception vous est transmis.',
   },
   {
-    question: 'How do I report a bug?',
-    answer: 'Use the form with "Technical support" as subject, or open an issue on our GitHub.',
+    question: 'Proposez-vous un accompagnement handicap ?',
+    answer:
+      'Oui. Nous etudions chaque besoin avec notre referent handicap pour adapter le parcours de formation.',
   },
 ];

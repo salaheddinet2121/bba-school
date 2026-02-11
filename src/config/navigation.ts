@@ -19,18 +19,13 @@ export const navigation: Navigation = {
    */
   header: {
     main: [
-      { label: 'Features', href: '/features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Demo', href: '/dashboard' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Docs', href: '/docs', feature: 'docs' },
-      { label: 'Blog', href: '/blog', feature: 'blog' },
+      { label: 'Accueil', href: '/' },
+      { label: 'Formations', href: '/formations' },
+      { label: "L'organisme", href: '/organisme' },
+      { label: 'Informations pratiques', href: '/informations-pratiques' },
+      { label: 'Contact', href: '/contact' },
     ],
-    cta: [
-      { label: 'Login', href: '/login', variant: 'ghost' },
-      { label: 'Get Started', href: '/register', variant: 'primary' },
-    ],
+    cta: [],
   },
 
   /**
@@ -39,33 +34,29 @@ export const navigation: Navigation = {
    */
   footer: {
     product: [
-      { label: 'Features', href: '/features' },
-      { label: 'Integrations', href: '/integrations' },
-      { label: 'Security', href: '/security' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Catalogue des formations', href: '/formations' },
+      { label: 'Formation administrative', href: '/formations' },
+      { label: 'Formation communication', href: '/formations' },
     ],
     solutions: [
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Request Demo', href: '/demo' },
-      { label: 'Status', href: '/status' },
+      { label: 'Resultats & indicateurs', href: '/informations-pratiques#resultats-indicateurs' },
+      { label: 'Livret d accueil', href: '/informations-pratiques#livret-accueil' },
+      { label: 'Reclamation', href: '/informations-pratiques#reclamation' },
+      { label: 'Accessibilite handicap', href: '/informations-pratiques#accessibilite' },
     ],
     resources: [
-      { label: 'Documentation', href: '/docs', feature: 'docs' },
-      { label: 'Blog', href: '/blog', feature: 'blog' },
-      { label: 'Changelog', href: '/changelog', feature: 'changelog' },
-      { label: 'Roadmap', href: '/roadmap', feature: 'roadmap' },
+      { label: 'Bloc Qualiopi', href: '/#qualiopi' },
+      { label: 'Voir le certificat', href: 'https://api-sodeva.fr/certificat_qualiopi_sodeva.pdf' },
+      { label: 'Mentions legales', href: '/information' },
     ],
     company: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
+      { label: 'L organisme', href: '/organisme' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Testimonials', href: '/testimonials', feature: 'testimonials' },
+      { label: 'Horaires', href: '/contact' },
     ],
     legal: [
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Terms', href: '/terms' },
+      { label: 'Mentions legales', href: '/information' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
 };

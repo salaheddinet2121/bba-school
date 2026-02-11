@@ -31,7 +31,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
     <SEO
       title={title}
       description={description}
@@ -46,12 +46,7 @@ const {
     <script is:inline>
       (function () {
         // Theme initialization
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        }
+
 
         // Announcement dismissal check - hide if any announcement was dismissed
         const keys = Object.keys(localStorage).filter((k) =>

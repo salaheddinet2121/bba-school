@@ -1,0 +1,53 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+
+const catalogue = [
+  {
+    title: 'Assistance administrative et bureautique',
+    objectifs: 'Structurer les taches administratives, produire des documents fiables et suivre les dossiers.',
+    public: 'Assistants administratifs, personnel de support, personnes en reconversion.',
+  },
+  {
+    title: 'Communication professionnelle',
+    objectifs: 'Ameliorer la communication ecrite/orale et la posture relationnelle en environnement professionnel.',
+    public: 'Collaborateurs, managers de proximite, equipes d accueil et de coordination.',
+  },
+  {
+    title: 'Organisation et efficacite operationnelle',
+    objectifs: 'Mettre en place des methodes de priorisation et de pilotage pour gagner en efficacite.',
+    public: 'Responsables d equipe, coordinateurs, personnels administratifs.',
+  },
+];
+---
+
+<MarketingLayout
+  title={`Formations - ${siteConfig.name}`}
+  description="Catalogue des formations SODEVA."
+>
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-text">Formations</h1>
+      <p class="mt-4 text-text-muted max-w-3xl">
+        Nos formations sont pensees pour repondre a des besoins concrets de terrain, avec des objectifs clairs et un accompagnement individualise.
+      </p>
+
+      <div class="mt-10 grid gap-6">
+        {
+          catalogue.map((item) => (
+            <article class="rounded-xl border border-border p-6 bg-surface">
+              <h2 class="text-xl font-semibold text-text">{item.title}</h2>
+              <p class="mt-3 text-sm text-text-muted"><strong class="text-text">Objectifs:</strong> {item.objectifs}</p>
+              <p class="mt-2 text-sm text-text-muted"><strong class="text-text">Public:</strong> {item.public}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="mt-10 text-sm text-text-muted">
+        Pour recevoir les prochaines sessions et les modalites d inscription, contactez-nous a
+        <a class="text-primary hover:underline" href="mailto:contact@sodeva.fr"> contact@sodeva.fr</a>.
+      </p>
+    </div>
+  </section>
+</MarketingLayout>

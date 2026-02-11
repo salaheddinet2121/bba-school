@@ -1,0 +1,29 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title={`Mentions legales - ${siteConfig.name}`}
+  description="Mentions legales et informations de contact SODEVA."
+>
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-text">Mentions legales</h1>
+
+      <div class="mt-8 space-y-6 text-text-muted">
+        <p><strong class="text-text">Raison sociale:</strong> SODEVA</p>
+        <p><strong class="text-text">SIRET:</strong> 940 565 261 00018</p>
+        <p>
+          <strong class="text-text">Adresse:</strong> 1900 Avenue des Moulins, 34080 Montpellier,
+          France
+        </p>
+        <p><strong class="text-text">Telephone:</strong> 04 65 84 77 00</p>
+        <p>
+          <strong class="text-text">Email:</strong>
+          <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline">contact@sodeva.fr</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

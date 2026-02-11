@@ -127,7 +127,6 @@ export const navigation = {
       { label: 'Get Started', href: '/register', variant: 'primary' },
     ],
   },
-  // ... footer config
 };
 ```
 

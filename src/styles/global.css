@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+
+
+
+
 @theme {
-  /* Brand Colors */
-  --color-primary: oklch(0.55 0.2 265);
-  --color-primary-dark: oklch(0.45 0.2 265);
+  --color-primary: #fa8531;
+  --color-primary-dark: #0f0f0f; /* Use as dark background or dark variant */
   --color-secondary: oklch(0.65 0.25 350);
 
   /* Semantic Colors */
@@ -34,24 +38,6 @@
   --radius-lg: 1rem;
 }
 
-/* Dark mode overrides */
-.dark {
-  --color-background: oklch(0.15 0 0);
-  --color-surface: oklch(0.2 0 0);
-  --color-text: oklch(0.95 0 0);
-  --color-text-muted: oklch(0.65 0 0);
-  --color-border: oklch(0.3 0 0);
-
-  /* Dashboard Status Colors - Dark Mode */
-  --color-success: oklch(0.65 0.15 145);
-  --color-success-bg: oklch(0.25 0.05 145);
-  --color-warning: oklch(0.7 0.15 85);
-  --color-warning-bg: oklch(0.25 0.05 85);
-  --color-error: oklch(0.65 0.2 25);
-  --color-error-bg: oklch(0.25 0.05 25);
-  --color-info: oklch(0.65 0.15 240);
-  --color-info-bg: oklch(0.25 0.05 240);
-}
 
 /* Base styles */
 html {
@@ -62,6 +48,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family:
+    'Inter',
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
