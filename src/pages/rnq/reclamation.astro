@@ -1,0 +1,24 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import ReclamationForm from '@/components/forms/ReclamationForm.astro';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title={`Formulaire de reclamation - ${siteConfig.name}`}
+  description="Deposez une reclamation aupres de SODEVA via le formulaire dedie."
+>
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-text">Formulaire de reclamation</h1>
+      <p class="mt-4 text-text-muted">
+        Utilisez ce formulaire pour nous transmettre une reclamation. Chaque demande est tracee
+        et traitee dans les meilleurs delais.
+      </p>
+
+      <div class="mt-8 rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <ReclamationForm />
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

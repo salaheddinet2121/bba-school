@@ -53,7 +53,7 @@
  * />
  * ```
  */
-
+import { Icon } from 'astro-icon/components';
 interface Props {
   /** Main headline text displayed prominently */
   title: string;
@@ -85,6 +85,16 @@ interface Props {
   minHeight?: 'default' | 'screen' | 'large';
   /** Content alignment */
   align?: 'center' | 'left';
+  /** Optional right visual image shown in left-aligned hero */
+  rightImage?: { src: string; alt: string };
+  /** Placeholder text shown when no right image is provided */
+  rightPlaceholderLabel?: string;
+  /** Optional badge shown above the title */
+  badge?: string;
+  /** Title size variant */
+  titleSize?: 'default' | 'compact';
+  /** Position of the visual when using split layout */
+  visualPosition?: 'right' | 'left';
 }
 
 const {
@@ -102,7 +112,12 @@ const {
   overlayOpacity = 50,
   textColor = 'auto',
   minHeight = 'default',
-  align = 'lefter',
+  align = 'center',
+  rightImage,
+  rightPlaceholderLabel,
+  badge,
+  titleSize = 'default',
+  visualPosition = 'right',
 } = Astro.props;
 
 // Solid background classes
@@ -140,6 +155,11 @@ const minHeightClass = {
 // Alignment classes
 const alignClass = align === 'left' ? 'text-left' : 'text-center mx-auto';
 const buttonAlignClass = align === 'left' ? 'justify-start' : 'justify-center';
+const hasRightVisual = align === 'left' && (rightImage || rightPlaceholderLabel);
+const titleClass =
+  titleSize === 'compact'
+    ? 'text-3xl sm:text-4xl lg:text-5xl'
+    : 'text-4xl sm:text-5xl lg:text-6xl';
 ---
 
 <section
@@ -191,39 +211,121 @@ const buttonAlignClass = align === 'left' ? 'justify-start' : 'justify-center';
       minHeight === 'screen' && 'w-full',
     ]}
   >
-    <div class:list={['max-w-3xl', alignClass]}>
-      <h1
-        class:list={[
-          'text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight',
-          textClasses.heading,
-        ]}
-      >
-        {title}
-      </h1>
-      <p class:list={['mt-6 text-lg sm:text-xl leading-relaxed', textClasses.body]}>
-        {subtitle}
-      </p>
-      <div class:list={['mt-10 flex flex-col sm:flex-row items-center gap-4', buttonAlignClass]}>
-        <a
-          href={primaryCTA.href}
-          class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors w-full sm:w-auto"
-        >
-          {primaryCTA.label}
-        </a>
-        {
-          secondaryCTA && (
-            <a
-              href={secondaryCTA.href}
+    {
+      hasRightVisual ? (
+        <div class="grid items-center gap-10 lg:grid-cols-2">
+          <div class:list={[visualPosition === 'left' && 'lg:order-2', alignClass]}>
+            {
+              badge && (
+                <p class="inline-flex rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                  {badge}
+                </p>
+              )
+            }
+            <h1
               class:list={[
-                'inline-flex items-center justify-center px-6 py-3 rounded-md border font-medium transition-colors w-full sm:w-auto',
-                textClasses.button,
+                titleClass,
+                'font-bold leading-tight tracking-tight',
+                textClasses.heading,
+                badge ? 'mt-4' : '',
               ]}
             >
-              {secondaryCTA.label}
+              {title}
+            </h1>
+            <p class:list={['mt-6 text-lg sm:text-xl leading-relaxed', textClasses.body]}>
+              {subtitle}
+            </p>
+            <div class:list={['mt-10 flex flex-col sm:flex-row items-center gap-4', buttonAlignClass]}>
+              <a
+                href={primaryCTA.href}
+                class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors w-full sm:w-auto"
+              >
+                {primaryCTA.label}
+                <span class="ml-2 -mr-1">
+                  <Icon name="lucide:arrow-right" class="w-5 h-5" />
+                </span>
+              </a>
+              {
+                secondaryCTA && (
+                  <a
+                    href={secondaryCTA.href}
+                    class:list={[
+                      'inline-flex items-center justify-center px-6 py-3 rounded-md border font-medium transition-colors w-full sm:w-auto',
+                      textClasses.button,
+                    ]}
+                  >
+                    {secondaryCTA.label}
+                  </a>
+                )
+              }
+            </div>
+          </div>
+
+          <div class:list={[visualPosition === 'left' && 'lg:order-1']}>
+            {
+              rightImage ? (
+                <img
+                  src={rightImage.src}
+                  alt={rightImage.alt}
+                  class="aspect-[4/3] w-full rounded-xl object-cover"
+                  loading="eager"
+                />
+              ) : (
+                <div class="flex aspect-[4/3] w-full items-center justify-center rounded-xl border border-dashed border-border bg-background px-6 text-center text-sm text-text-muted">
+                  {rightPlaceholderLabel}
+                </div>
+              )
+            }
+          </div>
+        </div>
+      ) : (
+        <div class:list={['max-w-3xl', alignClass]}>
+          {
+            badge && (
+              <p class="inline-flex rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                {badge}
+              </p>
+            )
+          }
+          <h1
+            class:list={[
+              titleClass,
+              'font-bold leading-tight tracking-tight',
+              textClasses.heading,
+              badge ? 'mt-4' : '',
+            ]}
+          >
+            {title}
+          </h1>
+          <p class:list={['mt-6 text-lg sm:text-xl leading-relaxed', textClasses.body]}>
+            {subtitle}
+          </p>
+          <div class:list={['mt-10 flex flex-col sm:flex-row items-center gap-4', buttonAlignClass]}>
+            <a
+              href={primaryCTA.href}
+              class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors w-full sm:w-auto"
+            >
+              {primaryCTA.label}
+              <span class="ml-2 -mr-1">
+                <Icon name="lucide:arrow-right" class="w-5 h-5" />
+              </span>
             </a>
-          )
-        }
-      </div>
-    </div>
+            {
+              secondaryCTA && (
+                <a
+                  href={secondaryCTA.href}
+                  class:list={[
+                    'inline-flex items-center justify-center px-6 py-3 rounded-md border font-medium transition-colors w-full sm:w-auto',
+                    textClasses.button,
+                  ]}
+                >
+                  {secondaryCTA.label}
+                </a>
+              )
+            }
+          </div>
+        </div>
+      )
+    }
   </div>
 </section>

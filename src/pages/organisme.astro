@@ -1,42 +1,116 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import HowItWorks from '@sections/marketing/HowItWorks.astro';
+import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
+
+const steps = [
+  {
+    title: 'Choisir sa formation',
+    description: 'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.',
+    icon: 'lucide:search',
+  },
+  {
+    title: 'Traitement du dossier',
+    description: 'Nous nous occupons pour vous de toutes les demarches administratives.',
+    icon: 'lucide:settings',
+  },
+  {
+    title: 'Profiter de sa formation',
+    description: 'Nos programmes sont elabores pour repondre specifiquement a vos attentes.',
+    icon: 'lucide:monitor-smartphone',
+  },
+  {
+    title: 'Recevoir son attestation',
+    description: 'Vous recevez votre attestation de formation nominative.',
+    icon: 'lucide:badge-check',
+  },
+];
 ---
 
 <MarketingLayout
   title={`L'organisme - ${siteConfig.name}`}
   description="Presentation de l'organisme SODEVA."
 >
-  <section class="py-16">
+  <section class="py-16 bg-background">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-text">L'organisme</h1>
-      <p class="mt-6 text-text-muted max-w-3xl">
-        SODEVA est un organisme de formation et CFA qui accompagne les acteurs de la pedagogie,
-        les professionnels et les structures dans le developpement de competences directement mobilisables.
-      </p>
+      <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-primary">L organisme</p>
+          <h1 class="mt-3 text-4xl font-bold text-text">Un centre de formation professionnalisant</h1>
+          <p class="mt-5 max-w-3xl text-text-muted">
+            SODEVA est un organisme de formation et CFA qui accompagne les professionnels, les
+            entreprises et les structures pedagogiques dans le developpement de competences
+            concretement mobilisables sur le terrain.
+          </p>
 
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <article class="rounded-xl border border-border p-6 bg-surface">
-          <h2 class="text-xl font-semibold text-text">Notre mission</h2>
-          <p class="mt-3 text-sm text-text-muted">
-            Proposer des parcours utiles, accessibles et alignes avec les realites operationnelles des apprenants.
-          </p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-xl border border-border bg-background p-4">
+              <div class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <Icon name="lucide:target" class="h-4 w-4" />
+              </div>
+              <h2 class="mt-3 text-base font-semibold text-text">Notre mission</h2>
+              <p class="mt-2 text-sm text-text-muted">
+                Proposer des parcours utiles, accessibles et alignes avec les realites operationnelles des apprenants.
+              </p>
+            </div>
+            <div class="rounded-xl border border-border bg-background p-4">
+              <div class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <Icon name="lucide:shield-check" class="h-4 w-4" />
+              </div>
+              <h2 class="mt-3 text-base font-semibold text-text">Qualite & certification</h2>
+              <p class="mt-2 text-sm text-text-muted">
+                Demarche qualite basee sur l amelioration continue et la certification Qualiopi.
+              </p>
+            </div>
+          </div>
         </article>
-        <article class="rounded-xl border border-border p-6 bg-surface">
-          <h2 class="text-xl font-semibold text-text">Qualite & certification</h2>
-          <p class="mt-3 text-sm text-text-muted">
-            Notre demarche qualite est structuree autour de l amelioration continue et de la certification Qualiopi.
+
+        <aside class="rounded-2xl border border-border bg-background p-6">
+          <img src="/logo.webp" alt="Logo SODEVA" class="h-14 w-auto" />
+          <p class="mt-4 text-sm text-text-muted">
+            Organisme de formation et CFA a Montpellier, avec un accompagnement adapte a chaque profil.
           </p>
-          <a
-            class="inline-block mt-4 text-primary hover:underline"
-            href="https://api-sodeva.fr/certificat_qualiopi_sodeva.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Voir le certificat Qualiopi
-          </a>
-        </article>
+
+          <div class="mt-5 rounded-xl border border-border bg-background p-4">
+            <p class="text-xs font-medium uppercase tracking-[0.12em] text-text-muted">Certification</p>
+            <div class="mt-3 flex items-center gap-3">
+              <img src="/images/qualiopi.webp" alt="Certification Qualiopi" class="h-14 w-auto" />
+              <a
+                class="text-sm font-medium text-primary hover:underline"
+                href="https://api-sodeva.fr/certificat_qualiopi_sodeva.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Voir le certificat Qualiopi
+              </a>
+            </div>
+          </div>
+
+          <ul class="mt-5 space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>Parcours axes sur la pratique et l employabilite.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>Equipe pedagogique experimentee et disponible.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="lucide:check-circle-2" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>Suivi administratif et accompagnement personnalise.</span>
+            </li>
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
+
+  <HowItWorks
+    title="Votre parcours avec SODEVA"
+    subtitle="Une organisation claire pour simplifier chaque etape de votre entree en formation."
+    steps={steps}
+    variant="horizontal"
+    background="default"
+  />
 </MarketingLayout>

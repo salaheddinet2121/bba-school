@@ -1,141 +1,59 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import Hero from '@sections/marketing/Hero.astro';
+import LogoCloud from '@sections/marketing/LogoCloud.astro';
+import Cetfication from '@sections/rnq/Cetfication.astro';
+import Formation from '@sections/rnq/Formation.astro';
+import Rnq from '@sections/rnq/Rnq.astro';
+import Testomenial from '@sections/rnq/Testomenial.astro';
 import { siteConfig } from '@/config';
+import HowItWorks from '@/components/sections/marketing/HowItWorks.astro';
 
-const formations = [
-  {
-    title: 'Assistance administrative et bureautique',
-    description:
-      'Maitriser les outils et processus administratifs pour structurer l activite au quotidien.',
-  },
-  {
-    title: 'Communication professionnelle',
-    description:
-      'Renforcer les pratiques de communication orale et ecrite en contexte professionnel.',
-  },
-  {
-    title: 'Organisation et efficacite operationnelle',
-    description:
-      'Developper des methodes concretes pour prioriser, suivre et optimiser les actions.',
-  },
+const partnerLogos = [
+  { name: 'Carrefour Market', src: '/images/logos/carrefour-market.svg' },
+  { name: 'Carrefour', src: '/images/logos/carrefour.svg' },
+  { name: 'Credit Agricole', src: '/images/logos/credit-agricole.svg' },
+  { name: 'Intermarchee', src: '/images/logos/intermarchee.svg' },
+  { name: 'Medicale', src: '/images/logos/medicale.svg' },
 ];
+
+const steps = [ { title: 'Choisir sa formation', description: 'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.', icon: 'lucide:search', }, { title: 'Traitement du dossier', description: 'Nous nous occupons pour vous de toutes les demarches administratives.', icon: 'lucide:settings', }, { title: 'Profiter de sa formation', description: 'Nos programmes sont elabores pour repondre specifiquement a vos attentes.', icon: 'lucide:monitor-smartphone', }, { title: 'Recevoir son attestation', description: 'Vous recevez votre attestation de formation nominative.', icon: 'lucide:badge-check', }, ];
 ---
 
 <MarketingLayout
-  title={`Accueil - ${siteConfig.name}`}
-  description="Centre de formation certifie Qualiopi: catalogue, informations RNQ et contact."
+  title={`${siteConfig.name}`}
+  description="SODEVA est un organisme de formation et CFA certifie Qualiopi. Decouvrez notre catalogue, nos informations RNQ et nos modalites de contact."
 >
-  <section class="py-16 bg-surface border-b border-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-sm font-medium text-primary">Organisme de formation & CFA</p>
-      <h1 class="mt-4 text-4xl sm:text-5xl font-bold text-text max-w-4xl">
-        SODEVA accompagne les acteurs de la pedagogie pour developper des competences solides.
-      </h1>
-      <p class="mt-6 text-lg text-text-muted max-w-3xl">
-        Formations certifiees Qualiopi, parcours adaptables et suivi individualise pour les
-        professionnels et les structures de formation.
-      </p>
-      <div class="mt-8">
-        <a
-          href="/formations"
-          class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors"
-        >
-          Voir le catalogue
-        </a>
-      </div>
-    </div>
-  </section>
+  <Hero
+    title="SODEVA, organisme de formation et CFA certifie Qualiopi"
+    subtitle="Depuis plus de 8 ans, nous accompagnons les professionnels et les entreprises avec des parcours concrets, accessibles et orientes resultats."
+    badge="Certifiee Qualiopi"
+    primaryCTA={{ label: 'Voir le catalogue', href: '/formations' }}
+    secondaryCTA={{ label: 'Contact', href: '/contact' }}
+    align="left"
+    titleSize="compact"
+    visualPosition="right"
+    rightImage={{ src: '/images/og-image.png', alt: 'Presentation du centre de formation SODEVA' }}
+  />
 
-  <section id="qualiopi" class="py-14">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-2xl border border-border bg-background p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-          <p class="text-sm font-semibold text-primary">Bloc Qualiopi</p>
-          <h2 class="mt-2 text-2xl font-bold text-text">Certification Qualiopi</h2>
-          <p class="mt-2 text-text-muted max-w-2xl">
-            SODEVA est certifiee Qualiopi au titre des actions de formation. Cette certification
-            atteste de la qualite du processus de formation et de l amelioration continue.
-          </p>
-        </div>
-        <a
-          href="https://api-sodeva.fr/certificat_qualiopi_sodeva.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-5 py-3 rounded-md border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors"
-        >
-          Voir le certificat
-        </a>
-      </div>
-    </div>
-  </section>
+  <LogoCloud
+    title="Ils nous font confiance"
+    logos={partnerLogos}
+    grayscale={false}
+    logoSize="lg"
+    variant="grid" columns={5}
+    background="accent"
+  />
 
-  <section class="py-14 bg-surface border-y border-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-text">Apercu des formations</h2>
-      <p class="mt-3 text-text-muted">Des parcours concrets, orientes pratique et employabilite.</p>
-      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-          formations.map((formation) => (
-            <article class="rounded-xl border border-border bg-background p-6">
-              <h3 class="text-lg font-semibold text-text">{formation.title}</h3>
-              <p class="mt-3 text-sm text-text-muted">{formation.description}</p>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="py-14">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-text">Liens rapides RNQ</h2>
-      <div class="mt-8 grid gap-4 md:grid-cols-2">
-        <a href="/informations-pratiques#resultats-indicateurs" class="rounded-lg border border-border p-5 hover:border-primary transition-colors">
-          Resultats & indicateurs
-        </a>
-        <a href="/informations-pratiques#livret-accueil" class="rounded-lg border border-border p-5 hover:border-primary transition-colors">
-          Livret d accueil
-        </a>
-        <a href="/informations-pratiques#reclamation" class="rounded-lg border border-border p-5 hover:border-primary transition-colors">
-          Reclamation
-        </a>
-        <a href="/informations-pratiques#accessibilite" class="rounded-lg border border-border p-5 hover:border-primary transition-colors">
-          Accessibilite handicap
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-14 bg-surface border-y border-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-text">Temoignages & partenaires</h2>
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <blockquote class="rounded-xl border border-border bg-background p-6">
-          <p class="text-text">"Une equipe a l ecoute et un accompagnement tres concret tout au long du parcours."</p>
-          <footer class="mt-3 text-sm text-text-muted">Responsable pedagogique</footer>
-        </blockquote>
-        <blockquote class="rounded-xl border border-border bg-background p-6">
-          <p class="text-text">"Les contenus sont applicables immediatement sur le terrain, avec un vrai suivi."</p>
-          <footer class="mt-3 text-sm text-text-muted">Coordinateur formation</footer>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-2xl bg-primary p-8 md:p-10 text-white flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-          <h2 class="text-3xl font-bold">Vous avez un besoin de formation ?</h2>
-          <p class="mt-3 text-white/90">Notre equipe vous repond et vous oriente vers le bon parcours.</p>
-        </div>
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center px-5 py-3 rounded-md bg-white text-primary font-semibold hover:bg-surface transition-colors"
-        >
-          Contacter SODEVA
-        </a>
-      </div>
-    </div>
-  </section>
+  <Cetfication />
+  <Formation />
+  <HowItWorks
+    title="Votre parcours avec SODEVA"
+    subtitle="Une organisation claire pour simplifier chaque etape de votre entree en formation."
+    steps={steps}
+    variant="horizontal"
+    background="default"
+  />
+  <Rnq />
+  <Testomenial />
 </MarketingLayout>

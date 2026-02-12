@@ -1,0 +1,72 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Choisir sa formation',
+    description:
+      'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.',
+    icon: 'lucide:search',
+    accentClass: 'bg-cyan-500',
+  },
+  {
+    number: '02',
+    title: 'Traitement du dossier',
+    description:
+      'Nous nous occupons pour vous de toutes les demarches administratives.',
+    icon: 'lucide:settings',
+    accentClass: 'bg-orange-500',
+  },
+  {
+    number: '03',
+    title: 'Profiter de sa formation',
+    description:
+      'Nos programmes sont elabores pour repondre specifiquement a vos attentes.',
+    icon: 'lucide:monitor-smartphone',
+    accentClass: 'bg-cyan-500',
+  },
+  {
+    number: '04',
+    title: 'Recevoir son attestation',
+    description:
+      'Vous recevez votre attestation de formation nominative.',
+    icon: 'lucide:badge-check',
+    accentClass: 'bg-orange-500',
+  },
+];
+---
+
+<section class="py-section bg-background">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-primary">Parcours</p>
+      <h2 class="mt-3 text-3xl font-bold text-text">Devenir apprenant en 4 etapes</h2>
+      <p class="mt-3 text-text-muted">
+        Un processus simple, lisible et accompagne du debut jusqu a la delivrance de l attestation.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-4">
+      {
+        steps.map((step) => (
+          <article class="rounded-xl border border-border bg-surface p-5 sm:p-6">
+            <div class="flex items-start gap-4 sm:gap-5">
+              <div class:list={['h-1.5 w-12 shrink-0 rounded-full mt-3', step.accentClass]}></div>
+              <div class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-background text-primary border border-border">
+                <Icon name={step.icon} class="h-5 w-5" />
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
+                  Etape {step.number}
+                </p>
+                <h3 class="mt-1 text-xl font-semibold text-text">{step.title}</h3>
+                <p class="mt-2 text-sm text-text-muted">{step.description}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

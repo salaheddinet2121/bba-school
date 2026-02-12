@@ -49,7 +49,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
   <!-- Honeypot field for spam protection -->
   <div class="hidden" aria-hidden="true">
     <label>
-      Don't fill this out if you're human:
+      Ne pas remplir ce champ:
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
     </label>
   </div>
@@ -60,7 +60,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
     <div>
       <label for="firstName" class="block text-sm font-medium text-text mb-2">
-        First name <span class="text-red-500">*</span>
+        Prenom <span class="text-red-500">*</span>
       </label>
       <input
         type="text"
@@ -69,13 +69,13 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
         required
         minlength="2"
         class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-        placeholder="Jane"
+        placeholder="Jean"
       />
       <p class="mt-1 text-sm text-red-500 hidden" data-error="firstName"></p>
     </div>
     <div>
       <label for="lastName" class="block text-sm font-medium text-text mb-2">
-        Last name <span class="text-red-500">*</span>
+        Nom <span class="text-red-500">*</span>
       </label>
       <input
         type="text"
@@ -84,7 +84,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
         required
         minlength="2"
         class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-        placeholder="Doe"
+        placeholder="Dupont"
       />
       <p class="mt-1 text-sm text-red-500 hidden" data-error="lastName"></p>
     </div>
@@ -106,8 +106,8 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
   </div>
 
   <div>
-    <label for="subject" class="block text-sm font-medium text-text mb-2">
-      Subject <span class="text-red-500">*</span>
+      <label for="subject" class="block text-sm font-medium text-text mb-2">
+      Objet <span class="text-red-500">*</span>
     </label>
     <div class="relative">
       <select
@@ -116,12 +116,12 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
         required
         class="w-full px-4 py-3 pr-10 rounded-md border border-border bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors appearance-none cursor-pointer"
       >
-        <option value="">Select a topic</option>
-        <option value="general">General inquiry</option>
-        <option value="sales">Sales & pricing</option>
-        <option value="support">Technical support</option>
-        <option value="enterprise">Enterprise solutions</option>
-        <option value="partnership">Partnership opportunities</option>
+        <option value="">Selectionner un sujet</option>
+        <option value="general">Demande generale</option>
+        <option value="sales">Tarifs et inscription</option>
+        <option value="support">Support pedagogique</option>
+        <option value="enterprise">Besoin entreprise</option>
+        <option value="partnership">Partenariat</option>
       </select>
       <div
         class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-text-muted"
@@ -136,7 +136,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
   </div>
 
   <div>
-    <label for="message" class="block text-sm font-medium text-text mb-2">
+      <label for="message" class="block text-sm font-medium text-text mb-2">
       Message <span class="text-red-500">*</span>
     </label>
     <textarea
@@ -146,7 +146,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
       required
       minlength="10"
       class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-colors"
-      placeholder="Tell us how we can help..."></textarea>
+      placeholder="Decrivez votre besoin..."></textarea>
     <p class="mt-1 text-sm text-red-500 hidden" data-error="message"></p>
   </div>
 
@@ -158,16 +158,16 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
     >
       <p class="text-green-900 dark:text-green-100 font-medium">Message sent successfully!</p>
       <p class="text-green-800 dark:text-green-300 text-sm mt-1">
-        We'll get back to you within 24 hours.
+        Nous vous repondrons dans les meilleurs delais.
       </p>
     </div>
     <div
       id="form-error"
       class="hidden p-4 rounded-md bg-red-100 dark:bg-red-950 border border-red-300 dark:border-red-800"
     >
-      <p class="text-red-900 dark:text-red-100 font-medium">Something went wrong</p>
+      <p class="text-red-900 dark:text-red-100 font-medium">Une erreur est survenue</p>
       <p class="text-red-800 dark:text-red-300 text-sm mt-1">
-        Please try again or contact us directly via email.
+        Merci de reessayer ou de nous contacter directement par email.
       </p>
     </div>
   </div>
@@ -178,7 +178,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
       id="submit-button"
       class="w-full sm:w-auto px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      <span id="button-text">Send Message</span>
+      <span id="button-text">Envoyer le message</span>
       <span id="button-loading" class="hidden">
         <svg
           class="animate-spin inline-block w-5 h-5 mr-2"
@@ -194,11 +194,11 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-        Sending...
+        Envoi...
       </span>
     </button>
     <p class="text-sm text-text-muted">
-      <span class="text-red-500">*</span> Required fields
+      <span class="text-red-500">*</span> Champs obligatoires
     </p>
   </div>
 </form>
@@ -215,28 +215,28 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
   // Validation rules
   const validationRules: Record<string, (value: string) => string | null> = {
     firstName: (value) => {
-      if (!value.trim()) return 'First name is required';
-      if (value.trim().length < 2) return 'First name must be at least 2 characters';
+      if (!value.trim()) return 'Le prenom est obligatoire';
+      if (value.trim().length < 2) return 'Le prenom doit contenir au moins 2 caracteres';
       return null;
     },
     lastName: (value) => {
-      if (!value.trim()) return 'Last name is required';
-      if (value.trim().length < 2) return 'Last name must be at least 2 characters';
+      if (!value.trim()) return 'Le nom est obligatoire';
+      if (value.trim().length < 2) return 'Le nom doit contenir au moins 2 caracteres';
       return null;
     },
     email: (value) => {
-      if (!value.trim()) return 'Email is required';
+      if (!value.trim()) return 'L email est obligatoire';
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) return 'Please enter a valid email address';
+      if (!emailRegex.test(value)) return 'Veuillez saisir une adresse email valide';
       return null;
     },
     subject: (value) => {
-      if (!value) return 'Please select a subject';
+      if (!value) return 'Veuillez selectionner un objet';
       return null;
     },
     message: (value) => {
-      if (!value.trim()) return 'Message is required';
-      if (value.trim().length < 10) return 'Message must be at least 10 characters';
+      if (!value.trim()) return 'Le message est obligatoire';
+      if (value.trim().length < 10) return 'Le message doit contenir au moins 10 caracteres';
       return null;
     },
   };

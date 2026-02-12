@@ -1,8 +1,9 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Header from '@layout/Header.astro';
-import Footer from '@layout/Footer.astro';
+import FooterRNQ from '@layout/FooterRNQ.astro';
 import AnnouncementBar from '@layout/AnnouncementBar.astro';
+import CTA from '@sections/marketing/CTA.astro';
 import { siteConfig } from '@/config';
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
   modifiedDate?: Date;
   author?: string;
   tags?: string[];
+  showGlobalCTA?: boolean;
 }
 
 const {
@@ -26,6 +28,7 @@ const {
   modifiedDate,
   author,
   tags,
+  showGlobalCTA = true,
 } = Astro.props;
 
 const { announcement } = siteConfig;
@@ -58,6 +61,17 @@ const { announcement } = siteConfig;
     <main id="main-content" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    {
+      showGlobalCTA && (
+        <CTA
+          title="Un besoin de formation ou d accompagnement ?"
+          description="Notre equipe vous aide a choisir le bon parcours selon vos objectifs."
+          action={{ label: 'Contacter SODEVA', href: '/contact' }}
+          secondaryAction={{ label: 'Voir les formations', href: '/formation' }}
+          background="default"
+        />
+      )
+    }
+    <FooterRNQ />
   </div>
 </BaseLayout>

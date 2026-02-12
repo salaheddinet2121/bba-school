@@ -1,0 +1,99 @@
+<form id="reclamation-form" class="space-y-5" novalidate>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="nom" class="block text-sm font-medium text-text mb-2">Nom complet *</label>
+      <input
+        id="nom"
+        name="nom"
+        type="text"
+        required
+        class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+        placeholder="Votre nom"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-text mb-2">Email *</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+        placeholder="vous@exemple.fr"
+      />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="telephone" class="block text-sm font-medium text-text mb-2">Telephone</label>
+      <input
+        id="telephone"
+        name="telephone"
+        type="tel"
+        class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+        placeholder="06 00 00 00 00"
+      />
+    </div>
+    <div>
+      <label for="objet" class="block text-sm font-medium text-text mb-2">Objet *</label>
+      <select
+        id="objet"
+        name="objet"
+        required
+        class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+      >
+        <option value="">Selectionner</option>
+        <option value="qualite">Qualite de la formation</option>
+        <option value="organisation">Organisation / planning</option>
+        <option value="administratif">Administratif</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-text mb-2">Votre reclamation *</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      minlength="20"
+      class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+      placeholder="Decrivez votre reclamation..."
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="inline-flex items-center rounded-md bg-primary px-5 py-3 font-medium text-white transition-colors hover:bg-primary-dark"
+  >
+    Envoyer la reclamation
+  </button>
+
+  <p class="text-sm text-text-muted">
+    * Champs obligatoires. En attendant le branchement backend, ce formulaire affiche une confirmation locale.
+  </p>
+
+  <p id="form-success" class="hidden rounded-md border border-green-300 bg-green-100 px-4 py-3 text-sm text-green-900">
+    Votre reclamation est bien enregistree. Notre equipe reviendra vers vous rapidement.
+  </p>
+</form>
+
+<script>
+  const form = document.getElementById('reclamation-form') as HTMLFormElement | null;
+  const success = document.getElementById('form-success');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    form.reset();
+    success?.classList.remove('hidden');
+  });
+</script>

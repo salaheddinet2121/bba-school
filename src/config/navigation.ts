@@ -25,7 +25,9 @@ export const navigation: Navigation = {
       { label: 'Informations pratiques', href: '/informations-pratiques' },
       { label: 'Contact', href: '/contact' },
     ],
-    cta: [],
+    cta: [
+      { label: 'Contacter', href: '/contact', variant: 'primary' },
+    ],
   },
 
   /**
@@ -39,10 +41,11 @@ export const navigation: Navigation = {
       { label: 'Formation communication', href: '/formations' },
     ],
     solutions: [
-      { label: 'Resultats & indicateurs', href: '/informations-pratiques#resultats-indicateurs' },
-      { label: 'Livret d accueil', href: '/informations-pratiques#livret-accueil' },
-      { label: 'Reclamation', href: '/informations-pratiques#reclamation' },
-      { label: 'Accessibilite handicap', href: '/informations-pratiques#accessibilite' },
+      { label: 'Formulaire de reclamation', href: '/rnq/reclamation' },
+      { label: 'Livret d accueil', href: '/rnq/livret-accueil' },
+      { label: 'Reglement interieur', href: '/rnq/reglement-interieur' },
+      { label: 'Engagements deontologiques', href: '/rnq/engagements-deontologiques' },
+      { label: 'CGV', href: '/rnq/cgv' },
     ],
     resources: [
       { label: 'Bloc Qualiopi', href: '/#qualiopi' },
@@ -50,12 +53,13 @@ export const navigation: Navigation = {
       { label: 'Mentions legales', href: '/information' },
     ],
     company: [
-      { label: 'L organisme', href: '/organisme' },
+      { label: 'L\'organisme', href: '/organisme' },
       { label: 'Contact', href: '/contact' },
       { label: 'Horaires', href: '/contact' },
     ],
     legal: [
       { label: 'Mentions legales', href: '/information' },
+      { label: 'CGV', href: '/rnq/cgv' },
       { label: 'Contact', href: '/contact' },
     ],
   },

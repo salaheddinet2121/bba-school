@@ -51,4 +51,31 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { blog, docs, changelog, testimonials };
+const formations = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/formations' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    objectifs: z.string(),
+    public: z.string(),
+    icon: z.string().default('lucide:graduation-cap'),
+    domain: z.string().default('Informatique'),
+    subdomain: z.string().optional(),
+    badgeLabel: z.string().default('INCONTOURNABLES'),
+    badgeTone: z.enum(['incontournable', 'nouveaute', 'expert', 'certifiant']).default('incontournable'),
+    image: z.string().optional(),
+    duration: z.string().default('2 jours'),
+    format: z.string().default('Presentiel / a distance'),
+    level: z.string().default('Fondamentaux'),
+    priceHT: z.coerce.number().default(1290),
+    reference: z.string().default('SOD0001'),
+    rating: z.coerce.number().default(4.8),
+    reviews: z.coerce.number().default(64),
+    eligibleCPF: z.boolean().default(true),
+    guaranteedSession: z.boolean().default(false),
+    order: z.number().default(0),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, docs, changelog, testimonials, formations };

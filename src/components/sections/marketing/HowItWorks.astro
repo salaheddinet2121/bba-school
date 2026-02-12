@@ -81,13 +81,10 @@ const hasHeading = title || subtitle;
     {
       variant === 'horizontal' && (
         <div class="relative">
-          {/* Connection line - positioned between first and last icon centers */}
           <div
-            class="hidden md:block absolute top-12 h-0.5 bg-border"
-            style="left: calc(16.666% + 48px); right: calc(16.666% + 48px);"
-          />
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            class="grid grid-cols-1 gap-8 md:gap-12 md:[grid-template-columns:repeat(var(--step-count),minmax(0,1fr))]"
+            style={`--step-count: ${steps.length};`}
+          >
             {steps.map((step, index) => (
               <div class="relative text-center">
                 {/* Step number or icon */}
