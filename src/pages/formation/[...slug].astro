@@ -50,6 +50,12 @@ const defaultMode =
 
 const defaultPrice = modePrices[defaultMode] ?? formation.data.priceHT;
 const formatPrice = (value: number) => `${value.toLocaleString('fr-FR')} EUR HT`;
+const priceFallbackMessage = formation.data.pricingText ?? 'Tarif sur demande';
+const getDisplayPrice = (value: number | null | undefined) =>
+  typeof value === 'number' && Number.isFinite(value) && value > 0
+    ? formatPrice(value)
+    : priceFallbackMessage;
+const defaultPriceLabel = getDisplayPrice(defaultPrice);
 const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formation.id)}&type=${defaultMode}`;
 ---
 
@@ -183,7 +189,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                     <span>Niveau: {formation.data.level}</span>
                   </div>
                   <div class="detail-item">
-                    <Icon name="lucide:tag" class="h-4 w-4 text-primary" />
+                    <Icon name="lucide:hash" class="h-4 w-4 text-primary" />
                     <span>Reference: {formation.data.reference}</span>
                   </div>
                 </div>
@@ -320,6 +326,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
             data-formation-id={formation.id}
             data-price-distanciel={modePrices.distanciel ?? ''}
             data-price-presentiel={modePrices.presentiel ?? ''}
+            data-price-message={priceFallbackMessage}
           >
             <fieldset>
               <legend class="sr-only">Mode de formation</legend>
@@ -366,8 +373,8 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
             <div class="mt-5 flex items-start justify-between gap-4">
               <div>
                 <p class="text-sm text-text-muted">Prochaine session :</p>
-                <p class="mt-1 text-base font-semibold text-primary-dark">{formation.data.nextSessionCity}</p>
-                <p class="text-sm text-primary-dark">{formation.data.nextSessionDate}</p>
+                <p class="mt-1 text-base font-semibold text-[#0f0f0f]">{formation.data.nextSessionCity}</p>
+                <p class="text-sm text-[#0f0f0f]">{formation.data.nextSessionDate}</p>
               </div>
             </div>
 
@@ -377,13 +384,13 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                 {formation.data.duration}
               </span>
               <span class="inline-flex items-center gap-2">
-                <Icon name="lucide:tag" class="h-4 w-4" />
+                <Icon name="lucide:hash" class="h-4 w-4" />
                 Ref {formation.data.reference}
               </span>
             </div>
 
             <div class="mt-5 border-t border-border pt-5">
-              <p id="mode-price" class="text-3xl font-bold text-primary-dark">{formatPrice(defaultPrice)}</p>
+              <p id="mode-price" class="mode-price text-2xl font-bold">{defaultPriceLabel}</p>
             </div>
 
             <div class="mt-5">
@@ -460,6 +467,11 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
     padding: 0.55rem 0.7rem;
     font-size: 0.83rem;
     color: var(--color-text-muted);
+  }
+
+  .mode-price {
+    color: #0f0f0f;
+    line-height: 1.2;
   }
 
   .formation-content :global(h2) {
@@ -588,6 +600,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
     const formationId = modeCard.getAttribute('data-formation-id') || '';
     const priceDistRaw = modeCard.getAttribute('data-price-distanciel');
     const pricePresRaw = modeCard.getAttribute('data-price-presentiel');
+    const priceMessage = modeCard.getAttribute('data-price-message') || 'Tarif sur demande';
     const modeInputs = Array.from(modeCard.querySelectorAll('input[name="training-mode"]'));
     const modeLabels = Array.from(modeCard.querySelectorAll('[data-mode-option]'));
 
@@ -597,6 +610,8 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
     };
 
     const formatPrice = (value) => `${new Intl.NumberFormat('fr-FR').format(value)} EUR HT`;
+    const getDisplayPrice = (value) =>
+      typeof value === 'number' && Number.isFinite(value) && value > 0 ? formatPrice(value) : priceMessage;
 
     const getSelectedMode = () => {
       const selected = modeInputs.find((input) => input.checked);
@@ -622,9 +637,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
       }
 
       const selectedPrice = modePrices[selectedMode];
-      if (selectedPrice !== null && Number.isFinite(selectedPrice)) {
-        modePrice.textContent = formatPrice(selectedPrice);
-      }
+      modePrice.textContent = getDisplayPrice(selectedPrice);
 
       const params = new URLSearchParams({
         formation: formationId,
