@@ -1,6 +1,15 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { siteConfig } from '@/config';
+import { documents } from '@/config/documents';
+
+const legalDocuments = [
+  { label: 'Certificat Qualiopi', href: documents.certificatQualiopi },
+  { label: 'Livret d\'accueil', href: documents.livretAccueil },
+  { label: 'Reglement interieur', href: documents.reglementInterieur },
+  { label: 'Conditions generales de vente (CGV)', href: documents.cgv },
+  { label: 'Engagements deontologiques', href: documents.engagementsDeontologiques },
+];
 ---
 
 <MarketingLayout
@@ -24,6 +33,30 @@ import { siteConfig } from '@/config';
           <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline">contact@sodeva.fr</a>
         </p>
       </div>
+
+      <article class="mt-10 rounded-2xl border border-border bg-background p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold text-text">Documents officiels telechargeables</h2>
+        <p class="mt-3 text-sm text-text-muted">
+          Les documents administratifs et qualitatifs actuellement disponibles sont accessibles ci-dessous.
+        </p>
+
+        <ul class="mt-5 space-y-3">
+          {
+            legalDocuments.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-medium text-primary hover:underline"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
     </div>
   </section>
 </MarketingLayout>

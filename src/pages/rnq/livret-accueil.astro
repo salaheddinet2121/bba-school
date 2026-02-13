@@ -1,24 +1,33 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { siteConfig } from '@/config';
+import { documents } from '@/config/documents';
 ---
 
 <MarketingLayout
-  title={`Livret d accueil - ${siteConfig.name}`}
-  description="Livret d accueil des apprenants SODEVA."
+  title={`Livret d'accueil - ${siteConfig.name}`}
+  description="Livret d'accueil des apprenants SODEVA."
 >
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-text">Livret d accueil</h1>
+      <h1 class="text-4xl font-bold text-text">Livret d'accueil</h1>
       <p class="mt-4 text-text-muted">
-        Cette page est prete pour accueillir votre livret complet (objectifs, deroule, regles, accompagnement).
+        Cette page est prete pour accueillir votre livret complet (objectifs, déroulé, règles, accompagnement).
       </p>
 
       <article class="mt-8 rounded-2xl border border-dashed border-border bg-surface p-8">
         <h2 class="text-xl font-semibold text-text">Contenu provisoire</h2>
         <p class="mt-3 text-sm text-text-muted">
-          Inserer ici le contenu du livret d accueil ou un lien vers le PDF final.
+          Inserer ici le contenu du livret d'accueil ou un lien vers le PDF final.
         </p>
+        <a
+          href={documents.livretAccueil}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-5 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
+        >
+          Telecharger le livret (PDF)
+        </a>
       </article>
     </div>
   </section>

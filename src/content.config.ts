@@ -58,6 +58,17 @@ const formations = defineCollection({
     description: z.string(),
     objectifs: z.string(),
     public: z.string(),
+    prerequis: z.string().default('Aucun prerequis specifique'),
+    objectifsPoints: z.array(z.string()).default([]),
+    programmeModules: z
+      .array(
+        z.object({
+          title: z.string(),
+          items: z.array(z.string()).default([]),
+        })
+      )
+      .default([]),
+    programmePdf: z.string().optional(),
     icon: z.string().default('lucide:graduation-cap'),
     domain: z.string().default('Informatique'),
     subdomain: z.string().optional(),
@@ -67,8 +78,15 @@ const formations = defineCollection({
     duration: z.string().default('2 jours'),
     format: z.string().default('Presentiel / a distance'),
     level: z.string().default('Fondamentaux'),
+    distancielAvailable: z.boolean().default(false),
+    distancielPriceHT: z.coerce.number().optional(),
+    presentielAvailable: z.boolean().default(false),
+    presentielPriceHT: z.coerce.number().optional(),
     priceHT: z.coerce.number().default(1290),
+    pricingText: z.string().optional(),
     reference: z.string().default('SOD0001'),
+    nextSessionCity: z.string().default('A definir'),
+    nextSessionDate: z.string().default('Nous contacter'),
     rating: z.coerce.number().default(4.8),
     reviews: z.coerce.number().default(64),
     eligibleCPF: z.boolean().default(true),

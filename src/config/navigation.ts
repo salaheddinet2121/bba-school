@@ -10,6 +10,7 @@
  */
 
 import type { Navigation } from '../lib/types';
+import { documents } from './documents';
 
 export const navigation: Navigation = {
   /**
@@ -49,7 +50,7 @@ export const navigation: Navigation = {
     ],
     resources: [
       { label: 'Bloc Qualiopi', href: '/#qualiopi' },
-      { label: 'Voir le certificat', href: 'https://api-sodeva.fr/certificat_qualiopi_sodeva.pdf' },
+      { label: 'Voir le certificat', href: documents.certificatQualiopi },
       { label: 'Mentions legales', href: '/information' },
     ],
     company: [

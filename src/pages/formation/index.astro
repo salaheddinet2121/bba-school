@@ -17,35 +17,34 @@ const results = [...formations].sort(
 
 const totalResults = results.length;
 
-const domainMap = results.reduce(
+const allowedDomains = ['Informatique', 'Livraison', 'Boucherie'] as const;
+const normalizeDomain = (rawDomain: string) => {
+  const value = rawDomain.toLowerCase();
+  if (value.includes('boucher')) return 'Boucherie';
+  if (
+    value.includes('livr') ||
+    value.includes('logist') ||
+    value.includes('supply') ||
+    value.includes('management')
+  ) {
+    return 'Livraison';
+  }
+  return 'Informatique';
+};
+const domainCounts = results.reduce(
   (acc, item) => {
-    const domain = item.data.domain;
-    const subdomain = item.data.subdomain;
-
-    if (!acc[domain]) {
-      acc[domain] = { count: 0, subdomains: {} as Record<string, number> };
-    }
-    acc[domain].count += 1;
-
-    if (subdomain) {
-      acc[domain].subdomains[subdomain] = (acc[domain].subdomains[subdomain] || 0) + 1;
-    }
-
+    const key = normalizeDomain(item.data.domain);
+    acc[key] += 1;
     return acc;
   },
-  {} as Record<string, { count: number; subdomains: Record<string, number> }>
+  {
+    Informatique: 0,
+    Livraison: 0,
+    Boucherie: 0,
+  } as Record<(typeof allowedDomains)[number], number>
 );
 
-const badgeClassMap: Record<string, string> = {
-  incontournable: 'bg-[#ef5b5b] text-white',
-  nouveaute: 'bg-primary-dark text-white',
-  expert: 'bg-primary text-white',
-  certifiant: 'bg-success text-white',
-};
-
-const domainEntries = Object.entries(domainMap) as Array<
-  [string, { count: number; subdomains: Record<string, number> }]
->;
+const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCounts[domain] }));
 ---
 
 <MarketingLayout
@@ -55,8 +54,8 @@ const domainEntries = Object.entries(domainMap) as Array<
   <section class="hero-search">
     <div class="hero-overlay">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
-        <p class="text-sm text-white/90">Accueil / Votre recherche</p>
-        <h1 class="mt-4 text-3xl sm:text-4xl font-bold text-white">Votre recherche</h1>
+        <h1 class="mt-4 text-3xl sm:text-4xl font-bold text-white">Nos formations</h1>
+        <p class="text-white/80 ">Explorez notre catalogue complet de formations adaptées à vos besoins.</p>
       </div>
     </div>
   </section>
@@ -65,43 +64,34 @@ const domainEntries = Object.entries(domainMap) as Array<
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-[340px_1fr]">
         <aside class="space-y-6">
-          <h2 class="text-3xl font-semibold text-primary-dark">Filtrer par</h2>
+          <h2 class="text-2xl font-semibold text-primary-dark">Filtrer par</h2>
 
           <div class="rounded-2xl border border-border bg-background p-6">
             <div class="mb-4 flex items-center justify-between">
-              <h3 class="text-2xl font-semibold text-primary-dark">Domaines</h3>
-              <Icon name="lucide:chevron-up" class="h-6 w-6 text-primary" />
+              <h3 class="text-xl font-semibold text-primary-dark">Domaines</h3>
+              <Icon name="lucide:chevron-up" class="h-5 w-5 text-primary" />
             </div>
 
-            <div class="space-y-3 text-lg text-primary-dark" id="domain-filters">
-              <label class="flex items-center gap-3">
+            <div class="space-y-3 text-primary-dark" id="domain-filters">
+              <label class="flex items-center gap-2.5 text-sm leading-5">
                 <input
                   type="checkbox"
-                  class="h-5 w-5 rounded border-border"
+                  class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
                   data-domain-filter="all"
                   checked
                 />
                 <span>Tous ({totalResults})</span>
               </label>
               {
-                domainEntries.map(([domain, info]) => (
-                  <div>
-                    <label class="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        class="h-5 w-5 rounded border-border"
-                        data-domain-filter={domain}
-                      />
-                      <span>{domain} ({info.count})</span>
-                    </label>
-                    {Object.entries(info.subdomains).length > 0 && (
-                      <div class="ml-8 mt-2 space-y-2 text-base text-text-muted">
-                        {Object.entries(info.subdomains).map(([subdomain, count]) => (
-                          <p>{subdomain} ({count})</p>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                domainEntries.map((item) => (
+                  <label class="flex items-center gap-2.5 text-sm leading-5">
+                    <input
+                      type="checkbox"
+                      class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
+                      data-domain-filter={item.domain}
+                    />
+                    <span>{item.domain} ({item.count})</span>
+                  </label>
                 ))
               }
             </div>
@@ -120,26 +110,11 @@ const domainEntries = Object.entries(domainMap) as Array<
             {
               results.map((formation) => (
                 <article
-                  class="rounded-2xl border border-border bg-background p-6 formation-card"
-                  data-domain={formation.data.domain}
+                  class="rounded-2xl border border-border bg-background p-5 formation-card"
+                  data-domain={normalizeDomain(formation.data.domain)}
                 >
                   <div class="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
                     <div class="w-full">
-                      <div class="mb-4 flex flex-wrap items-center gap-2">
-                        <span class="rounded-md bg-primary-dark px-3 py-1 text-xs font-semibold text-white">
-                          {formation.data.subdomain || formation.data.domain}
-                        </span>
-                        <span
-                          class:list={[
-                            'rounded-md px-3 py-1 text-xs font-semibold',
-                            badgeClassMap[formation.data.badgeTone] ||
-                              'bg-primary text-white',
-                          ]}
-                        >
-                          {formation.data.badgeLabel}
-                        </span>
-                      </div>
-
                       <div class="grid gap-5 md:grid-cols-[200px_1fr]">
                         <div class="overflow-hidden rounded-xl bg-surface">
                           {formation.data.image ? (
@@ -157,39 +132,45 @@ const domainEntries = Object.entries(domainMap) as Array<
                         </div>
 
                         <div>
-                          <h2 class="text-2xl font-semibold leading-tight text-primary-dark">
+                          <h2 class="text-xl font-semibold leading-tight text-primary-dark">
                             {formation.data.title}
                           </h2>
-                          <p class="mt-2 text-base font-medium text-text-muted">{formation.data.domain}</p>
-                          <p class="mt-3 text-base leading-relaxed text-text-muted">
+                          <p class="mt-2 text-sm font-medium text-text-muted">
+                            {normalizeDomain(formation.data.domain)}
+                          </p>
+                          <p class="mt-3 text-sm leading-relaxed text-text-muted">
                             {formation.data.description}
                           </p>
-                          <div class="mt-3 flex items-center gap-2 text-primary">
-                            <div class="flex items-center gap-1">
-                              {Array.from({ length: 5 }).map(() => (
-                                <Icon name="lucide:star" class="h-4 w-4 fill-current" />
-                              ))}
-                            </div>
-                            <span class="text-base font-semibold text-primary-dark">
-                              {formation.data.rating.toFixed(1)}
-                            </span>
-                            <span class="text-base text-primary-dark">/5 ({formation.data.reviews} avis)</span>
-                          </div>
+                          {
+                            formation.data.rating > 0 && formation.data.reviews > 0 && (
+                              <div class="mt-3 flex items-center gap-2 text-primary">
+                                <div class="flex items-center gap-1">
+                                  {Array.from({ length: 5 }).map(() => (
+                                    <Icon name="lucide:star" class="h-4 w-4 fill-current" />
+                                  ))}
+                                </div>
+                                <span class="text-sm font-semibold text-primary-dark">
+                                  {formation.data.rating.toFixed(1)}
+                                </span>
+                                <span class="text-sm text-primary-dark">/5 ({formation.data.reviews} avis)</span>
+                              </div>
+                            )
+                          }
                         </div>
                       </div>
 
                       <div class="mt-6 border-t border-border pt-4">
-                        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-base text-text-muted">
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-text-muted">
                           <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:clock-3" class="h-5 w-5" />
+                            <Icon name="lucide:clock-3" class="h-4 w-4" />
                             {formation.data.duration}
                           </span>
                           <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:map-pin" class="h-5 w-5" />
+                            <Icon name="lucide:map-pin" class="h-4 w-4" />
                             {formation.data.format}
                           </span>
                           <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:chart-column" class="h-5 w-5" />
+                            <Icon name="lucide:chart-column" class="h-4 w-4" />
                             {formation.data.level}
                           </span>
                           {formation.data.guaranteedSession && (
@@ -204,11 +185,11 @@ const domainEntries = Object.entries(domainMap) as Array<
 
                     <div class="flex min-w-fit flex-row items-end justify-between gap-5 xl:flex-col xl:items-end">
                       <div class="text-right">
-                        <p class="text-4xl font-bold text-primary-dark">
+                        <p class="text-2xl font-bold text-primary-dark">
                           {formation.data.priceHT.toLocaleString('fr-FR')} € HT
                         </p>
-                        <p class="mt-2 inline-flex items-center gap-2 text-base text-text-muted">
-                          <Icon name="lucide:tag" class="h-5 w-5" />
+                        <p class="mt-2 inline-flex items-center gap-2 text-sm text-text-muted">
+                          <Icon name="lucide:tag" class="h-4 w-4" />
                           Ref {formation.data.reference}
                         </p>
                       </div>
@@ -235,7 +216,7 @@ const domainEntries = Object.entries(domainMap) as Array<
   .hero-search {
     background-image:
       linear-gradient(100deg, rgb(15 15 15 / 86%), rgb(250 133 49 / 45%)),
-      url('/images/og-image.png');
+      url('/images/hero.webp');
     background-position: center;
     background-size: cover;
   }

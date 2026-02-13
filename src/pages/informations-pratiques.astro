@@ -2,6 +2,7 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from '@/config';
+import { documents } from '@/config/documents';
 
 const rnqPages = [
   {
@@ -12,28 +13,32 @@ const rnqPages = [
       'Deposez votre reclamation via un formulaire dedie. Votre demande est enregistree et traitee dans les meilleurs delais.',
   },
   {
-    title: 'Livret d accueil',
+    title: 'Livret d\'accueil',
     icon: 'lucide:notebook-pen',
     href: '/rnq/livret-accueil',
+    downloadHref: documents.livretAccueil,
     description:
-      'Consultez les informations essentielles sur le deroule des formations, les regles et les modalites d accompagnement.',
+      'Consultez les informations essentielles sur le déroulé des formations, les règles et les modalités d\'accompagnement.',
   },
   {
     title: 'Reglement interieur',
     icon: 'lucide:scale',
     href: '/rnq/reglement-interieur',
+    downloadHref: documents.reglementInterieur,
     description: 'Regles applicables pendant le parcours de formation. Page prete avec espace de contenu a completer.',
   },
   {
     title: 'CGV',
     icon: 'lucide:file-text',
     href: '/rnq/cgv',
+    downloadHref: documents.cgv,
     description: 'Conditions generales de vente. Page prete avec bloc de contenu a renseigner ulterieurement.',
   },
   {
     title: 'Engagements deontologiques',
     icon: 'lucide:badge-check',
     href: '/rnq/engagements-deontologiques',
+    downloadHref: documents.engagementsDeontologiques,
     description: 'Principes deontologiques de SODEVA. Page prete avec zone de contenu a remplir.',
   },
 ];
@@ -41,7 +46,7 @@ const rnqPages = [
 
 <MarketingLayout
   title={`Informations pratiques - ${siteConfig.name}`}
-  description="Informations RNQ et documents utiles: reclamation, livret d accueil, reglement interieur, CGV et engagements deontologiques."
+  description="Informations RNQ et documents utiles: reclamation, livret d'accueil, reglement interieur, CGV et engagements deontologiques."
 >
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,6 +114,16 @@ const rnqPages = [
                 <div>
                   <h2 class="text-2xl font-semibold text-text">{item.title}</h2>
                   <p class="mt-3 text-sm text-text-muted">{item.description}</p>
+                  {
+                    item.downloadHref && (
+                      <p class="mt-3">
+                        <span class="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                          <Icon name="lucide:download" class="h-4 w-4" />
+                          PDF disponible sur la page
+                        </span>
+                      </p>
+                    )
+                  }
                 </div>
               </div>
             </a>

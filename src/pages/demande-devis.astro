@@ -1,0 +1,303 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { siteConfig } from '@/config';
+
+type FormationEntry = CollectionEntry<'formations'>;
+
+const formations = await getCollection(
+  'formations',
+  ({ data }: { data: FormationEntry['data'] }) => !data.draft
+);
+
+const formationOptions = [...formations]
+  .sort((a: FormationEntry, b: FormationEntry) => a.data.order - b.data.order)
+  .map((formation: FormationEntry) => ({
+    id: formation.id,
+    title: formation.data.title,
+    distancielAvailable: formation.data.distancielAvailable,
+    distancielPriceHT: formation.data.distancielAvailable
+      ? (formation.data.distancielPriceHT ?? formation.data.priceHT)
+      : null,
+    presentielAvailable: formation.data.presentielAvailable,
+    presentielPriceHT: formation.data.presentielAvailable
+      ? (formation.data.presentielPriceHT ?? formation.data.priceHT)
+      : null,
+  }));
+---
+
+<MarketingLayout
+  title={`Demande de devis - ${siteConfig.name}`}
+  description="Demandez un devis personnalise pour une formation SODEVA."
+>
+  <section class="py-16 bg-background">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-text">Demande de devis</h1>
+      <p class="mt-3 text-text-muted">
+        Completez ce formulaire pour recevoir un devis adapte a la formation et au mode choisi.
+      </p>
+
+      <form id="quote-form" class="mt-8 space-y-6 rounded-2xl border border-border bg-background p-6 sm:p-8" novalidate>
+        <div>
+          <label for="formation-id" class="block text-sm font-medium text-text mb-2">
+            Formation <span class="text-red-500">*</span>
+          </label>
+          <select
+            id="formation-id"
+            name="formation"
+            required
+            class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="">Selectionner une formation</option>
+            {
+              formationOptions.map((formation) => (
+                <option value={formation.id}>{formation.title}</option>
+              ))
+            }
+          </select>
+        </div>
+
+        <fieldset>
+          <legend class="block text-sm font-medium text-text mb-2">
+            Type de formation <span class="text-red-500">*</span>
+          </legend>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label
+              id="type-distanciel-wrap"
+              class="flex cursor-pointer items-center justify-between rounded-md border border-border bg-background px-4 py-3"
+            >
+              <span id="type-distanciel-label" class="text-sm text-text">Distanciel</span>
+              <input id="type-distanciel" type="radio" name="type" value="distanciel" class="h-4 w-4" />
+            </label>
+
+            <label
+              id="type-presentiel-wrap"
+              class="flex cursor-pointer items-center justify-between rounded-md border border-border bg-background px-4 py-3"
+            >
+              <span id="type-presentiel-label" class="text-sm text-text">Sur place</span>
+              <input id="type-presentiel" type="radio" name="type" value="presentiel" class="h-4 w-4" />
+            </label>
+          </div>
+          <p id="price-preview" class="mt-2 text-sm text-primary-dark"></p>
+        </fieldset>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="first-name" class="block text-sm font-medium text-text mb-2">
+              Prenom <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="first-name"
+              name="firstName"
+              type="text"
+              required
+              class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Jean"
+            />
+          </div>
+          <div>
+            <label for="last-name" class="block text-sm font-medium text-text mb-2">
+              Nom <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="last-name"
+              name="lastName"
+              type="text"
+              required
+              class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Dupont"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="email" class="block text-sm font-medium text-text mb-2">
+              Email <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="vous@exemple.fr"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-text mb-2">Telephone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="06 00 00 00 00"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="company" class="block text-sm font-medium text-text mb-2">Entreprise</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Nom de votre structure"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-text mb-2">
+            Besoin / contexte <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            minlength="10"
+            class="w-full rounded-md border border-border bg-background px-4 py-3 text-text focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="Precisez votre besoin..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
+        >
+          Envoyer la demande de devis
+        </button>
+
+        <p class="text-sm text-text-muted">
+          * Champs obligatoires. Cette version confirme localement l envoi en attendant le branchement backend.
+        </p>
+
+        <p id="quote-success" class="hidden rounded-md border border-green-300 bg-green-100 px-4 py-3 text-sm text-green-900">
+          Votre demande de devis est enregistree. Nous revenons vers vous rapidement.
+        </p>
+      </form>
+    </div>
+  </section>
+</MarketingLayout>
+
+<script is:inline id="formations-data" type="application/json" set:html={JSON.stringify(formationOptions)}></script>
+
+<script is:inline>
+  const dataEl = document.getElementById('formations-data');
+  const formations = dataEl ? JSON.parse(dataEl.textContent || '[]') : [];
+
+  const form = document.getElementById('quote-form');
+  const formationSelect = document.getElementById('formation-id');
+  const distInput = document.getElementById('type-distanciel');
+  const presInput = document.getElementById('type-presentiel');
+  const distLabel = document.getElementById('type-distanciel-label');
+  const presLabel = document.getElementById('type-presentiel-label');
+  const distWrap = document.getElementById('type-distanciel-wrap');
+  const presWrap = document.getElementById('type-presentiel-wrap');
+  const pricePreview = document.getElementById('price-preview');
+  const successMessage = document.getElementById('quote-success');
+
+  const formatPrice = (value) => `${new Intl.NumberFormat('fr-FR').format(value)} EUR HT`;
+  const findFormation = (id) => formations.find((item) => item.id === id);
+
+  function updatePricePreview() {
+    const selectedFormation = findFormation(formationSelect.value);
+    if (!selectedFormation) {
+      pricePreview.textContent = '';
+      return;
+    }
+
+    const selectedType = distInput.checked ? 'distanciel' : presInput.checked ? 'presentiel' : '';
+    const selectedPrice =
+      selectedType === 'distanciel'
+        ? selectedFormation.distancielPriceHT
+        : selectedType === 'presentiel'
+          ? selectedFormation.presentielPriceHT
+          : null;
+
+    pricePreview.textContent =
+      selectedType && selectedPrice
+        ? `Tarif indicatif (${selectedType}): ${formatPrice(selectedPrice)}`
+        : 'Selectionnez un type disponible';
+  }
+
+  function setTypeState(id, preferredType = '') {
+    const selectedFormation = findFormation(id);
+    if (!selectedFormation) {
+      distInput.disabled = true;
+      presInput.disabled = true;
+      distInput.checked = false;
+      presInput.checked = false;
+      distLabel.textContent = 'Distanciel (non disponible)';
+      presLabel.textContent = 'Sur place (non disponible)';
+      distWrap.classList.add('opacity-50');
+      presWrap.classList.add('opacity-50');
+      updatePricePreview();
+      return;
+    }
+
+    distInput.disabled = !selectedFormation.distancielAvailable;
+    presInput.disabled = !selectedFormation.presentielAvailable;
+    distWrap.classList.toggle('opacity-50', distInput.disabled);
+    presWrap.classList.toggle('opacity-50', presInput.disabled);
+
+    distLabel.textContent = selectedFormation.distancielAvailable
+      ? `Distanciel (${formatPrice(selectedFormation.distancielPriceHT)})`
+      : 'Distanciel (non disponible)';
+    presLabel.textContent = selectedFormation.presentielAvailable
+      ? `Sur place (${formatPrice(selectedFormation.presentielPriceHT)})`
+      : 'Sur place (non disponible)';
+
+    const preferredIsAvailable =
+      (preferredType === 'distanciel' && selectedFormation.distancielAvailable) ||
+      (preferredType === 'presentiel' && selectedFormation.presentielAvailable);
+
+    if (preferredIsAvailable) {
+      distInput.checked = preferredType === 'distanciel';
+      presInput.checked = preferredType === 'presentiel';
+    } else if (selectedFormation.distancielAvailable) {
+      distInput.checked = true;
+      presInput.checked = false;
+    } else if (selectedFormation.presentielAvailable) {
+      distInput.checked = false;
+      presInput.checked = true;
+    } else {
+      distInput.checked = false;
+      presInput.checked = false;
+    }
+
+    updatePricePreview();
+  }
+
+  formationSelect.addEventListener('change', () => setTypeState(formationSelect.value));
+  distInput.addEventListener('change', updatePricePreview);
+  presInput.addEventListener('change', updatePricePreview);
+
+  const params = new URLSearchParams(window.location.search);
+  const formationParam = params.get('formation') || '';
+  const typeParam = params.get('type') || '';
+
+  if (formationParam && findFormation(formationParam)) {
+    formationSelect.value = formationParam;
+  }
+  setTypeState(formationSelect.value, typeParam);
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!distInput.checked && !presInput.checked) {
+      pricePreview.textContent = 'Ce type n est pas disponible pour la formation selectionnee.';
+      return;
+    }
+
+    form.reset();
+    setTypeState('');
+    successMessage?.classList.remove('hidden');
+  });
+</script>
