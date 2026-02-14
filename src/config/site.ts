@@ -14,7 +14,7 @@ export const name = import.meta.env.SITE_NAME || 'SODEVA';
 /** Site description for SEO and meta tags */
 export const description =
   import.meta.env.SITE_DESCRIPTION ||
-  'Centre de formation certifie Qualiopi et CFA pour le developpement des competences professionnelles';
+  'Centre de formation certifié Qualiopi pour le développement des compétences professionnelles';
 
 /** Production URL of your site (used for sitemap, RSS, canonical URLs) */
 export const url = import.meta.env.SITE_URL || 'https://sodeva.fr';

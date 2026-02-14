@@ -102,8 +102,6 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                 <Icon name="lucide:star" class="h-4 w-4 fill-current" />
               ))}
             </div>
-            <span class="text-sm font-semibold text-white">{formation.data.rating.toFixed(1)}</span>
-            <span class="text-sm text-white">/5 ({formation.data.reviews} avis)</span>
           </div>
         )
       }
@@ -142,7 +140,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
             <a data-anchor-link href="#objectifs" class="anchor-pill">Objectifs</a>
           </li>
           <li>
-            <a data-anchor-link href="#prerequis" class="anchor-pill">Prerequis</a>
+            <a data-anchor-link href="#prerequis" class="anchor-pill">Prérequis</a>
           </li>
           <li>
             <a data-anchor-link href="#public" class="anchor-pill">Public cible</a>
@@ -178,7 +176,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                 <div class="mt-4 grid gap-3 sm:grid-cols-2">
                   <div class="detail-item">
                     <Icon name="lucide:clock-3" class="h-4 w-4 text-primary" />
-                    <span>Duree: {formation.data.duration}</span>
+                    <span>Durée: {formation.data.duration}</span>
                   </div>
                   <div class="detail-item">
                     <Icon name="lucide:map-pin" class="h-4 w-4 text-primary" />
@@ -190,7 +188,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                   </div>
                   <div class="detail-item">
                     <Icon name="lucide:hash" class="h-4 w-4 text-primary" />
-                    <span>Reference: {formation.data.reference}</span>
+                    <span>Référence: {formation.data.reference}</span>
                   </div>
                 </div>
               </div>
@@ -204,7 +202,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                   <span class="section-icon">
                     <Icon name="lucide:target" class="h-4 w-4" />
                   </span>
-                  <span class="text-lg font-semibold text-primary-dark">Objectifs pedagogiques</span>
+                  <span class="text-lg font-semibold text-primary-dark">Objectifs pédagogiques</span>
                 </span>
                 <Icon
                   name="lucide:chevron-down"
@@ -233,7 +231,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                   <span class="section-icon">
                     <Icon name="lucide:list-checks" class="h-4 w-4" />
                   </span>
-                  <span class="text-lg font-semibold text-primary-dark">Prerequis</span>
+                  <span class="text-lg font-semibold text-primary-dark">Prérequis</span>
                 </span>
                 <Icon
                   name="lucide:chevron-down"
@@ -308,7 +306,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                     <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-primary">
                       <Icon name="lucide:file-text" class="h-4 w-4" />
                     </span>
-                    <h3 class="text-base font-semibold text-primary-dark">Informations complementaires</h3>
+                    <h3 class="text-base font-semibold text-primary-dark">Informations complémentaires</h3>
                   </div>
                   <div class="mt-4 formation-content text-sm text-text-muted leading-relaxed">
                     <Content />
@@ -390,7 +388,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
             </div>
 
             <div class="mt-5 border-t border-border pt-5">
-              <p id="mode-price" class="mode-price text-2xl font-bold">{defaultPriceLabel}</p>
+              <p id="mode-price" class="mode-price text-xl font-bold">{defaultPriceLabel}</p>
             </div>
 
             <div class="mt-5">

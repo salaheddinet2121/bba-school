@@ -1,50 +1,50 @@
 ---
 title: "Programme Étincelle IA - Créer des contenus avec l'IA générative"
-description: "Une formation operationnelle pour creer des contenus redactionnels et visuels avec une utilisation responsable de l'IA generative."
-objectifs: "Acquerir les bases pour utiliser l'IA generative dans la creation de contenus professionnels."
-public: "Professionnels, independants, equipes marketing/communication et toute personne souhaitant gagner du temps dans la production de contenus."
-prerequis: "Il est preferable d'avoir une premiere experience dans le monde professionnel ainsi qu'une familiarite avec l'utilisation d'Internet."
+description: "Une formation opérationnelle pour créer des contenus rédactionnels et visuels avec une utilisation responsable de l'IA générative."
+objectifs: "Acquérir les bases pour utiliser l'IA générative dans la création de contenus professionnels."
+public: "Professionnels, indépendants, équipes marketing/communication et toute personne souhaitant gagner du temps dans la production de contenus."
+prerequis: "Il est préférable d'avoir une première expérience dans le monde professionnel ainsi qu'une familiarité avec l'utilisation d'Internet."
 objectifsPoints:
   - "Comprendre les bases de l'IA, ses usages et ses limites."
-  - "Prendre en main les outils no-code de reference (ChatGPT, generateurs d'images, automatisation)."
-  - "Automatiser des taches simples de creation de contenus."
-  - "Definir une strategie d'implementation de l'IA generative adaptee au contexte professionnel."
-  - "Creer des contenus redactionnels et visuels accessibles et conformes."
-  - "Evaluer les enjeux ethiques et reglementaires (IA Act, RGPD)."
+  - "Prendre en main les outils no-code de référence (ChatGPT, générateurs d'images, automatisation)."
+  - "Automatiser des tâches simples de création de contenus."
+  - "Définir une stratégie d'implémentation de l'IA générative adaptée au contexte professionnel."
+  - "Créer des contenus rédactionnels et visuels accessibles et conformes."
+  - "Évaluer les enjeux éthiques et réglementaires (IA Act, RGPD)."
 programmeModules:
-  - title: "Module 1 - Analyse du contexte et plan d'integration"
+  - title: "Module 1 - Analyse du contexte et plan d'intégration"
     items:
-      - "Principes cles de l'IA Generative et outils phares."
-      - "Cartographie des taches repetitives et cas d'optimisation."
-      - "Plan d'integration personnel avec priorites et jalons."
-  - title: "Module 2 - Prompting et creation de contenus"
+      - "Principes clés de l'IA générative et outils phares."
+      - "Cartographie des tâches répétitives et cas d'optimisation."
+      - "Plan d'intégration personnel avec priorités et jalons."
+  - title: "Module 2 - Prompting et création de contenus"
     items:
-      - "Methodes de redaction de prompts efficaces."
-      - "Creation de textes et visuels avec differents outils."
+      - "Méthodes de rédaction de prompts efficaces."
+      - "Création de textes et visuels avec différents outils."
       - "Optimisation des contenus selon cible, canal et format."
-  - title: "Module 3 - Securite, accessibilite et conformite"
+  - title: "Module 3 - Sécurité, accessibilité et conformité"
     items:
-      - "Protection des donnees sensibles et securisation des usages."
-      - "Conception de contenus numeriques accessibles."
-      - "Application des regles IA Act, RGPD et veille reglementaire."
+      - "Protection des données sensibles et sécurisation des usages."
+      - "Conception de contenus numériques accessibles."
+      - "Application des règles IA Act, RGPD et veille réglementaire."
 programmePdf: "/documents/Programme%20%C3%89tincelle%20IA%20%E2%80%93%20Cr%C3%A9er%20des%20contenus%20avec%20l%E2%80%99IA%20g%C3%A9n%C3%A9rative%20%282%29.pdf"
 icon: "lucide:sparkles"
 domain: "Informatique"
-subdomain: "IA Generative"
+subdomain: "IA générative"
 badgeLabel: "NOUVEAUTE"
 badgeTone: "nouveaute"
 image: "/formation/ia-formation.webp"
 duration: "3 jours (21 heures)"
-format: "A distance (Microsoft Teams)"
+format: "À distance (Microsoft Teams)"
 level: "Fondamentaux"
 distancielAvailable: true
 distancielPriceHT: 1400
 presentielAvailable: false
 priceHT: 1400
 pricingText: "Tarif inter entreprise, hors options intra."
-reference: "SOD-IA-ETI-001"
-nextSessionCity: "A distance"
-nextSessionDate: "Delai d'acces minimum: 15 jours"
+reference: "RS6776"
+nextSessionCity: "À distance"
+nextSessionDate: "Délai d'accès minimum: 15 jours"
 rating: 4.9
 reviews: 22
 eligibleCPF: false
@@ -52,17 +52,16 @@ guaranteedSession: true
 order: 1
 draft: false
 ---
-## Modalites pedagogiques
+## Modalités pédagogiques
 
-La formation alterne apports methodologiques, demonstrations guidees et mises en pratique sur des cas reels simples.
+La formation alterne apports méthodologiques, démonstrations guidées et mises en pratique sur des cas réels simples.
 
-## Evaluation des acquis
+## Évaluation des acquis
 
-Evaluation continue par exercices, mises en situation professionnelles et QCM.
+Évaluation continue par exercices, mises en situation professionnelles et QCM.
 
 ## Livrables
 
-- Trame de prompts reutilisables.
-- Plan d'action d'integration de l'IA sur le poste de travail.
-- Support de veille simplifiee IA Act / RGPD.
-
+- Trame de prompts réutilisables.
+- Plan d'action d'intégration de l'IA sur le poste de travail.
+- Support de veille simplifiée IA Act / RGPD.

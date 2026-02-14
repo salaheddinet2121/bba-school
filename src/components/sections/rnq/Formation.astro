@@ -10,17 +10,28 @@ const formations = await getCollection(
 );
 
 const featuredFormations = [...formations]
-  .sort((a: FormationEntry, b: FormationEntry) => a.data.order - b.data.order)
+  .sort((a: FormationEntry, b: FormationEntry) => {
+    const orderDiff = a.data.order - b.data.order;
+    if (orderDiff !== 0) return orderDiff;
+    return a.data.title.localeCompare(b.data.title, 'fr', { sensitivity: 'base' });
+  })
   .slice(0, 3);
 
-const getCardPrice = (formation: FormationEntry) => {
+const getCardPrice = (formation: FormationEntry): number | null => {
   const prices = [
     formation.data.distancielAvailable ? formation.data.distancielPriceHT ?? formation.data.priceHT : null,
     formation.data.presentielAvailable ? formation.data.presentielPriceHT ?? formation.data.priceHT : null,
-  ].filter((value): value is number => typeof value === 'number' && Number.isFinite(value));
+  ].filter((value): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0);
 
-  if (prices.length === 0) return formation.data.priceHT;
-  return Math.min(...prices);
+  if (prices.length > 0) return Math.min(...prices);
+  if (formation.data.priceHT > 0) return formation.data.priceHT;
+  return null;
+};
+
+const getCardPriceLabel = (formation: FormationEntry): string => {
+  const cardPrice = getCardPrice(formation);
+  if (cardPrice !== null) return `${cardPrice.toLocaleString('fr-FR')} EUR HT`;
+  return formation.data.pricingText ?? 'Tarif sur demande';
 };
 ---
 
@@ -100,8 +111,8 @@ const getCardPrice = (formation: FormationEntry) => {
 
               <div class="mt-4 border-t border-border pt-4">
                 <p class="text-xs uppercase tracking-[0.08em] text-text-muted">A partir de</p>
-                <p class="mt-1 text-lg font-bold text-primary-dark">
-                  {getCardPrice(formation).toLocaleString('fr-FR')} EUR HT
+                <p class="mt-1 text-base font-bold text-[#0f0f0f]">
+                  {getCardPriceLabel(formation)}
                 </p>
               </div>
             </div>

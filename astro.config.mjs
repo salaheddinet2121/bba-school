@@ -5,8 +5,8 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import { siteConfig } from './src/config';
 
-// Site URL from environment variable with localhost fallback
-const siteUrl = process.env.SITE_URL || 'http://localhost:4321';
+// Site URL from environment variable with production fallback
+const siteUrl = process.env.SITE_URL || 'https://sodeva.fr';
 
 // Custom integration to warn about missing environment variables after build
 function envCheckIntegration() {
@@ -17,8 +17,8 @@ function envCheckIntegration() {
         if (!process.env.SITE_URL) {
           console.warn('='.repeat(60));
           console.warn('WARNING: SITE_URL environment variable not set');
-          console.warn('Build completed with fallback URL: http://localhost:4321');
-          console.warn('For production, create .env file and set SITE_URL');
+          console.warn('Build completed with fallback URL: https://sodeva.fr');
+          console.warn('Set SITE_URL only if you need a different domain');
           console.warn('='.repeat(60) + '\n');
         }
       },

@@ -1,71 +1,71 @@
 ---
-title: "Attestation de Capacite en Transport Leger de Marchandises (-3,5 tonnes)"
-description: "Formation en presentiel pour maitriser les obligations legales, la gestion d'entreprise et les pratiques operationnelles du transport leger de marchandises."
-objectifs: "Obtenir l'attestation de capacite en transport leger de marchandises et piloter l'activite dans le respect des obligations reglementaires."
-public: "Professionnels du transport leger de marchandises et porteurs de projet de creation/reprise d'activite (PTAC inferieur a 3,5 tonnes)."
-prerequis: "Sans niveau specifique."
+title: "Attestation de Capacité en Transport Léger de Marchandises (-3,5 tonnes)"
+description: "Formation en présentiel pour maîtriser les obligations légales, la gestion d'entreprise et les pratiques opérationnelles du transport léger de marchandises."
+objectifs: "Obtenir l'attestation de capacité en transport léger de marchandises et piloter l'activité dans le respect des obligations réglementaires."
+public: "Professionnels du transport léger de marchandises et porteurs de projet de création/reprise d'activité (PTAC inférieur à 3,5 tonnes)."
+prerequis: "Sans niveau spécifique."
 objectifsPoints:
-  - "Obtenir l'attestation de capacite en transport leger de marchandises."
-  - "Assurer une gestion efficace de l'entreprise dans le respect des reglementations."
-  - "Developper des competences commerciales, financieres et manageriales."
+  - "Obtenir l'attestation de capacité en transport léger de marchandises."
+  - "Assurer une gestion efficace de l'entreprise dans le respect des réglementations."
+  - "Développer des compétences commerciales, financières et managériales."
 programmeModules:
   - title: "Module 1 - L'entreprise et le droit civil et commercial (9 h)"
     items:
-      - "Statuts juridiques, obligations du commercant et responsabilites du dirigeant."
-      - "Facturation, garanties, recouvrement et prevention des difficultes d'entreprise."
-      - "Juridictions competentes et organismes d'aide et de conseil."
-  - title: "Module 2 - L'entreprise et son activite commerciale (3 h)"
+      - "Statuts juridiques, obligations du commerçant et responsabilités du dirigeant."
+      - "Facturation, garanties, recouvrement et prévention des difficultés d'entreprise."
+      - "Juridictions compétentes et organismes d'aide et de conseil."
+  - title: "Module 2 - L'entreprise et son activité commerciale (3 h)"
     items:
-      - "Realisation d'une etude de marche."
-      - "Strategie de prix, produit et distribution."
+      - "Réalisation d'une étude de marché."
+      - "Stratégie de prix, produit et distribution."
       - "Prospection commerciale et communication."
-  - title: "Module 3 - Cadre reglementaire du transport (10 h 30)"
+  - title: "Module 3 - Cadre réglementaire du transport (10 h 30)"
     items:
-      - "Conditions d'acces a la profession et capacite financiere."
-      - "Contrats de transport, documents de controle et obligations d'assurance."
-      - "Sanctions administratives et penales en cas de non-conformite."
-  - title: "Module 4 - Activite financiere de l'entreprise (52 h 30)"
+      - "Conditions d'accès à la profession et capacité financière."
+      - "Contrats de transport, documents de contrôle et obligations d'assurance."
+      - "Sanctions administratives et pénales en cas de non-conformité."
+  - title: "Module 4 - Activité financière de l'entreprise (52 h 30)"
     items:
-      - "Charges, cout de revient, marge commerciale et prix de vente."
-      - "Plan de financement, remboursement, tresorerie et budget previsionnel."
-      - "Bilan, compte de resultat, fiscalite et indicateurs financiers (FRNG, BFR, tresorerie)."
-  - title: "Module 5 - L'entreprise et ses employes (17 h 30)"
+      - "Charges, coût de revient, marge commerciale et prix de vente."
+      - "Plan de financement, remboursement, trésorerie et budget prévisionnel."
+      - "Bilan, compte de résultat, fiscalité et indicateurs financiers (FRNG, BFR, trésorerie)."
+  - title: "Module 5 - L'entreprise et ses employés (17 h 30)"
     items:
-      - "Reglementation sociale, contrats de travail et obligations de l'employeur."
-      - "Temps de travail, remuneration, cotisations et institutions sociales."
-      - "Prevention des risques, CSE, medecine et inspection du travail."
-  - title: "Module 6 - L'entreprise et la securite (7 h 30)"
+      - "Réglementation sociale, contrats de travail et obligations de l'employeur."
+      - "Temps de travail, rémunération, cotisations et institutions sociales."
+      - "Prévention des risques, CSE, médecine et inspection du travail."
+  - title: "Module 6 - L'entreprise et la sécurité (7 h 30)"
     items:
-      - "Regles de securite vehicule, chargement/arrimage et entretien."
-      - "Reglementation matieres dangereuses et denrees perissables."
-      - "Conduite responsable, environnement et procedures en cas d'accident."
+      - "Règles de sécurité véhicule, chargement/arrimage et entretien."
+      - "Réglementation matières dangereuses et denrées périssables."
+      - "Conduite responsable, environnement et procédures en cas d'accident."
   - title: "Module 7 - Examen final (3 h)"
     items:
-      - "Epreuve 1: questionnaire de 50 QCM."
-      - "Epreuve 2: questions et exercices a reponses redigees."
-  - title: "Module 8 - Synthese du stage"
+      - "Épreuve 1: questionnaire de 50 QCM."
+      - "Épreuve 2: questions et exercices à réponses rédigées."
+  - title: "Module 8 - Synthèse du stage"
     items:
       - "Bilan de la formation."
-      - "Synthese du stage."
-      - "Evaluation de satisfaction."
+      - "Synthèse du stage."
+      - "Évaluation de satisfaction."
 programmePdf: "/documents/PROGRAMME%20complet-Capacit%C3%A9%20Transport.pdf"
 icon: "lucide:truck"
 domain: "Livraison"
 subdomain: "Transport"
 badgeLabel: "CERTIFIANT"
 badgeTone: "certifiant"
-image: "/formation/ia-formation.webp"
-duration: "105 heures"
-format: "Presentiel"
+image: "/formation/capa.webp"
+duration: "140 heures"
+format: "Présentiel (mixte)"
 level: "Professionnalisation"
-distancielAvailable: false
+distancielAvailable: true
 presentielAvailable: true
 presentielPriceHT: 0
-priceHT: 0
-pricingText: "Tarif: nous contacter."
-reference: "SOD-TR-CAP-001"
+priceHT: 2190
+pricingText: "Tarif sur demande selon la modalité choisie."
+reference: ""
 nextSessionCity: "Nous contacter"
-nextSessionDate: "Selon disponibilite (3 semaines a 4 mois max)"
+nextSessionDate: "Selon disponibilité (3 semaines à 4 mois max)"
 rating: 4.8
 reviews: 12
 eligibleCPF: false
@@ -75,23 +75,22 @@ draft: false
 ---
 ## Validation et certification
 
-En cas de reussite a l'examen, delivrance de l'Attestation de capacite en transport leger de marchandises.
+En cas de réussite à l'examen, délivrance de l'Attestation de capacité en transport léger de marchandises.
 
-En cas d'echec a l'examen, une attestation de suivi de formation permet de se representer a l'examen (decision du 2 avril 2012, chapitre VII).
+En cas d'échec à l'examen, une attestation de suivi de formation permet de se représenter à l'examen (décision du 2 avril 2012, chapitre VII).
 
-Codes de reference: RS1203 - Certif Info 236354.
+Codes de référence: RS1203 - Certif Info 236354.
 
-## Methodologie
+## Méthodologie
 
-La formation repose sur une methode interactive avec apports theoriques, mises en situation, travaux de groupe et etudes de cas concrets.
+La formation repose sur une méthode interactive avec apports théoriques, mises en situation, travaux de groupe et études de cas concrets.
 
-## Modalites d'evaluation
+## Modalités d'évaluation
 
-Examen final de 3 heures integrant des QCM et des questions ouvertes pour evaluer la comprehension et l'application des connaissances.
+Examen final de 3 heures intégrant des QCM et des questions ouvertes pour évaluer la compréhension et l'application des connaissances.
 
-## Debouches
+## Débouchés
 
 - Responsable d'exploitation en transport de marchandises.
-- Creation ou reprise d'une entreprise de transport leger (PTAC inferieur a 3,5 tonnes).
+- Création ou reprise d'une entreprise de transport léger (PTAC inférieur à 3,5 tonnes).
 - Consultant en gestion logistique.
-

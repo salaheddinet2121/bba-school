@@ -17,7 +17,7 @@ export const announcement: AnnouncementConfig = {
   id: 'rnq-qualiopi-2026',
 
   /** Announcement text */
-  text: 'SODEVA est certifie Qualiopi',
+  text: 'SODEVA est certifié Qualiopi',
 
   /** Optional link URL */
   href: '/#qualiopi',
@@ -36,11 +36,11 @@ export const announcement: AnnouncementConfig = {
 export const content: ContentStrings = {
   newsletter: {
     title: 'Recevoir nos informations',
-    description: 'Restez informe des nouvelles sessions et des informations pratiques.',
+    description: 'Restez informé des nouvelles sessions et des informations pratiques.',
     placeholder: 'Votre email',
     buttonText: 'Envoyer',
-    successMessage: 'Merci, votre demande a bien ete prise en compte.',
-    errorMessage: 'Une erreur est survenue. Merci de reessayer.',
-    privacyNote: 'Vos donnees restent confidentielles.',
+    successMessage: 'Merci, votre demande a bien été prise en compte.',
+    errorMessage: 'Une erreur est survenue. Merci de réessayer.',
+    privacyNote: 'Vos données restent confidentielles.',
   },
 };

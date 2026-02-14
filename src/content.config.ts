@@ -58,7 +58,7 @@ const formations = defineCollection({
     description: z.string(),
     objectifs: z.string(),
     public: z.string(),
-    prerequis: z.string().default('Aucun prerequis specifique'),
+    prerequis: z.string().default('Aucun prérequis spécifique'),
     objectifsPoints: z.array(z.string()).default([]),
     programmeModules: z
       .array(
@@ -76,7 +76,7 @@ const formations = defineCollection({
     badgeTone: z.enum(['incontournable', 'nouveaute', 'expert', 'certifiant']).default('incontournable'),
     image: z.string().optional(),
     duration: z.string().default('2 jours'),
-    format: z.string().default('Presentiel / a distance'),
+    format: z.string().default('Présentiel / à distance'),
     level: z.string().default('Fondamentaux'),
     distancielAvailable: z.boolean().default(false),
     distancielPriceHT: z.coerce.number().optional(),
@@ -85,7 +85,7 @@ const formations = defineCollection({
     priceHT: z.coerce.number().default(1290),
     pricingText: z.string().optional(),
     reference: z.string().default('SOD0001'),
-    nextSessionCity: z.string().default('A definir'),
+    nextSessionCity: z.string().default('À définir'),
     nextSessionDate: z.string().default('Nous contacter'),
     rating: z.coerce.number().default(4.8),
     reviews: z.coerce.number().default(64),

@@ -34,7 +34,7 @@ interface Props {
   formName?: string;
 }
 
-const { action = '', method = 'POST', netlify = false, formName = 'demo-request' } = Astro.props;
+const { action = '/php/demo-request.php', method = 'POST', netlify = false, formName = 'demo-request' } = Astro.props;
 ---
 
 <form
@@ -346,14 +346,6 @@ const { action = '', method = 'POST', netlify = false, formName = 'demo-request'
     const action = form.action;
 
     try {
-      // If no action URL, simulate success (demo mode)
-      if (!action) {
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        showSuccess();
-        return;
-      }
-
-      // Submit to actual endpoint
       const response = await fetch(action, {
         method: form.method || 'POST',
         body: formData,
@@ -362,7 +354,9 @@ const { action = '', method = 'POST', netlify = false, formName = 'demo-request'
         },
       });
 
-      if (response.ok) {
+      const payload = await response.json().catch(() => null);
+
+      if (response.ok && payload?.ok !== false) {
         showSuccess();
       } else {
         showErrorState();

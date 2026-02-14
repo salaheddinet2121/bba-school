@@ -12,28 +12,28 @@ import HowItWorks from '@/components/sections/marketing/HowItWorks.astro';
 const partnerLogos = [
   { name: 'Carrefour Market', src: '/images/logos/carrefour-market.svg' },
   { name: 'Carrefour', src: '/images/logos/carrefour.svg' },
-  { name: 'Credit Agricole', src: '/images/logos/credit-agricole.svg' },
-  { name: 'Intermarchee', src: '/images/logos/intermarchee.svg' },
+  { name: 'Crédit Agricole', src: '/images/logos/credit-agricole.svg' },
+  { name: 'Intermarché', src: '/images/logos/intermarchee.svg' },
   { name: 'Medicale', src: '/images/logos/medicale.svg' },
 ];
 
-const steps = [ { title: 'Choisir sa formation', description: 'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.', icon: 'lucide:search', }, { title: 'Traitement du dossier', description: 'Nous nous occupons pour vous de toutes les demarches administratives.', icon: 'lucide:settings', }, { title: 'Profiter de sa formation', description: 'Nos programmes sont elabores pour repondre specifiquement a vos attentes.', icon: 'lucide:monitor-smartphone', }, { title: 'Recevoir son attestation', description: 'Vous recevez votre attestation de formation nominative.', icon: 'lucide:badge-check', }, ];
+const steps = [ { title: 'Choisir sa formation', description: 'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.', icon: 'lucide:search', }, { title: 'Traitement du dossier', description: 'Nous nous occupons pour vous de toutes les démarches administratives.', icon: 'lucide:settings', }, { title: 'Profiter de sa formation', description: 'Nos programmes sont élaborés pour répondre spécifiquement à vos attentes.', icon: 'lucide:monitor-smartphone', }, { title: 'Recevoir son attestation', description: 'Vous recevez votre attestation de formation nominative.', icon: 'lucide:badge-check', }, ];
 ---
 
 <MarketingLayout
   title={`${siteConfig.name}`}
-  description="SODEVA est un organisme de formation et CFA certifie Qualiopi. Decouvrez notre catalogue, nos informations RNQ et nos modalites de contact."
+  description="SODEVA est un organisme de formation certifié Qualiopi. Découvrez notre catalogue, nos informations RNQ et nos modalités de contact."
 >
   <Hero
-    title="SODEVA, organisme de formation et CFA certifie Qualiopi"
-    subtitle="Depuis plus de 8 ans, nous accompagnons les professionnels et les entreprises avec des parcours concrets, accessibles et orientes resultats."
-    badge="Certifiee Qualiopi"
+    title="SODEVA, organisme de formation certifié Qualiopi"
+    subtitle="Depuis plus de 8 ans, nous accompagnons les professionnels et les entreprises avec des parcours concrets, accessibles et orientés résultats."
+    badge="Certifiée Qualiopi"
     primaryCTA={{ label: 'Voir le catalogue', href: '/formations' }}
     secondaryCTA={{ label: 'Contact', href: '/contact' }}
     align="left"
     titleSize="compact"
     visualPosition="right"
-    rightImage={{ src: '/images/hero.webp', alt: 'Presentation du centre de formation SODEVA' }}
+    rightImage={{ src: '/images/hero.webp', alt: 'Présentation du centre de formation SODEVA' }}
   />
 
   <LogoCloud
@@ -49,7 +49,7 @@ const steps = [ { title: 'Choisir sa formation', description: 'Parmi toutes nos 
   <Formation />
   <HowItWorks
     title="Votre parcours avec SODEVA"
-    subtitle="Une organisation claire pour simplifier chaque etape de votre entree en formation."
+    subtitle="Une organisation claire pour simplifier chaque étape de votre entrée en formation."
     steps={steps}
     variant="horizontal"
     background="default"

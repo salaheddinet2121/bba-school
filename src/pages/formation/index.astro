@@ -11,16 +11,38 @@ const formations = await getCollection(
   ({ data }: { data: FormationEntry['data'] }) => !data.draft
 );
 
-const results = [...formations].sort(
-  (a: FormationEntry, b: FormationEntry) => a.data.order - b.data.order
-);
+const results = [...formations].sort((a: FormationEntry, b: FormationEntry) => {
+  const orderDiff = a.data.order - b.data.order;
+  if (orderDiff !== 0) return orderDiff;
+  return a.data.title.localeCompare(b.data.title, 'fr', { sensitivity: 'base' });
+});
+
+const getCardPrice = (formation: FormationEntry): number | null => {
+  const prices = [
+    formation.data.distancielAvailable ? formation.data.distancielPriceHT ?? formation.data.priceHT : null,
+    formation.data.presentielAvailable ? formation.data.presentielPriceHT ?? formation.data.priceHT : null,
+  ].filter((value): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0);
+
+  if (prices.length > 0) return Math.min(...prices);
+  if (formation.data.priceHT > 0) return formation.data.priceHT;
+  return null;
+};
+
+const getCardPriceLabel = (formation: FormationEntry): string => {
+  const cardPrice = getCardPrice(formation);
+  if (cardPrice !== null) return `${cardPrice.toLocaleString('fr-FR')} EUR HT`;
+  return formation.data.pricingText ?? 'Tarif sur demande';
+};
 
 const totalResults = results.length;
 
-const allowedDomains = ['Informatique', 'Livraison', 'Boucherie'] as const;
+const allowedDomains = ['Informatique', 'Livraison', 'Création d’entreprise', 'Boucherie'] as const;
 const normalizeDomain = (rawDomain: string) => {
   const value = rawDomain.toLowerCase();
   if (value.includes('boucher')) return 'Boucherie';
+  if (value.includes('création') || value.includes('creation') || value.includes('entrepris')) {
+    return 'Création d’entreprise';
+  }
   if (
     value.includes('livr') ||
     value.includes('logist') ||
@@ -40,6 +62,7 @@ const domainCounts = results.reduce(
   {
     Informatique: 0,
     Livraison: 0,
+    'Création d’entreprise': 0,
     Boucherie: 0,
   } as Record<(typeof allowedDomains)[number], number>
 );
@@ -67,33 +90,41 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
           <h2 class="text-2xl font-semibold text-primary-dark">Filtrer par</h2>
 
           <div class="rounded-2xl border border-border bg-background p-6">
-            <div class="mb-4 flex items-center justify-between">
+            <button
+              id="domain-dropdown-toggle"
+              type="button"
+              class="mb-4 flex w-full items-center justify-between text-left"
+              aria-expanded="true"
+              aria-controls="domain-filters-panel"
+            >
               <h3 class="text-xl font-semibold text-primary-dark">Domaines</h3>
-              <Icon name="lucide:chevron-up" class="h-5 w-5 text-primary" />
-            </div>
+              <Icon id="domain-dropdown-icon" name="lucide:chevron-up" class="h-5 w-5 text-primary transition-transform" />
+            </button>
 
-            <div class="space-y-3 text-primary-dark" id="domain-filters">
-              <label class="flex items-center gap-2.5 text-sm leading-5">
-                <input
-                  type="checkbox"
-                  class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
-                  data-domain-filter="all"
-                  checked
-                />
-                <span>Tous ({totalResults})</span>
-              </label>
-              {
-                domainEntries.map((item) => (
-                  <label class="flex items-center gap-2.5 text-sm leading-5">
-                    <input
-                      type="checkbox"
-                      class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
-                      data-domain-filter={item.domain}
-                    />
-                    <span>{item.domain} ({item.count})</span>
-                  </label>
-                ))
-              }
+            <div id="domain-filters-panel">
+              <div class="space-y-3 text-primary-dark" id="domain-filters">
+                <label class="flex items-center gap-2.5 text-sm leading-5">
+                  <input
+                    type="checkbox"
+                    class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
+                    data-domain-filter="all"
+                    checked
+                  />
+                  <span>Tous ({totalResults})</span>
+                </label>
+                {
+                  domainEntries.map((item) => (
+                    <label class="flex items-center gap-2.5 text-sm leading-5">
+                      <input
+                        type="checkbox"
+                        class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
+                        data-domain-filter={item.domain}
+                      />
+                      <span>{item.domain} ({item.count})</span>
+                    </label>
+                  ))
+                }
+              </div>
             </div>
           </div>
         </aside>
@@ -102,9 +133,9 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
           <p class="text-2xl font-semibold text-primary-dark">
             <span id="results-count">{totalResults}</span>
             {' '}
-            resultats pour votre recherche
+            résultats pour votre recherche
           </p>
-          <p class="mt-1 text-sm text-text-muted">Formations disponibles selon le domaine selectionne.</p>
+          <p class="mt-1 text-sm text-text-muted">Formations disponibles selon le domaine sélectionné.</p>
 
           <div class="mt-6 space-y-6" id="formation-results">
             {
@@ -149,10 +180,7 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
                                     <Icon name="lucide:star" class="h-4 w-4 fill-current" />
                                   ))}
                                 </div>
-                                <span class="text-sm font-semibold text-primary-dark">
-                                  {formation.data.rating.toFixed(1)}
-                                </span>
-                                <span class="text-sm text-primary-dark">/5 ({formation.data.reviews} avis)</span>
+                            
                               </div>
                             )
                           }
@@ -185,8 +213,8 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
 
                     <div class="flex min-w-fit flex-row items-end justify-between gap-5 xl:flex-col xl:items-end">
                       <div class="text-right">
-                        <p class="text-2xl font-bold text-primary-dark">
-                          {formation.data.priceHT.toLocaleString('fr-FR')} € HT
+                        <p class="text-xl font-bold text-[#0f0f0f]">
+                          {getCardPriceLabel(formation)}
                         </p>
                         <p class="mt-2 inline-flex items-center gap-2 text-sm text-text-muted">
                           <Icon name="lucide:hash" class="h-4 w-4" />
@@ -223,11 +251,28 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
 </style>
 
 <script>
-  const filterContainer = document.getElementById('domain-filters');
-  const resultsContainer = document.getElementById('formation-results');
-  const resultCountEl = document.getElementById('results-count');
+  function initFormationFilters() {
+    const filterContainer = document.getElementById('domain-filters');
+    const resultsContainer = document.getElementById('formation-results');
+    const resultCountEl = document.getElementById('results-count');
+    const dropdownToggle = document.getElementById('domain-dropdown-toggle');
+    const dropdownPanel = document.getElementById('domain-filters-panel');
+    const dropdownIcon = document.getElementById('domain-dropdown-icon');
 
-  if (filterContainer && resultsContainer && resultCountEl) {
+    if (
+      !filterContainer ||
+      !resultsContainer ||
+      !resultCountEl ||
+      !dropdownToggle ||
+      !dropdownPanel ||
+      !dropdownIcon
+    ) {
+      return;
+    }
+
+    if (filterContainer.dataset.initialized === 'true') return;
+    filterContainer.dataset.initialized = 'true';
+
     const checkboxes = Array.from(
       filterContainer.querySelectorAll<HTMLInputElement>(
         'input[type="checkbox"][data-domain-filter]'
@@ -242,30 +287,37 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
       const domainChecks = checkboxes.filter((el) => el !== allFilter);
       const selectedDomains = domainChecks.filter((el) => el.checked);
       if (!allFilter) return;
-
-      if (selectedDomains.length === 0) {
-        allFilter.checked = true;
-      } else {
-        allFilter.checked = false;
-      }
+      allFilter.checked = selectedDomains.length === 0;
     };
 
     const applyFilters = () => {
       const selectedDomains = checkboxes
         .filter((el) => el !== allFilter && el.checked)
-        .map((el) => el.getAttribute('data-domain-filter'));
+        .map((el) => el.getAttribute('data-domain-filter'))
+        .filter((value): value is string => Boolean(value));
 
       let visibleCount = 0;
 
       cards.forEach((card) => {
         const domain = card.getAttribute('data-domain');
-        const show = selectedDomains.length === 0 || selectedDomains.includes(domain);
+        const show = selectedDomains.length === 0 || (domain && selectedDomains.includes(domain));
         card.style.display = show ? '' : 'none';
         if (show) visibleCount += 1;
       });
 
       resultCountEl.textContent = String(visibleCount);
     };
+
+    const setDropdownState = (isOpen) => {
+      dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+      dropdownPanel.classList.toggle('hidden', !isOpen);
+      dropdownIcon.classList.toggle('rotate-180', !isOpen);
+    };
+
+    dropdownToggle.addEventListener('click', () => {
+      const isOpen = dropdownToggle.getAttribute('aria-expanded') === 'true';
+      setDropdownState(!isOpen);
+    });
 
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', (event) => {
@@ -285,6 +337,10 @@ const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCou
       });
     });
 
+    setDropdownState(true);
     applyFilters();
   }
+
+  document.addEventListener('DOMContentLoaded', initFormationFilters);
+  document.addEventListener('astro:page-load', initFormationFilters);
 </script>

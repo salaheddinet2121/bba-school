@@ -6,27 +6,156 @@ import { documents } from '@/config/documents';
 
 <MarketingLayout
   title={`CGV - ${siteConfig.name}`}
-  description="Conditions generales de vente de SODEVA."
+  description="Conditions générales de vente de SODEVA."
 >
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-text">CGV</h1>
-      <p class="mt-4 text-text-muted">Cette page est prete. Vous pourrez ajouter le contenu final ici.</p>
+      <h1 class="text-4xl font-bold text-text">Conditions générales de vente (CGV)</h1>
+      <p class="mt-4 text-text-muted">
+        Le présent document reprend les conditions de vente des prestations de formation de SODEVA,
+        adaptées en version web pour consultation en ligne.
+      </p>
 
-      <article class="mt-8 rounded-2xl border border-dashed border-border bg-surface p-8">
-        <h2 class="text-xl font-semibold text-text">Contenu provisoire</h2>
-        <p class="mt-3 text-sm text-text-muted">
-          Inserer ici les conditions generales de vente.
-        </p>
-        <a
-          href={documents.cgv}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-5 inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
-        >
-          Telecharger les CGV (PDF)
-        </a>
-      </article>
-    </div>
-  </section>
-</MarketingLayout>
+      <article class="mt-8 rounded-2xl border border-border bg-background p-6 sm:p-8 text-sm leading-relaxed text-text-muted space-y-6">
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">1. Désignation</h2>
+          <p>
+            SODEVA désigne un organisme de formation professionnelle dont le siège social est situé au
+            534 Rue Marius Petipa, 34080 Montpellier. SODEVA conçoit et dispense des formations inter
+            et intra-entreprises, en présentiel et à distance, seule ou en partenariat.
+          </p>
+          <p>
+            Dans les présentes CGV, il est convenu de désigner par:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong class="text-text">Client:</strong> toute personne physique ou morale qui s'inscrit ou commande une formation.</li>
+            <li><strong class="text-text">Stagiaire:</strong> la personne physique participant à la formation.</li>
+            <li><strong class="text-text">CGV:</strong> les présentes conditions générales de vente.</li>
+            <li><strong class="text-text">OPCO:</strong> opérateur de compétences chargé du financement de la formation professionnelle.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">2. Objet et champ d'application</h2>
+          <p>
+            Les présentes CGV déterminent les conditions applicables aux prestations de formation
+            réalisées par SODEVA. Toute commande implique l'acceptation pleine et entière des présentes
+            CGV, qui prévalent sur tout autre document du Client, notamment ses conditions générales
+            d'achat.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">3. Devis, convention et attestations</h2>
+          <p>
+            Pour chaque formation, SODEVA transmet un devis au Client. Le devis doit être retourné
+            renseigné, daté, signé (et tamponné pour les personnes morales) avec la mention
+            <em>Bon pour accord</em>.
+          </p>
+          <p>
+            Le cas échéant, une convention de formation peut être établie entre SODEVA, le Client et/ou
+            l'OPCO. Sur demande, SODEVA peut délivrer une attestation de présence, une attestation de fin
+            de formation ainsi que les feuilles d'émargement.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">4. Prix et modalités de paiement</h2>
+          <p>
+            Les prix sont exprimés en euros hors taxes. La TVA applicable est ajoutée au taux en vigueur.
+            Sauf disposition contraire écrite, le règlement s'effectue au comptant à réception de facture.
+          </p>
+          <p>
+            Le paiement peut être effectué par virement bancaire ou par chèque. Un échéancier peut être
+            accepté à titre exceptionnel, sous réserve d'un accord écrit formalisé avant le démarrage de
+            la formation.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">5. Prise en charge OPCO</h2>
+          <p>
+            En cas de financement par un OPCO, le Client doit effectuer sa demande de prise en charge
+            avant le début de la formation et transmettre l'accord correspondant lors de l'inscription.
+          </p>
+          <p>
+            Si SODEVA ne reçoit pas la confirmation de prise en charge au premier jour de la formation,
+            l'intégralité des coûts de formation reste due par le Client.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">6. Report, annulation et force majeure</h2>
+          <p>
+            Toute annulation doit être notifiée par e-mail à
+            <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline">contact@sodeva.fr</a>.
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Annulation au moins 10 jours calendaires avant la formation: sans pénalité.</li>
+            <li>Annulation entre 4 et 10 jours ouvrables avant la date de début: pénalité de 10% du coût total initial.</li>
+            <li>Annulation moins de 3 jours ouvrables avant la date de début: pénalité de 50% du coût total initial.</li>
+          </ul>
+          <p>
+            Toute demande de report doit être transmise par écrit au moins 10 jours avant la date de
+            début de la formation.
+          </p>
+          <p>
+            En cas d'inexécution des obligations de SODEVA due à un évènement fortuit ou un cas de force
+            majeure, SODEVA ne pourra être tenue responsable. Le Client est informé dans les meilleurs
+            délais.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">7. Programme des formations</h2>
+          <p>
+            SODEVA se réserve la possibilité d'adapter les contenus pédagogiques en fonction de
+            l'actualité, de la dynamique de groupe et du niveau des participants. Les programmes sont
+            communiqués à titre indicatif.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">8. Propriété intellectuelle</h2>
+          <p>
+            Les supports remis aux participants (papier, numérique, électronique) sont protégés par le
+            droit de la propriété intellectuelle. Toute reproduction, diffusion ou exploitation, totale ou
+            partielle, est interdite sans autorisation écrite préalable de SODEVA.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">9. Données personnelles</h2>
+          <p>
+            Les données personnelles collectées sont nécessaires au traitement des inscriptions et au
+            suivi administratif des formations. Conformément à la réglementation applicable, le Client
+            dispose d'un droit d'accès, de rectification et d'opposition concernant ses données.
+          </p>
+          <p>
+            SODEVA met en œuvre les mesures techniques et organisationnelles appropriées pour garantir
+            la confidentialité et la sécurité des informations et ne divulgue ces données qu'en cas
+            d'obligation légale.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">10. Loi applicable et juridiction compétente</h2>
+          <p>
+            Les présentes CGV sont soumises au droit français. En cas de litige, une résolution amiable
+            sera recherchée en priorité. À défaut d'accord, les tribunaux compétents de Montpellier
+            pourront être saisis.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold text-text">11. Informations légales SODEVA</h2>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong class="text-text">Raison sociale:</strong> SODEVA</li>
+            <li><strong class="text-text">SIRET:</strong> 830 548 319 00029</li>
+            <li><strong class="text-text">Adresse:</strong> 534 Rue Marius Petipa, 34080 Montpellier</li>
+            <li><strong class="text-text">Téléphone:</strong> 04 67 79 37 52</li>
+            <li>
+              <strong class="text-text">Email:</strong>
+              <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline">contact@sodeva.fr</a>
+            </li>
+          </ul>

@@ -14,7 +14,7 @@ export const contact: ContactInfo = {
   supportEmail: 'contact@sodeva.fr',
   salesEmail: 'contact@sodeva.fr',
   address: {
-    street: '1900 Avenue des Moulins',
+    street: '534 Rue Marius Petipa',
     city: 'Montpellier',
     state: 'Occitanie',
     zip: '34080',
@@ -32,32 +32,32 @@ export const contactMethods: ContactMethod[] = [
   },
   {
     icon: 'lucide:phone',
-    label: 'Telephone',
-    value: '04 65 84 77 00',
-    href: 'tel:+33465847700',
+    label: 'Téléphone',
+    value: '04 67 79 37 52',
+    href: 'tel:+33467793752',
   },
   {
     icon: 'lucide:map-pin',
     label: 'Adresse',
-    value: '1900 Avenue des Moulins, 34080 Montpellier',
-    href: 'https://maps.google.com/?q=1900+Avenue+des+Moulins+34080+Montpellier',
+    value: '534 Rue Marius Petipa, 34080 Montpellier',
+    href: 'https://maps.google.com/?q=534+Rue+Marius+Petipa+34080+Montpellier',
   },
 ];
 
 /** FAQ items displayed on the contact page */
 export const contactFAQs: ContactFAQ[] = [
   {
-    question: 'Sous quel delai recevez-vous une reponse ?',
-    answer: 'Nous vous repondons generalement sous 48 heures ouvrees.',
+    question: 'Sous quel délai recevez-vous une réponse ?',
+    answer: 'Nous vous répondons généralement sous 48 heures ouvrées.',
   },
   {
-    question: 'Comment faire une reclamation ?',
+    question: 'Comment faire une réclamation ?',
     answer:
-      'Envoyez votre demande a contact@sodeva.fr avec "Reclamation" dans l objet. Un accuse de reception vous est transmis.',
+      'Envoyez votre demande à contact@sodeva.fr avec "Réclamation" dans l\'objet. Un accusé de réception vous est transmis.',
   },
   {
     question: 'Proposez-vous un accompagnement handicap ?',
     answer:
-      'Oui. Nous etudions chaque besoin avec notre referent handicap pour adapter le parcours de formation.',
+      'Oui. Nous étudions chaque besoin avec notre référent handicap pour adapter le parcours de formation.',
   },
 ];
