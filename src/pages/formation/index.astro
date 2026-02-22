@@ -36,9 +36,12 @@ const getCardPriceLabel = (formation: FormationEntry): string => {
 
 const totalResults = results.length;
 
-const allowedDomains = ['Informatique', 'Livraison', 'Création d’entreprise', 'Boucherie'] as const;
+const allowedDomains = ['Informatique', 'Livraison', 'Création d’entreprise', 'Boucherie', 'Commerce'] as const;
 const normalizeDomain = (rawDomain: string) => {
   const value = rawDomain.toLowerCase();
+  if (value.includes('commerce') || value.includes('distribution') || value.includes('vente')) {
+    return 'Commerce';
+  }
   if (value.includes('boucher')) return 'Boucherie';
   if (value.includes('création') || value.includes('creation') || value.includes('entrepris')) {
     return 'Création d’entreprise';
@@ -64,6 +67,7 @@ const domainCounts = results.reduce(
     Livraison: 0,
     'Création d’entreprise': 0,
     Boucherie: 0,
+    Commerce: 0,
   } as Record<(typeof allowedDomains)[number], number>
 );
 
