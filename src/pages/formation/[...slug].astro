@@ -3,6 +3,7 @@ import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
+import ReservationCard from '@components/formation/ReservationCard.astro';
 
 type FormationEntry = CollectionEntry<'formations'>;
 
@@ -75,14 +76,20 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
         {formation.data.subdomain ? ` / ${formation.data.subdomain}` : ''}
       </p>
 
-      <h1 class="mt-4 text-2xl sm:text-3xl font-bold leading-tight text-white">{formation.data.title}</h1>
+      <h1 class="mt-4 text-2xl sm:text-3xl font-bold leading-tight text-white">
+        {formation.data.title}
+      </h1>
       <p class="mt-3 max-w-4xl text-sm sm:text-base text-white/85">{formation.data.description}</p>
 
       <div class="mt-4 flex flex-wrap items-center gap-2">
-        <span class="inline-flex items-center rounded-md bg-primary px-2.5 py-1 text-xs font-semibold text-white">
+        <span
+          class="inline-flex items-center rounded-md bg-primary px-2.5 py-1 text-xs font-semibold text-white"
+        >
           {formation.data.badgeLabel}
         </span>
-        <span class="inline-flex items-center rounded-md bg-white/15 px-2.5 py-1 text-xs font-medium text-white">
+        <span
+          class="inline-flex items-center rounded-md bg-white/15 px-2.5 py-1 text-xs font-medium text-white"
+        >
           {formation.data.domain}
         </span>
         {
@@ -107,12 +114,14 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
       }
 
       <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white">
-        {formation.data.guaranteedSession && (
-          <span class="inline-flex items-center gap-2 rounded-md bg-info px-3 py-1.5 text-xs font-semibold text-white">
-            <Icon name="lucide:badge-check" class="h-4 w-4" />
-            SESSION GARANTIE
-          </span>
-        )}
+        {
+          formation.data.guaranteedSession && (
+            <span class="inline-flex items-center gap-2 rounded-md bg-info px-3 py-1.5 text-xs font-semibold text-white">
+              <Icon name="lucide:badge-check" class="h-4 w-4" />
+              SESSION GARANTIE
+            </span>
+          )
+        }
         <span class="inline-flex items-center gap-2">
           <Icon name="lucide:clock-3" class="h-4 w-4" />
           {formation.data.duration}
@@ -159,12 +168,16 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
         <div class="space-y-4">
           <article id="description" class="scroll-mt-40">
             <details class="group section-panel" open>
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4"
+              >
                 <span class="inline-flex items-center gap-3">
                   <span class="section-icon">
                     <Icon name="lucide:file-text" class="h-4 w-4" />
                   </span>
-                  <span class="text-lg font-semibold text-primary-dark">Description de la formation</span>
+                  <span class="text-lg font-semibold text-primary-dark"
+                    >Description de la formation</span
+                  >
                 </span>
                 <Icon
                   name="lucide:chevron-down"
@@ -190,6 +203,10 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                     <Icon name="lucide:hash" class="h-4 w-4 text-primary" />
                     <span>Référence: {formation.data.reference}</span>
                   </div>
+                  <div class="detail-item">
+                    <Icon name="lucide:badge-percent" class="h-4 w-4 text-primary" />
+                    <span>Taux de réussite: 100%</span>
+                  </div>
                 </div>
               </div>
             </details>
@@ -197,12 +214,15 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
 
           <article id="objectifs" class="scroll-mt-40">
             <details class="group section-panel" open>
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4"
+              >
                 <span class="inline-flex items-center gap-3">
                   <span class="section-icon">
                     <Icon name="lucide:target" class="h-4 w-4" />
                   </span>
-                  <span class="text-lg font-semibold text-primary-dark">Objectifs pédagogiques</span>
+                  <span class="text-lg font-semibold text-primary-dark">Objectifs pédagogiques</span
+                  >
                 </span>
                 <Icon
                   name="lucide:chevron-down"
@@ -214,7 +234,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                   {
                     objectifs.map((item: string) => (
                       <li class="flex items-start gap-2.5 text-sm text-text-muted">
-                        <span class="mt-1.5 h-2 w-2 rounded-full bg-primary"></span>
+                        <span class="mt-1.5 h-2 w-2 rounded-full bg-primary" />
                         <span>{item}</span>
                       </li>
                     ))
@@ -226,7 +246,9 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
 
           <article id="prerequis" class="scroll-mt-40">
             <details class="group section-panel" open>
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4"
+              >
                 <span class="inline-flex items-center gap-3">
                   <span class="section-icon">
                     <Icon name="lucide:list-checks" class="h-4 w-4" />
@@ -246,7 +268,9 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
 
           <article id="public" class="scroll-mt-40">
             <details class="group section-panel" open>
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4"
+              >
                 <span class="inline-flex items-center gap-3">
                   <span class="section-icon">
                     <Icon name="lucide:users" class="h-4 w-4" />
@@ -266,12 +290,16 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
 
           <article id="programme" class="scroll-mt-40">
             <details class="group section-panel" open>
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4"
+              >
                 <span class="inline-flex items-center gap-3">
                   <span class="section-icon">
                     <Icon name="lucide:book-open-check" class="h-4 w-4" />
                   </span>
-                  <span class="text-lg font-semibold text-primary-dark">Programme de la formation</span>
+                  <span class="text-lg font-semibold text-primary-dark"
+                    >Programme de la formation</span
+                  >
                 </span>
                 <Icon
                   name="lucide:chevron-down"
@@ -282,31 +310,40 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
                 {
                   formation.data.programmeModules.length > 0 && (
                     <div class="space-y-3">
-                      {formation.data.programmeModules.map((module: ProgrammeModule, index: number) => (
-                        <details class="rounded-lg border border-border bg-surface p-4" open={index === 0}>
-                          <summary class="flex cursor-pointer list-none items-center gap-3 text-base font-semibold text-primary-dark">
-                            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
-                              {index + 1}
-                            </span>
-                            <span>{module.title}</span>
-                          </summary>
-                          <ul class="mt-3 space-y-2 pl-10">
-                            {module.items.map((item: string) => (
-                              <li class="text-sm text-text-muted">• {item}</li>
-                            ))}
-                          </ul>
-                        </details>
-                      ))}
+                      {formation.data.programmeModules.map(
+                        (module: ProgrammeModule, index: number) => (
+                          <details
+                            class="rounded-lg border border-border bg-surface p-4"
+                            open={index === 0}
+                          >
+                            <summary class="flex cursor-pointer list-none items-center gap-3 text-base font-semibold text-primary-dark">
+                              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
+                                {index + 1}
+                              </span>
+                              <span>{module.title}</span>
+                            </summary>
+                            <ul class="mt-3 space-y-2 pl-10">
+                              {module.items.map((item: string) => (
+                                <li class="text-sm text-text-muted">• {item}</li>
+                              ))}
+                            </ul>
+                          </details>
+                        )
+                      )}
                     </div>
                   )
                 }
 
                 <div class="mt-6 rounded-xl border border-border bg-surface/60 p-5 sm:p-6">
                   <div class="flex items-center gap-3">
-                    <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-primary">
+                    <span
+                      class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-primary"
+                    >
                       <Icon name="lucide:file-text" class="h-4 w-4" />
                     </span>
-                    <h3 class="text-base font-semibold text-primary-dark">Informations complémentaires</h3>
+                    <h3 class="text-base font-semibold text-primary-dark">
+                      Informations complémentaires
+                    </h3>
                   </div>
                   <div class="mt-4 formation-content text-sm text-text-muted leading-relaxed">
                     <Content />
@@ -317,91 +354,44 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
           </article>
         </div>
 
+        <div class="lg:hidden">
+          <ReservationCard
+            formationId={formation.id}
+            programmePdf={formation.data.programmePdf}
+            distancielPrice={modePrices.distanciel}
+            presentielPrice={modePrices.presentiel}
+            priceFallbackMessage={priceFallbackMessage}
+            defaultMode={defaultMode}
+            defaultPriceLabel={defaultPriceLabel}
+            defaultQuoteHref={defaultQuoteHref}
+            nextSessionCity={formation.data.nextSessionCity}
+            nextSessionDate={formation.data.nextSessionDate}
+            duration={formation.data.duration}
+            reference={formation.data.reference}
+            distancielAvailable={formation.data.distancielAvailable}
+            presentielAvailable={formation.data.presentielAvailable}
+            mobile={true}
+          />
+        </div>
+
         <aside class="hidden lg:block">
-          <div
-            id="mode-card"
-            class="sticky top-28 rounded-2xl border border-border bg-background p-5"
-            data-formation-id={formation.id}
-            data-price-distanciel={modePrices.distanciel ?? ''}
-            data-price-presentiel={modePrices.presentiel ?? ''}
-            data-price-message={priceFallbackMessage}
-          >
-            <fieldset>
-              <legend class="sr-only">Mode de formation</legend>
-              <div class="grid grid-cols-2 overflow-hidden rounded-lg bg-surface p-1 text-sm font-semibold text-text-muted">
-                <label
-                  data-mode-option="distanciel"
-                  class:list={[
-                    'cursor-pointer rounded-md px-3 py-2 text-center transition-colors',
-                    defaultMode === 'distanciel' ? 'bg-primary text-white' : '',
-                    !formation.data.distancielAvailable && 'cursor-not-allowed opacity-50',
-                  ]}
-                >
-                  <input
-                    type="radio"
-                    name="training-mode"
-                    value="distanciel"
-                    class="sr-only"
-                    checked={defaultMode === 'distanciel'}
-                    disabled={!formation.data.distancielAvailable}
-                  />
-                  Distanciel
-                </label>
-                <label
-                  data-mode-option="presentiel"
-                  class:list={[
-                    'cursor-pointer rounded-md px-3 py-2 text-center transition-colors',
-                    defaultMode === 'presentiel' ? 'bg-primary text-white' : '',
-                    !formation.data.presentielAvailable && 'cursor-not-allowed opacity-50',
-                  ]}
-                >
-                  <input
-                    type="radio"
-                    name="training-mode"
-                    value="presentiel"
-                    class="sr-only"
-                    checked={defaultMode === 'presentiel'}
-                    disabled={!formation.data.presentielAvailable}
-                  />
-                  Sur place
-                </label>
-              </div>
-            </fieldset>
-
-            <div class="mt-5 flex items-start justify-between gap-4">
-              <div>
-                <p class="text-sm text-text-muted">Prochaine session :</p>
-                <p class="mt-1 text-base font-semibold text-[#0f0f0f]">{formation.data.nextSessionCity}</p>
-                <p class="text-sm text-[#0f0f0f]">{formation.data.nextSessionDate}</p>
-              </div>
-            </div>
-
-            <div class="mt-5 flex items-center justify-between text-sm text-text-muted">
-              <span class="inline-flex items-center gap-2">
-                <Icon name="lucide:clock-3" class="h-4 w-4" />
-                {formation.data.duration}
-              </span>
-              <span class="inline-flex items-center gap-2">
-                <Icon name="lucide:hash" class="h-4 w-4" />
-                Ref {formation.data.reference}
-              </span>
-            </div>
-
-            <div class="mt-5 border-t border-border pt-5">
-              <p id="mode-price" class="mode-price text-xl font-bold">{defaultPriceLabel}</p>
-            </div>
-
-            <div class="mt-5">
-              <a
-                id="quote-link"
-                href={defaultQuoteHref}
-                data-base-href="/demande-devis"
-                class="inline-flex w-full items-center justify-center rounded-md border border-primary px-5 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition-colors"
-              >
-                Demande de devis
-              </a>
-            </div>
-          </div>
+          <ReservationCard
+            formationId={formation.id}
+            programmePdf={formation.data.programmePdf}
+            distancielPrice={modePrices.distanciel}
+            presentielPrice={modePrices.presentiel}
+            priceFallbackMessage={priceFallbackMessage}
+            defaultMode={defaultMode}
+            defaultPriceLabel={defaultPriceLabel}
+            defaultQuoteHref={defaultQuoteHref}
+            nextSessionCity={formation.data.nextSessionCity}
+            nextSessionDate={formation.data.nextSessionDate}
+            duration={formation.data.duration}
+            reference={formation.data.reference}
+            distancielAvailable={formation.data.distancielAvailable}
+            presentielAvailable={formation.data.presentielAvailable}
+            sticky={true}
+          />
         </aside>
       </div>
     </div>
@@ -411,8 +401,7 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
 <style>
   .formation-hero {
     background-image:
-      linear-gradient(100deg, rgb(15 15 15 / 88%), rgb(250 133 49 / 35%)),
-      url('/images/hero.webp');
+      linear-gradient(100deg, rgb(15 15 15 / 88%), rgb(250 133 49 / 35%)), url('/images/hero.webp');
     background-position: center;
     background-size: cover;
   }
@@ -588,85 +577,164 @@ const defaultQuoteHref = `/demande-devis?formation=${encodeURIComponent(formatio
   };
 
   const initModeCard = () => {
-    const modeCard = document.getElementById('mode-card');
-    const quoteLink = document.getElementById('quote-link');
-    const modePrice = document.getElementById('mode-price');
+    const modeCards = Array.from(document.querySelectorAll('[data-mode-card]'));
 
-    if (!modeCard || !quoteLink || !modePrice || modeCard.dataset.initialized === 'true') return;
-    modeCard.dataset.initialized = 'true';
+    modeCards.forEach((modeCard) => {
+      if (!(modeCard instanceof HTMLElement) || modeCard.dataset.initialized === 'true') return;
 
-    const formationId = modeCard.getAttribute('data-formation-id') || '';
-    const priceDistRaw = modeCard.getAttribute('data-price-distanciel');
-    const pricePresRaw = modeCard.getAttribute('data-price-presentiel');
-    const priceMessage = modeCard.getAttribute('data-price-message') || 'Tarif sur demande';
-    const modeInputs = Array.from(modeCard.querySelectorAll('input[name="training-mode"]'));
-    const modeLabels = Array.from(modeCard.querySelectorAll('[data-mode-option]'));
+      const quoteLink = modeCard.querySelector('[data-quote-link]');
+      const modePrice = modeCard.querySelector('[data-mode-price]');
 
-    const modePrices = {
-      distanciel: priceDistRaw ? Number(priceDistRaw) : null,
-      presentiel: pricePresRaw ? Number(pricePresRaw) : null,
-    };
+      if (!(quoteLink instanceof HTMLAnchorElement) || !(modePrice instanceof HTMLElement)) return;
+      modeCard.dataset.initialized = 'true';
 
-    const formatPrice = (value) => `${new Intl.NumberFormat('fr-FR').format(value)} EUR HT`;
-    const getDisplayPrice = (value) =>
-      typeof value === 'number' && Number.isFinite(value) && value > 0 ? formatPrice(value) : priceMessage;
+      const formationId = modeCard.getAttribute('data-formation-id') || '';
+      const priceDistRaw = modeCard.getAttribute('data-price-distanciel');
+      const pricePresRaw = modeCard.getAttribute('data-price-presentiel');
+      const priceMessage = modeCard.getAttribute('data-price-message') || 'Tarif sur demande';
+      const modeInputs = Array.from(modeCard.querySelectorAll('input[type="radio"]'));
+      const modeLabels = Array.from(modeCard.querySelectorAll('[data-mode-option]'));
 
-    const getSelectedMode = () => {
-      const selected = modeInputs.find((input) => input.checked);
-      return selected ? selected.value : '';
-    };
+      const modePrices = {
+        distanciel: priceDistRaw ? Number(priceDistRaw) : null,
+        presentiel: pricePresRaw ? Number(pricePresRaw) : null,
+      };
 
-    const updateModeStyles = () => {
-      modeLabels.forEach((label) => {
-        const mode = label.getAttribute('data-mode-option');
-        const input = modeCard.querySelector(`input[name="training-mode"][value="${mode}"]`);
-        const isActive = Boolean(input && input.checked);
-        label.classList.toggle('bg-primary', isActive);
-        label.classList.toggle('text-white', isActive);
-        label.classList.toggle('text-text-muted', !isActive);
-      });
-    };
+      const formatPrice = (value) => `${new Intl.NumberFormat('fr-FR').format(value)} EUR HT`;
+      const getDisplayPrice = (value) =>
+        typeof value === 'number' && Number.isFinite(value) && value > 0
+          ? formatPrice(value)
+          : priceMessage;
 
-    const updateQuoteLink = () => {
-      const selectedMode = getSelectedMode();
-      if (!selectedMode) {
+      const getSelectedMode = () => {
+        const selected = modeInputs.find(
+          (input) => input instanceof HTMLInputElement && input.checked
+        );
+        return selected instanceof HTMLInputElement ? selected.value : '';
+      };
+
+      const updateModeStyles = () => {
+        modeLabels.forEach((label) => {
+          if (!(label instanceof HTMLElement)) return;
+          const mode = label.getAttribute('data-mode-option');
+          const input = modeCard.querySelector(`input[value="${mode}"]`);
+          const isActive = input instanceof HTMLInputElement && input.checked;
+          label.classList.toggle('bg-primary', isActive);
+          label.classList.toggle('text-white', isActive);
+          label.classList.toggle('text-text-muted', !isActive);
+        });
+      };
+
+      const updateQuoteLink = () => {
+        const selectedMode = getSelectedMode();
+        if (!selectedMode) {
+          updateModeStyles();
+          return;
+        }
+
+        const selectedPrice = modePrices[selectedMode];
+        modePrice.textContent = getDisplayPrice(selectedPrice);
+
+        const params = new URLSearchParams({
+          formation: formationId,
+          type: selectedMode,
+        });
+        quoteLink.setAttribute('href', `/demande-devis?${params.toString()}`);
         updateModeStyles();
-        return;
-      }
+      };
 
-      const selectedPrice = modePrices[selectedMode];
-      modePrice.textContent = getDisplayPrice(selectedPrice);
-
-      const params = new URLSearchParams({
-        formation: formationId,
-        type: selectedMode,
-      });
-      quoteLink.setAttribute('href', `/demande-devis?${params.toString()}`);
-      updateModeStyles();
-    };
-
-    modeInputs.forEach((input) => {
-      input.addEventListener('change', updateQuoteLink);
-    });
-
-    modeLabels.forEach((label) => {
-      label.addEventListener('click', () => {
-        const mode = label.getAttribute('data-mode-option');
-        const input = modeCard.querySelector(`input[name="training-mode"][value="${mode}"]`);
-        if (input instanceof HTMLInputElement && !input.disabled) {
-          input.checked = true;
-          updateQuoteLink();
+      modeInputs.forEach((input) => {
+        if (input instanceof HTMLInputElement) {
+          input.addEventListener('change', updateQuoteLink);
         }
       });
-    });
 
-    updateQuoteLink();
-    updateModeStyles();
+      modeLabels.forEach((label) => {
+        if (!(label instanceof HTMLElement)) return;
+        label.addEventListener('click', () => {
+          const mode = label.getAttribute('data-mode-option');
+          const input = modeCard.querySelector(`input[value="${mode}"]`);
+          if (input instanceof HTMLInputElement && !input.disabled) {
+            input.checked = true;
+            updateQuoteLink();
+          }
+        });
+      });
+
+      updateQuoteLink();
+      updateModeStyles();
+    });
+  };
+
+  const initProgramCalendar = () => {
+    const calendars = Array.from(document.querySelectorAll('[data-program-calendar]'));
+
+    calendars.forEach((calendar) => {
+      if (!(calendar instanceof HTMLElement) || calendar.dataset.initialized === 'true') return;
+
+      const rangeLabel = calendar.querySelector('[data-program-calendar-range]');
+      const dayCards = Array.from(calendar.querySelectorAll('[data-program-day]'));
+
+      if (!(rangeLabel instanceof HTMLElement) || !dayCards.length) return;
+      calendar.dataset.initialized = 'true';
+
+      const today = new Date();
+      const normalizedToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const dayOfWeek = normalizedToday.getDay();
+      const daysUntilNextMonday = (8 - dayOfWeek) % 7 || 7;
+      const nextMonday = new Date(normalizedToday);
+      nextMonday.setDate(normalizedToday.getDate() + daysUntilNextMonday);
+
+      const weekdays = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+      const dayNumberFormatter = new Intl.DateTimeFormat('fr-FR', { day: '2-digit' });
+      const fullDateFormatter = new Intl.DateTimeFormat('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      });
+      const shortMonthFormatter = new Intl.DateTimeFormat('fr-FR', { month: 'short' });
+
+      const nextFriday = new Date(nextMonday);
+      nextFriday.setDate(nextMonday.getDate() + 4);
+
+      const mondayLabel = fullDateFormatter.format(nextMonday);
+      const fridayLabel = fullDateFormatter.format(nextFriday);
+      rangeLabel.textContent = `Semaine du ${mondayLabel} au ${fridayLabel}`;
+
+      dayCards.forEach((card, index) => {
+        if (!(card instanceof HTMLElement)) return;
+        const currentDay = new Date(nextMonday);
+        currentDay.setDate(nextMonday.getDate() + index);
+
+        const numberElement = card.querySelector('p:nth-of-type(2)');
+        const captionElement = card.querySelector('p:nth-of-type(3)');
+        const weekdayElement = card.querySelector('p:nth-of-type(1)');
+
+        if (weekdayElement instanceof HTMLElement) {
+          weekdayElement.textContent = weekdays[index];
+        }
+
+        if (numberElement instanceof HTMLElement) {
+          numberElement.textContent = dayNumberFormatter.format(currentDay);
+        }
+
+        if (captionElement instanceof HTMLElement) {
+          captionElement.textContent = shortMonthFormatter.format(currentDay).replace('.', '');
+        }
+
+        card.setAttribute(
+          'aria-label',
+          `${weekdays[index]} ${fullDateFormatter.format(currentDay)}`
+        );
+      });
+    });
   };
 
   initAnchorNav();
   initModeCard();
+  initProgramCalendar();
   document.addEventListener('hashchange', initAnchorNav);
   document.addEventListener('astro:page-load', initAnchorNav);
   document.addEventListener('astro:page-load', initModeCard);
+  document.addEventListener('astro:page-load', initProgramCalendar);
 </script>

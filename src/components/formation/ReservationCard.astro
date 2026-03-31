@@ -1,0 +1,176 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  formationId: string;
+  programmePdf?: string;
+  distancielPrice: number | null;
+  presentielPrice: number | null;
+  priceFallbackMessage: string;
+  defaultMode: 'distanciel' | 'presentiel';
+  defaultPriceLabel: string;
+  defaultQuoteHref: string;
+  nextSessionCity: string;
+  nextSessionDate: string;
+  duration: string;
+  reference: string;
+  distancielAvailable: boolean;
+  presentielAvailable: boolean;
+  sticky?: boolean;
+  mobile?: boolean;
+}
+
+const {
+  formationId,
+  programmePdf,
+  distancielPrice,
+  presentielPrice,
+  priceFallbackMessage,
+  defaultMode,
+  defaultPriceLabel,
+  defaultQuoteHref,
+  nextSessionCity,
+  nextSessionDate,
+  duration,
+  reference,
+  distancielAvailable,
+  presentielAvailable,
+  sticky = false,
+  mobile = false,
+} = Astro.props;
+---
+
+<div
+  data-mode-card
+  class:list={[
+    'rounded-2xl border border-border bg-background p-5',
+    sticky && 'sticky top-28',
+    mobile && 'mt-8',
+  ]}
+  data-formation-id={formationId}
+  data-price-distanciel={distancielPrice ?? ''}
+  data-price-presentiel={presentielPrice ?? ''}
+  data-price-message={priceFallbackMessage}
+>
+  <fieldset>
+    <legend class="sr-only">Mode de formation</legend>
+    <div
+      class="grid grid-cols-2 overflow-hidden rounded-lg bg-surface p-1 text-sm font-semibold text-text-muted"
+    >
+      <label
+        data-mode-option="distanciel"
+        class:list={[
+          'cursor-pointer rounded-md px-3 py-2 text-center transition-colors',
+          defaultMode === 'distanciel' ? 'bg-primary text-white' : '',
+          !distancielAvailable && 'cursor-not-allowed opacity-50',
+        ]}
+      >
+        <input
+          type="radio"
+          name={`training-mode-${formationId}-${mobile ? 'mobile' : 'desktop'}`}
+          value="distanciel"
+          class="sr-only"
+          checked={defaultMode === 'distanciel'}
+          disabled={!distancielAvailable}
+        />
+        Distanciel
+      </label>
+      <label
+        data-mode-option="presentiel"
+        class:list={[
+          'cursor-pointer rounded-md px-3 py-2 text-center transition-colors',
+          defaultMode === 'presentiel' ? 'bg-primary text-white' : '',
+          !presentielAvailable && 'cursor-not-allowed opacity-50',
+        ]}
+      >
+        <input
+          type="radio"
+          name={`training-mode-${formationId}-${mobile ? 'mobile' : 'desktop'}`}
+          value="presentiel"
+          class="sr-only"
+          checked={defaultMode === 'presentiel'}
+          disabled={!presentielAvailable}
+        />
+        Sur place
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="mt-5 flex items-start justify-between gap-4">
+    <div>
+      <p class="text-sm text-text-muted">Prochaine session :</p>
+      <p class="mt-1 text-base font-semibold text-[#0f0f0f]">{nextSessionCity}</p>
+      <p class="text-sm text-[#0f0f0f]">{nextSessionDate}</p>
+    </div>
+  </div>
+
+  <section
+    data-program-calendar
+    class="mt-5 rounded-xl border border-border bg-surface p-4"
+    aria-labelledby={`program-calendar-title-${formationId}-${mobile ? 'mobile' : 'desktop'}`}
+  >
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p
+          id={`program-calendar-title-${formationId}-${mobile ? 'mobile' : 'desktop'}`}
+          class="text-sm font-semibold uppercase tracking-[0.12em] text-primary"
+        >
+          Calendrier
+        </p>
+        <p data-program-calendar-range class="mt-1 text-sm font-medium text-text">
+          Chargement de la prochaine semaine...
+        </p>
+      </div>
+      <span
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary"
+      >
+        <Icon name="lucide:calendar-range" class="h-4 w-4" />
+      </span>
+    </div>
+
+    <div class="mt-4 grid grid-cols-5 gap-2" role="list" aria-label="Programme de la semaine">
+      {
+        ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'].map((label, index) => (
+          <div
+            class="program-calendar-day rounded-lg border border-primary/15 bg-primary px-2 py-3 text-center text-white shadow-sm"
+            data-program-day
+            data-day-index={index}
+            role="listitem"
+          >
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/80">
+              {label}
+            </p>
+            <p class="mt-1 text-lg font-bold leading-none">--</p>
+            <p class="mt-1 text-[11px] text-white/80">Programme</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="mt-5 flex items-center justify-between text-sm text-text-muted">
+    <span class="inline-flex items-center gap-2">
+      <Icon name="lucide:clock-3" class="h-4 w-4" />
+      {duration}
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <Icon name="lucide:hash" class="h-4 w-4" />
+      Ref {reference}
+    </span>
+  </div>
+
+  <div class="mt-5 border-t border-border pt-5">
+    <p data-mode-price class="mode-price text-xl font-bold">{defaultPriceLabel}</p>
+  </div>
+
+  <div class="mt-5">
+    <a
+      data-quote-link
+      href={defaultQuoteHref}
+      data-base-href="/demande-devis"
+      class="inline-flex w-full items-center justify-center rounded-md border border-primary px-5 py-3 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+    >
+      Demande de devis
+    </a>
+  </div>
+</div>

@@ -91,6 +91,7 @@ const formations = defineCollection({
     reviews: z.coerce.number().default(64),
     eligibleCPF: z.boolean().default(true),
     guaranteedSession: z.boolean().default(false),
+    archived: z.boolean().default(false),
     order: z.number().default(0),
     draft: z.boolean().default(false),
   }),

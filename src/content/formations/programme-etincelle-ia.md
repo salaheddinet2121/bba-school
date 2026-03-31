@@ -1,6 +1,6 @@
 ---
-title: "Programme Étincelle IA - Créer des contenus avec l'IA générative"
-description: "Une formation opérationnelle pour créer des contenus rédactionnels et visuels avec une utilisation responsable de l'IA générative."
+title: "Création de contenus rédactionnels et visuels par l'usage responsable de l'intelligence artificielle générative"
+description: "Une formation opérationnelle pour créer des contenus rédactionnels et visuels grâce à un usage responsable de l'intelligence artificielle générative."
 objectifs: "Acquérir les bases pour utiliser l'IA générative dans la création de contenus professionnels."
 public: "Professionnels, indépendants, équipes marketing/communication et toute personne souhaitant gagner du temps dans la production de contenus."
 prerequis: "Il est préférable d'avoir une première expérience dans le monde professionnel ainsi qu'une familiarité avec l'utilisation d'Internet."
@@ -27,7 +27,7 @@ programmeModules:
       - "Protection des données sensibles et sécurisation des usages."
       - "Conception de contenus numériques accessibles."
       - "Application des règles IA Act, RGPD et veille réglementaire."
-programmePdf: "/documents/Programme%20%C3%89tincelle%20IA%20%E2%80%93%20Cr%C3%A9er%20des%20contenus%20avec%20l%E2%80%99IA%20g%C3%A9n%C3%A9rative%20%282%29.pdf"
+programmePdf: "/documents/programme-etincelle-ia.pdf"
 icon: "lucide:sparkles"
 domain: "Informatique"
 subdomain: "IA générative"
@@ -38,9 +38,9 @@ duration: "3 jours (21 heures)"
 format: "À distance (Microsoft Teams)"
 level: "Fondamentaux"
 distancielAvailable: true
-distancielPriceHT: 1400
+distancielPriceHT: 1500
 presentielAvailable: false
-priceHT: 1400
+priceHT: 1500
 pricingText: "Tarif inter entreprise, hors options intra."
 reference: "RS6776"
 nextSessionCity: "À distance"
@@ -49,6 +49,7 @@ rating: 4.9
 reviews: 22
 eligibleCPF: false
 guaranteedSession: true
+archived: false
 order: 1
 draft: false
 ---

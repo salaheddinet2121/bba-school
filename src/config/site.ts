@@ -26,7 +26,7 @@ export const author = import.meta.env.SITE_AUTHOR || 'SODEVA';
 export const logo = '/logo.webp';
 
 /** Path to Open Graph image (relative to /public) */
-export const ogImage = '/images/og-image.png';
+export const ogImage = '/images/og-image.jpg';
 
 /** Social media links */
 export const social: SocialLinks = {
@@ -39,5 +39,5 @@ export const social: SocialLinks = {
 export const legal: LegalConfig = {
   privacyEmail: 'contact@sodeva.fr',
   legalEmail: 'contact@sodeva.fr',
-  lastUpdated: 'December 1, 2025',
+  lastUpdated: '20 mars 2026',
 };

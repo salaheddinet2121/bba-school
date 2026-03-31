@@ -38,6 +38,7 @@ badgeTone: "incontournable"
 duration: "35 heures"
 format: "E-learning (distanciel)"
 level: "Fondamentaux"
+archived: true
 distancielAvailable: true
 distancielPriceHT: 0
 presentielAvailable: false
@@ -66,4 +67,3 @@ Interaction permanente entre les participants et le formateur, cas pratiques et 
 
 - Navigateur web compatible: Chrome, Firefox, Safari, Edge.
 - Systèmes d'exploitation supportés: Windows, macOS, iOS, Android.
-

@@ -38,6 +38,7 @@ domain: "Informatique"
 subdomain: "IA générative"
 badgeLabel: "EXPERT"
 badgeTone: "expert"
+archived: true
 image: "/formation/deploying-ia.webp"
 duration: "4 jours (28 heures)"
 format: "À distance (Microsoft Teams)"

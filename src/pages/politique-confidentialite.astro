@@ -1,0 +1,118 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+import { legal } from '@/config/site';
+---
+
+<MarketingLayout
+  title={`Politique de confidentialité - ${siteConfig.name}`}
+  description="Politique de confidentialite de SODEVA : donnees de contact, absence de cookies de mesure d'audience et usages strictement techniques."
+>
+  <section class="py-16">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-text">Politique de confidentialite</h1>
+      <p class="mt-4 max-w-3xl text-text-muted">
+        Cette page presente de facon simple les traitements de donnees lies au site
+        {' '}
+        <strong class="text-text">sodeva.fr</strong>
+        . Le site est concu pour limiter au maximum les traceurs et les depots d'informations sur votre
+        terminal.
+      </p>
+
+      <div class="mt-10 space-y-6">
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <h2 class="text-2xl font-semibold text-text">1. Responsable du traitement</h2>
+          <div class="mt-4 space-y-3 text-sm leading-7 text-text-muted">
+            <p>SODEVA</p>
+            <p>534 Rue Marius Petipa, 34080 Montpellier, France</p>
+            <p>
+              Contact :
+              {' '}
+              <a href={`mailto:${legal.privacyEmail}`} class="text-primary hover:underline">
+                {legal.privacyEmail}
+              </a>
+            </p>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <h2 class="text-2xl font-semibold text-text">2. Cookies et traceurs</h2>
+          <div class="mt-4 space-y-3 text-sm leading-7 text-text-muted">
+            <p>
+              Le site utilise tarteaucitron.js pour recueillir et conserver vos choix de
+              consentement. Ce mecanisme depose un cookie technique de consentement strictement
+              necessaire a la memorisation de votre preference.
+            </p>
+            <p>
+              Aucun outil d'analyse d'audience, aucune regie publicitaire, aucun pixel marketing et
+              aucun gestionnaire de tags publicitaires n'est active par defaut sur ce site.
+            </p>
+            <p>
+              Certaines fonctionnalites locales strictement techniques peuvent etre utilisees par
+              votre navigateur pour ameliorer l'affichage du site, par exemple la memorisation d'un
+              theme visuel ou la fermeture d'un message d'information. Ces mecanismes n'ont pas pour
+              objet de suivre votre navigation d'un site a l'autre.
+            </p>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <h2 class="text-2xl font-semibold text-text">3. Services externes</h2>
+          <div class="mt-4 space-y-3 text-sm leading-7 text-text-muted">
+            <p>
+              Le site n'embarque pas de service tiers de type Google Analytics, Google Tag Manager,
+              Meta Pixel, Hotjar ou chat marketing.
+            </p>
+            <p>
+              Une integration Google Maps est presente sur le site. Elle reste bloquee par defaut et
+              ne se charge qu'apres votre consentement explicite via le bandeau de gestion des
+              cookies.
+            </p>
+            <p>
+              Certains liens peuvent egalement vous rediriger volontairement vers des services
+              externes, par exemple Google Maps ou Google Avis. Une fois sur ces services, leurs
+              propres regles de confidentialite et cookies s'appliquent.
+            </p>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <h2 class="text-2xl font-semibold text-text">
+            4. Donnees transmises via les formulaires
+          </h2>
+          <div class="mt-4 space-y-3 text-sm leading-7 text-text-muted">
+            <p>
+              Lorsque vous utilisez un formulaire de contact, de demande de devis ou de reclamation,
+              les donnees que vous renseignez sont traitees uniquement pour repondre a votre demande
+              et assurer le suivi administratif associe.
+            </p>
+            <p>
+              Ces donnees ne sont pas utilisees pour faire du profilage publicitaire ou de la mesure
+              d'audience comportementale.
+            </p>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
+          <h2 class="text-2xl font-semibold text-text">5. Vos droits</h2>
+          <div class="mt-4 space-y-3 text-sm leading-7 text-text-muted">
+            <p>
+              Vous pouvez demander l'acces, la rectification ou l'effacement de vos donnees, ainsi
+              que la limitation du traitement lorsque cela s'applique.
+            </p>
+            <p>
+              Pour toute question, vous pouvez ecrire a
+              {' '}
+              <a href={`mailto:${legal.privacyEmail}`} class="text-primary hover:underline">
+                {legal.privacyEmail}
+              </a>
+              .
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <p class="mt-8 text-sm text-text-muted">Derniere mise a jour : {legal.lastUpdated}</p>
+    </div>
+  </section>
+</MarketingLayout>

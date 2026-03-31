@@ -60,6 +60,7 @@ export interface Address {
 
 export interface ContactInfo {
   email: string;
+  phone?: string;
   supportEmail?: string;
   salesEmail?: string;
   address: Address;

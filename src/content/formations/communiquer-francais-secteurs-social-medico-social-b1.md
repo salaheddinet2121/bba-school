@@ -1,5 +1,5 @@
 ---
-title: "Communiquer en français dans les secteurs du social et du médico-social (B1)"
+title: "Communiquer en français dans les secteurs du social et du médico-social (niveau B1)"
 description: "Formation professionnelle pour améliorer la compréhension et l'expression en français dans les situations courantes des secteurs social et médico-social."
 objectifs: "Renforcer les compétences de communication orale et écrite en français afin d'interagir avec les bénéficiaires, les équipes et les partenaires professionnels."
 public: "Travailleurs sociaux, assistants de soins en gérontologie, éducateurs spécialisés, aides-soignants et toute personne devant communiquer en français dans un cadre social ou médico-social."
@@ -52,6 +52,7 @@ rating: 0
 reviews: 0
 eligibleCPF: false
 guaranteedSession: false
+archived: false
 order: 13
 draft: false
 ---

@@ -6,7 +6,7 @@ import { documents } from '@/config/documents';
 
 const rnqPages = [
   {
-    title: 'Formulaire de réclamation',
+    title: 'Médiation et réclamation',
     icon: 'lucide:message-square-warning',
     href: '/rnq/reclamation',
     description:
@@ -77,20 +77,24 @@ const rnqPages = [
           <div class="px-3 pb-3 pt-2">
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div class="rounded-xl border border-border bg-background p-4">
-                <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">KPI</p>
-                <p class="mt-2 text-base font-semibold text-black">Satisfaction et compétences</p>
+                <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">
+                  Taux de réussite
+                </p>
+                <p class="mt-2 text-base font-semibold text-primary">20 apprenants</p>
               </div>
               <div class="rounded-xl border border-border bg-background p-4">
                 <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">Nombre de stagiaires formés</p>
-                <p class="mt-2 text-base font-semibold text-primary">478</p>
-              </div>
-              <div class="rounded-xl border border-border bg-background p-4">
-                <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">Taux d'abandon</p>
-                <p class="mt-2 text-base font-semibold text-primary">10%</p>
+                <p class="mt-2 text-base font-semibold text-primary">20</p>
               </div>
               <div class="rounded-xl border border-border bg-background p-4">
                 <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">Taux de satisfaction</p>
-                <p class="mt-2 text-base font-semibold text-primary">90%</p>
+                <p class="mt-2 text-base font-semibold text-primary">100%</p>
+              </div>
+              <div class="rounded-xl border border-border bg-background p-4">
+                <p class="text-xs font-medium uppercase tracking-[0.1em] text-text-muted">
+                  Taux d'abandon
+                </p>
+                <p class="mt-2 text-base font-semibold text-primary">0</p>
               </div>
             </div>
           </div>
@@ -131,12 +135,57 @@ const rnqPages = [
         }
       </div>
 
-      <div id="accessibilite" class="mt-6 rounded-2xl border border-border bg-background p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold text-text">Accessibilité handicap</h2>
-        <p class="mt-3 text-sm text-text-muted">
-          SODEVA prend en compte les situations de handicap. Les besoins d'adaptation sont étudiés
-          avant et pendant le parcours, avec un accompagnement dédié.
-        </p>
+      <div
+        id="accessibilite"
+        class="mt-6 overflow-hidden rounded-2xl border border-border bg-background shadow-sm"
+      >
+        <div class="border-b border-border bg-surface/70 px-6 py-5 sm:px-8">
+          <div class="flex items-start gap-4">
+            <div class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Icon name="lucide:accessibility" class="h-5 w-5" />
+            </div>
+            <div>
+              <h2 class="text-2xl font-semibold text-text">Accessibilité handicap</h2>
+              <p class="mt-2 text-sm text-text-muted">
+                Nous étudions les besoins d'aménagement avant l'entrée en formation et pendant le
+                parcours si nécessaire.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-4 px-6 py-6 sm:px-8 md:grid-cols-[1.4fr_1fr]">
+          <div class="rounded-xl border border-primary/15 bg-primary/5 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              Accueil des publics
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="inline-flex items-center rounded-full bg-background px-3 py-1 text-sm font-medium text-text shadow-sm ring-1 ring-border">
+                PMR: oui
+              </span>
+              <span class="inline-flex items-center rounded-full bg-background px-3 py-1 text-sm font-medium text-text shadow-sm ring-1 ring-border">
+                PSH: oui
+              </span>
+            </div>
+            <p class="mt-4 text-sm leading-relaxed text-text-muted">
+              Merci de nous contacter pour prévoir un aménagement si possible.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border bg-background p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              Référent handicap
+            </p>
+            <p class="mt-3 text-base font-semibold text-text">Amine Es Salah</p>
+            <a
+              href="mailto:contact@sodeva.fr"
+              class="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            >
+              <Icon name="lucide:mail" class="h-4 w-4" />
+              contact@sodeva.fr
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>

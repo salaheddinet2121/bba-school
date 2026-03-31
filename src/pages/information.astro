@@ -5,10 +5,11 @@ import { documents } from '@/config/documents';
 
 const legalDocuments = [
   { label: 'Certificat Qualiopi', href: documents.certificatQualiopi },
-  { label: 'Livret d\'accueil', href: documents.livretAccueil },
+  { label: "Livret d'accueil", href: documents.livretAccueil },
   { label: 'Règlement intérieur', href: documents.reglementInterieur },
   { label: 'Conditions générales de vente (CGV)', href: '/rnq/cgv' },
   { label: 'Engagements déontologiques', href: documents.engagementsDeontologiques },
+  { label: 'Politique de confidentialité', href: '/politique-confidentialite' },
 ];
 ---
 
@@ -24,20 +25,22 @@ const legalDocuments = [
         <p><strong class="text-text">Raison sociale :</strong> SODEVA</p>
         <p><strong class="text-text">SIRET:</strong> 830 548 319 00029</p>
         <p>
-          <strong class="text-text">Adresse:</strong> 534 Rue Marius Petipa, 34080 Montpellier,
-          France
+          <strong class="text-text">Adresse:</strong> 534 Rue Marius Petipa, 34080 Montpellier, France
         </p>
         <p><strong class="text-text">Téléphone :</strong> 04 67 79 37 52</p>
         <p>
           <strong class="text-text">Email:</strong>
-          <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline">contact@sodeva.fr</a>
+          <a href="mailto:contact@sodeva.fr" class="text-primary hover:underline"
+            >contact@sodeva.fr</a
+          >
         </p>
       </div>
 
       <article class="mt-10 rounded-2xl border border-border bg-background p-6 sm:p-8">
         <h2 class="text-2xl font-semibold text-text">Documents officiels téléchargeables</h2>
         <p class="mt-3 text-sm text-text-muted">
-          Les documents administratifs et qualitatifs actuellement disponibles sont accessibles ci-dessous.
+          Les documents administratifs et qualitatifs actuellement disponibles sont accessibles
+          ci-dessous.
         </p>
 
         <ul class="mt-5 space-y-3">
@@ -56,6 +59,24 @@ const legalDocuments = [
             ))
           }
         </ul>
+      </article>
+
+      <article class="mt-8 rounded-2xl border border-border bg-background p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold text-text">Cookies</h2>
+        <p class="mt-3 text-sm leading-7 text-text-muted">
+          Le site utilise des cookies strictement necessaires au fonctionnement du module de gestion
+          du consentement ainsi que, uniquement apres votre accord, des services tiers susceptibles
+          de deposer leurs propres cookies, comme l'integration Google Maps.
+        </p>
+        <p class="mt-3 text-sm leading-7 text-text-muted">
+          La gestion du consentement est assuree via tarteaucitron.js. Le detail des traitements,
+          finalites et services concernes est disponible dans la
+          {' '}
+          <a href="/politique-confidentialite" class="text-primary hover:underline">
+            politique de confidentialite
+          </a>
+          .
+        </p>
       </article>
     </div>
   </section>

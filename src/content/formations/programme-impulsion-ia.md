@@ -38,6 +38,7 @@ badgeLabel: "INCONTOURNABLES"
 badgeTone: "incontournable"
 image: "/formation/ia-generative.webp"
 duration: "4 jours (24 heures)"
+archived: true
 format: "À distance (Microsoft Teams)"
 level: "Avancé"
 distancielAvailable: true

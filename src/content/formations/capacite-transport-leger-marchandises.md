@@ -4,6 +4,7 @@ description: "Formation en présentiel pour maîtriser les obligations légales,
 objectifs: "Obtenir l'attestation de capacité en transport léger de marchandises et piloter l'activité dans le respect des obligations réglementaires."
 public: "Professionnels du transport léger de marchandises et porteurs de projet de création/reprise d'activité (PTAC inférieur à 3,5 tonnes)."
 prerequis: "Sans niveau spécifique."
+archived: true
 objectifsPoints:
   - "Obtenir l'attestation de capacité en transport léger de marchandises."
   - "Assurer une gestion efficace de l'entreprise dans le respect des réglementations."

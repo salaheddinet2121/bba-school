@@ -1,6 +1,7 @@
 ---
 title: "Transition Écologique et Pratiques Durables en Commerce"
 description: "Formation professionnelle en présentiel pour réduire l'impact environnemental d'une activité commerciale et déployer des pratiques durables en distribution alimentaire."
+archived: true
 objectifs: "Comprendre les enjeux de la transition écologique et construire un plan d'action concret pour un commerce plus durable."
 public: "Salariés de la grande distribution et du commerce alimentaire."
 prerequis: "Aucun."
@@ -84,7 +85,6 @@ Validation des acquis: attestation de formation remise aux participants.
 Formation accessible aux personnes en situation de handicap.
 
 Adaptation des supports pédagogiques et des exercices pratiques.
-
 
 
 

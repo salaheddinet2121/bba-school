@@ -1,0 +1,234 @@
+---
+// Cookie consent banner — no external dependencies
+---
+
+<!-- Floating re-open button (shown after consent is given) -->
+<button
+  id="cookie-reopen"
+  aria-label="Gérer les cookies"
+  title="Gérer les cookies"
+  style="display:none"
+>
+  🍪
+</button>
+
+<!-- Banner -->
+<div id="cookie-banner" role="dialog" aria-modal="true" aria-label="Gestion des cookies" style="display:none">
+  <div id="cookie-banner-inner">
+    <p id="cookie-banner-text">
+      Ce site utilise un cookie technique pour mémoriser vos préférences de consentement, ainsi
+      qu'une carte Google Maps chargée uniquement après votre accord.
+      <a href="/politique-confidentialite">En savoir plus</a>
+    </p>
+    <div id="cookie-banner-actions">
+      <button id="cookie-accept" type="button">Tout accepter</button>
+      <button id="cookie-deny" type="button">Continuer sans accepter</button>
+    </div>
+    <a href="/politique-confidentialite" id="cookie-privacy-link">Politique de confidentialité</a>
+  </div>
+</div>
+
+<style>
+  /* ── Floating re-open button ── */
+  #cookie-reopen {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 9998;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: box-shadow 150ms ease;
+  }
+  #cookie-reopen:hover {
+    box-shadow: 0 4px 18px rgb(0 0 0 / 16%);
+  }
+
+  /* ── Banner wrapper ── */
+  #cookie-banner {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 9999;
+    width: min(360px, calc(100vw - 2rem));
+    font-family: inherit;
+  }
+
+  #cookie-banner-inner {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    box-shadow:
+      0 4px 6px rgb(0 0 0 / 4%),
+      0 16px 40px rgb(0 0 0 / 10%);
+    overflow: hidden;
+    /* Orange accent line */
+    border-top: 3px solid var(--color-primary);
+  }
+
+  /* ── Text ── */
+  #cookie-banner-text {
+    margin: 0;
+    padding: 1rem 1.1rem 0.85rem;
+    color: var(--color-text-muted);
+    font-size: 0.83rem;
+    line-height: 1.55;
+    border-bottom: 1px solid var(--color-border);
+  }
+  #cookie-banner-text a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  /* ── Action buttons ── */
+  #cookie-banner-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.9rem 1.1rem 0.4rem;
+  }
+
+  #cookie-accept {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.55rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 150ms ease;
+  }
+  #cookie-accept:hover { opacity: 0.88; }
+
+  #cookie-deny {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 0.55rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 150ms ease;
+  }
+  #cookie-deny:hover { border-color: var(--color-text-muted); }
+
+  /* ── Privacy link ── */
+  #cookie-privacy-link {
+    display: block;
+    padding: 0.45rem 1.1rem 0.75rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 767px) {
+    #cookie-banner,
+    #cookie-reopen {
+      right: 0.75rem;
+      bottom: 0.75rem;
+    }
+    #cookie-banner {
+      width: calc(100vw - 1.5rem);
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var KEY = 'sodeva_cookie_consent';
+
+    var banner = document.getElementById('cookie-banner');
+    var reopen = document.getElementById('cookie-reopen');
+    var acceptBtn = document.getElementById('cookie-accept');
+    var denyBtn = document.getElementById('cookie-deny');
+
+    function loadMaps() {
+      document.querySelectorAll('.googlemapsembed').forEach(function (el) {
+        var url = el.dataset.url;
+        if (!url || el.querySelector('iframe')) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.style.border = 'none';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.title = el.getAttribute('title') || 'Google Maps';
+        el.innerHTML = '';
+        el.appendChild(iframe);
+      });
+    }
+
+    function showMapPlaceholder() {
+      document.querySelectorAll('.googlemapsembed').forEach(function (el) {
+        if (el.querySelector('iframe') || el.querySelector('.map-placeholder')) return;
+        el.innerHTML =
+          '<div class="map-placeholder">' +
+          '<p>Carte désactivée</p>' +
+          '<span>Acceptez les cookies pour afficher la carte Google Maps.</span>' +
+          '<button type="button" onclick="document.getElementById(\'cookie-banner\').style.display=\'block\';document.getElementById(\'cookie-reopen\').style.display=\'none\'">Gérer les préférences</button>' +
+          '</div>';
+      });
+    }
+
+    function hideBanner() {
+      banner.style.display = 'none';
+      reopen.style.cssText = 'display:flex;align-items:center;justify-content:center;';
+    }
+
+    function showBanner() {
+      banner.style.display = 'block';
+      reopen.style.display = 'none';
+    }
+
+    function applyConsent(value) {
+      if (value === 'accepted') loadMaps();
+      else showMapPlaceholder();
+    }
+
+    var saved = localStorage.getItem(KEY);
+    if (!saved) {
+      showBanner();
+      showMapPlaceholder();
+    } else {
+      hideBanner();
+      applyConsent(saved);
+    }
+
+    acceptBtn.addEventListener('click', function () {
+      localStorage.setItem(KEY, 'accepted');
+      hideBanner();
+      applyConsent('accepted');
+    });
+
+    denyBtn.addEventListener('click', function () {
+      localStorage.setItem(KEY, 'denied');
+      hideBanner();
+      applyConsent('denied');
+    });
+
+    reopen.addEventListener('click', showBanner);
+
+    document.querySelectorAll('a[href="#cookies"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        showBanner();
+      });
+    });
+  })();
+</script>

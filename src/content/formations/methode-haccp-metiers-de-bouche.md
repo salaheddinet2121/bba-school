@@ -38,6 +38,7 @@ distancielAvailable: true
 distancielPriceHT: 0
 presentielAvailable: false
 priceHT: 0
+archived: true
 pricingText: "Tarif sur demande."
 reference: ""
 nextSessionCity: "À distance"
@@ -62,4 +63,3 @@ Interaction permanente entre les participants et le formateur, cas pratiques et 
 
 - Navigateur web compatible: Chrome, Firefox, Safari, Edge.
 - Systèmes d'exploitation supportés: Windows, macOS, iOS, Android.
-

@@ -67,7 +67,8 @@ function clean_input(?string $value): string
 function require_field(string $field, int $minLength = 1): string
 {
     $value = clean_input($_POST[$field] ?? '');
-    if (mb_strlen($value) < $minLength) {
+    $length = function_exists('mb_strlen') ? mb_strlen($value) : strlen($value);
+    if ($length < $minLength) {
         json_response(422, ['ok' => false, 'message' => "Champ requis: {$field}"]);
     }
     return $value;

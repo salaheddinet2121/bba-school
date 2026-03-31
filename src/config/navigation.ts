@@ -26,9 +26,7 @@ export const navigation: Navigation = {
       { label: 'Informations pratiques', href: '/informations-pratiques' },
       { label: 'Contact', href: '/contact' },
     ],
-    cta: [
-      { label: 'Contacter', href: '/contact', variant: 'primary' },
-    ],
+    cta: [{ label: 'Contacter', href: '/contact', variant: 'primary' }],
   },
 
   /**
@@ -42,7 +40,7 @@ export const navigation: Navigation = {
       { label: 'Formation communication', href: '/formations' },
     ],
     solutions: [
-      { label: 'Formulaire de réclamation', href: '/rnq/reclamation' },
+      { label: 'Médiation et réclamation', href: '/rnq/reclamation' },
       { label: "Livret d'accueil", href: '/rnq/livret-accueil' },
       { label: 'Règlement intérieur', href: '/rnq/reglement-interieur' },
       { label: 'Engagements déontologiques', href: '/rnq/engagements-deontologiques' },
@@ -52,16 +50,18 @@ export const navigation: Navigation = {
       { label: 'Bloc Qualiopi', href: '/#qualiopi' },
       { label: 'Voir le certificat', href: documents.certificatQualiopi },
       { label: 'Mentions légales', href: '/information' },
+      { label: 'Confidentialité', href: '/politique-confidentialite' },
     ],
     company: [
-      { label: 'L\'organisme', href: '/organisme' },
+      { label: "L'organisme", href: '/organisme' },
       { label: 'Contact', href: '/contact' },
       { label: 'Horaires', href: '/contact' },
     ],
     legal: [
       { label: 'Mentions légales', href: '/information' },
+      { label: 'Confidentialité', href: '/politique-confidentialite' },
+      { label: 'Médiation et réclamation', href: '/rnq/reclamation' },
       { label: 'CGV', href: '/rnq/cgv' },
-      { label: 'Contact', href: '/contact' },
     ],
   },
 };

@@ -211,6 +211,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
   const formStatus = document.getElementById('form-status');
   const formSuccess = document.getElementById('form-success');
   const formError = document.getElementById('form-error');
+  const formErrorText = formError?.querySelector('p.text-sm');
 
   // Validation rules
   const validationRules: Record<string, (value: string) => string | null> = {
@@ -342,10 +343,15 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
       if (response.ok && payload?.ok !== false) {
         showSuccess();
       } else {
-        showErrorState();
+        const errorMessage =
+          (typeof payload?.message === 'string' && payload.message) ||
+          (typeof payload?.error === 'string' && payload.error) ||
+          null;
+        showErrorState(errorMessage);
       }
-    } catch {
-      showErrorState();
+    } catch (error) {
+      const networkMessage = error instanceof Error ? error.message : null;
+      showErrorState(networkMessage);
     }
   });
 
@@ -356,7 +362,13 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
     resetButtonState();
   }
 
-  function showErrorState() {
+  function showErrorState(details: string | null = null) {
+    if (formErrorText) {
+      formErrorText.textContent =
+        details && details.trim().length > 0
+          ? details
+          : 'Merci de réessayer ou de nous contacter directement par email.';
+    }
     formStatus?.classList.remove('hidden');
     formError?.classList.remove('hidden');
     resetButtonState();

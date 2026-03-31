@@ -36,7 +36,8 @@
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
-    "chart.js": "^4.4.0"
+    "chart.js": "^4.4.0",
+    "tarteaucitronjs": "^1.31.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",

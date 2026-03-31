@@ -1,5 +1,6 @@
 ---
 import SEO from '@components/common/SEO.astro';
+import CookieBanner from '@components/common/CookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -70,5 +71,6 @@ const {
       Skip to main content
     </a>
     <slot />
+    <CookieBanner />
   </body>
 </html>

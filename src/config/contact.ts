@@ -11,6 +11,7 @@ import type { ContactInfo, ContactMethod, ContactFAQ } from '../lib/types';
 /** Contact information used across contact page and legal pages */
 export const contact: ContactInfo = {
   email: 'contact@sodeva.fr',
+  phone: '+33467793752',
   supportEmail: 'contact@sodeva.fr',
   salesEmail: 'contact@sodeva.fr',
   address: {
@@ -34,7 +35,7 @@ export const contactMethods: ContactMethod[] = [
     icon: 'lucide:phone',
     label: 'Téléphone',
     value: '04 67 79 37 52',
-    href: 'tel:+33467793752',
+    href: `tel:${contact.phone}`,
   },
   {
     icon: 'lucide:map-pin',

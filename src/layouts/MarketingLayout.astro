@@ -11,6 +11,8 @@ interface Props {
   description: string;
   image?: string;
   type?: 'website' | 'article';
+  canonical?: string;
+  noindex?: boolean;
   // Article-specific props for JSON-LD
   publishedDate?: Date;
   modifiedDate?: Date;
@@ -24,6 +26,8 @@ const {
   description,
   image,
   type = 'website',
+  canonical,
+  noindex = false,
   publishedDate,
   modifiedDate,
   author,
@@ -39,6 +43,8 @@ const { announcement } = siteConfig;
   description={description}
   image={image}
   type={type}
+  canonical={canonical}
+  noindex={noindex}
   publishedDate={publishedDate}
   modifiedDate={modifiedDate}
   author={author}

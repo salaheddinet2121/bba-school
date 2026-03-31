@@ -3,33 +3,33 @@ import { Icon } from 'astro-icon/components';
 
 const kpiItems = [
   {
-    title: 'Indicateurs de résultats',
-    value: 'Satisfaction et compétences',
-    icon: 'lucide:bar-chart-3',
+    title: 'Taux de réussite',
+    value: '20 apprenants',
+    icon: 'lucide:graduation-cap',
     cardClass: 'border-border bg-background',
     iconClass: 'bg-primary/10 text-primary',
-    valueClass: 'text-black',
+    valueClass: 'text-primary',
   },
   {
     title: 'Nombre de stagiaires formés',
-    value: '478',
+    value: '20',
     icon: 'lucide:users',
     cardClass: 'border-border bg-background',
     iconClass: 'bg-primary/10 text-primary',
     valueClass: 'text-primary',
   },
   {
-    title: "Taux d'abandon",
-    value: '10%',
-    icon: 'lucide:user-x',
+    title: 'Taux de satisfaction',
+    value: '100%',
+    icon: 'lucide:smile',
     cardClass: 'border-border bg-background',
     iconClass: 'bg-primary/10 text-primary',
     valueClass: 'text-primary',
   },
   {
-    title: 'Taux de satisfaction',
-    value: '90%',
-    icon: 'lucide:smile',
+    title: "Taux d'abandon",
+    value: '0',
+    icon: 'lucide:user-x',
     cardClass: 'border-border bg-background',
     iconClass: 'bg-primary/10 text-primary',
     valueClass: 'text-primary',
@@ -50,8 +50,8 @@ const rnqLinks = [
     icon: 'lucide:notebook-pen',
   },
   {
-    title: 'Formulaire de réclamation',
-    description: 'Consultez le formulaire de réclamation et les modalités de traitement.',
+    title: 'Médiation et réclamation',
+    description: 'Accédez au formulaire de réclamation et aux modalités de traitement de votre demande.',
     href: '/rnq/reclamation',
     icon: 'lucide:message-square-warning',
   },
@@ -98,6 +98,56 @@ const rnqLinks = [
             </div>
           ))
         }
+      </div>
+    </article>
+
+    <article class="mt-6 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
+      <div class="border-b border-border bg-surface/70 px-6 py-5 sm:px-8">
+        <div class="flex items-start gap-4">
+          <div class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <Icon name="lucide:accessibility" class="h-5 w-5" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-text">Accessibilité handicap</h3>
+            <p class="mt-2 text-sm text-text-muted">
+              Nous étudions les besoins d'aménagement avant l'entrée en formation et pendant le
+              parcours si nécessaire.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid gap-4 px-6 py-6 sm:px-8 md:grid-cols-[1.4fr_1fr]">
+        <div class="rounded-xl border border-primary/15 bg-primary/5 p-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Accueil des publics
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-background px-3 py-1 text-sm font-medium text-text shadow-sm ring-1 ring-border">
+              PMR: oui
+            </span>
+            <span class="inline-flex items-center rounded-full bg-background px-3 py-1 text-sm font-medium text-text shadow-sm ring-1 ring-border">
+              PSH: oui
+            </span>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-text-muted">
+            Merci de nous contacter pour prévoir un aménagement si possible.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-border bg-background p-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            Référent handicap
+          </p>
+          <p class="mt-3 text-base font-semibold text-text">Amine Es Salah</p>
+          <a
+            href="mailto:contact@sodeva.fr"
+            class="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            <Icon name="lucide:mail" class="h-4 w-4" />
+            contact@sodeva.fr
+          </a>
+        </div>
       </div>
     </article>
 

@@ -38,6 +38,7 @@ level: "Fondamentaux"
 distancielAvailable: true
 distancielPriceHT: 0
 presentielAvailable: false
+archived: true
 priceHT: 0
 pricingText: "Tarif sur demande."
 reference: ""
@@ -63,4 +64,3 @@ Interaction permanente entre les participants et le formateur, mise en situation
 
 - Navigateur web compatible: Chrome, Firefox, Safari, Edge.
 - Systèmes d'exploitation supportés: Windows, macOS, iOS, Android.
-

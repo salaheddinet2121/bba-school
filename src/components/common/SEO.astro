@@ -39,6 +39,10 @@ interface Props {
   image?: string;
   /** Content type for Open Graph */
   type?: 'website' | 'article';
+  /** Custom canonical URL path or absolute URL */
+  canonical?: string;
+  /** Prevent indexing of this page */
+  noindex?: boolean;
   /** Article publish date (enables article schema) */
   publishedDate?: Date;
   /** Article last modified date */
@@ -54,37 +58,60 @@ const {
   description,
   image,
   type = 'website',
+  canonical,
+  noindex = false,
   publishedDate,
   modifiedDate,
   author,
   tags = [],
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
-const fullTitle = `${title} | ${siteConfig.name}`;
+const canonicalURL = canonical ? new URL(canonical, siteConfig.url) : new URL(Astro.url.pathname, siteConfig.url);
+const normalizedTitle = title.trim();
+const normalizedSiteName = siteConfig.name.trim().toLowerCase();
+const escapedSiteName = siteConfig.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const bareTitle = normalizedTitle
+  .replace(new RegExp(`\\s*[|-]\\s*${escapedSiteName}$`, 'i'), '')
+  .trim();
+const fullTitle =
+  bareTitle.toLowerCase() === normalizedSiteName ? siteConfig.name : `${bareTitle} | ${siteConfig.name}`;
 const imageUrl = image || siteConfig.ogImage;
 const ogImage = imageUrl ? new URL(imageUrl, siteConfig.url).href : undefined;
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const twitterHandle = siteConfig.social.twitter?.replace(/^https?:\/\/(www\.)?twitter\.com\//, '@') ?? '';
+const sanitizedTags = tags.filter(Boolean);
+const organizationName = siteConfig.name;
+const address = siteConfig.contact.address;
 
 // JSON-LD Structured Data
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: siteConfig.name,
+  name: organizationName,
   description: siteConfig.description,
   url: siteConfig.url,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteConfig.url}/search?q={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: siteConfig.name,
+  '@type': 'EducationalOrganization',
+  '@id': `${siteConfig.url}#organization`,
+  name: organizationName,
+  description: siteConfig.description,
   url: siteConfig.url,
   logo: new URL(siteConfig.logo, siteConfig.url).href,
+  email: siteConfig.contact.email,
+  telephone: siteConfig.contact.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: address.street,
+    addressLocality: address.city,
+    addressRegion: address.state,
+    postalCode: address.zip,
+    addressCountry: address.country,
+  },
   sameAs: [siteConfig.social.twitter, siteConfig.social.github, siteConfig.social.discord].filter(
     Boolean
   ),
@@ -95,7 +122,7 @@ const articleSchema =
     ? {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: title,
+        headline: bareTitle,
         description: description,
         image: ogImage,
         datePublished: publishedDate.toISOString(),
@@ -106,7 +133,8 @@ const articleSchema =
         },
         publisher: {
           '@type': 'Organization',
-          name: siteConfig.name,
+          '@id': `${siteConfig.url}#organization`,
+          name: organizationName,
           logo: {
             '@type': 'ImageObject',
             url: new URL(siteConfig.logo, siteConfig.url).href,
@@ -116,7 +144,7 @@ const articleSchema =
           '@type': 'WebPage',
           '@id': canonicalURL.href,
         },
-        keywords: tags.join(', '),
+        keywords: sanitizedTags.join(', '),
       }
     : null;
 
@@ -135,7 +163,7 @@ const breadcrumbSchema = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: title,
+            name: bareTitle,
             item: canonicalURL.href,
           },
         ]
@@ -149,10 +177,15 @@ const breadcrumbSchema = {
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
-{tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
+<meta name="robots" content={robotsContent} />
+<meta name="googlebot" content={robotsContent} />
+<meta name="generator" content={Astro.generator} />
+{sanitizedTags.length > 0 && <meta name="keywords" content={sanitizedTags.join(', ')} />}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" hrefLang="fr-FR" href={canonicalURL} />
+<link rel="alternate" hrefLang="x-default" href={canonicalURL} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -160,20 +193,34 @@ const breadcrumbSchema = {
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content="fr_FR" />
 {ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && <meta property="og:image:alt" content={fullTitle} />}
 {
   type === 'article' && publishedDate && (
     <meta property="article:published_time" content={publishedDate.toISOString()} />
   )
 }
+{
+  type === 'article' && (modifiedDate || publishedDate) && (
+    <meta property="article:modified_time" content={(modifiedDate || publishedDate)?.toISOString()} />
+  )
+}
 {type === 'article' && author && <meta property="article:author" content={author} />}
+{
+  type === 'article' &&
+    sanitizedTags.map((tag) => <meta property="article:tag" content={tag} />)
+}
 
 <!-- Twitter -->
-<meta property="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:title" content={fullTitle} />
-<meta property="twitter:description" content={description} />
-{ogImage && <meta property="twitter:image" content={ogImage} />}
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+{twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
+{twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+{ogImage && <meta name="twitter:image:alt" content={fullTitle} />}
 
 <!-- JSON-LD Structured Data -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

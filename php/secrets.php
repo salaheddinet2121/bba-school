@@ -10,7 +10,7 @@ return [
   'smtp_port' => 465,
   'smtp_secure' => 'ssl',
   'smtp_username' => 'contact@sodeva.fr',
-  'smtp_password' => 'Sodeva@2025',
+  'smtp_password' => '44Y@fAVR3#%',
   'from_email' => 'contact@sodeva.fr',
   'from_name' => 'SODEVA',
   'to_email' => 'contact@sodeva.fr',
