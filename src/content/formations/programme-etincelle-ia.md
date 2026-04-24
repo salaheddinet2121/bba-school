@@ -1,32 +1,45 @@
 ---
-title: "Création de contenus rédactionnels et visuels par l'usage responsable de l'intelligence artificielle générative"
-description: "Une formation opérationnelle pour créer des contenus rédactionnels et visuels grâce à un usage responsable de l'intelligence artificielle générative."
-objectifs: "Acquérir les bases pour utiliser l'IA générative dans la création de contenus professionnels."
-public: "Professionnels, indépendants, équipes marketing/communication et toute personne souhaitant gagner du temps dans la production de contenus."
-prerequis: "Il est préférable d'avoir une première expérience dans le monde professionnel ainsi qu'une familiarité avec l'utilisation d'Internet."
+title: "Création de contenus rédactionnels et visuels par l’usage responsable de l’intelligence artificielle générative (RS6776)"
+description: "Cette formation certifiante permet de développer des compétences opérationnelles pour concevoir, produire et optimiser des contenus rédactionnels et visuels professionnels à l’aide d’outils d’intelligence artificielle générative, dans le respect des enjeux éthiques, réglementaires et de confidentialité des données."
+objectifs: "Définir la stratégie d'implémentation de l'IA Générative en fonction du contexte professionnel et des outils existants d'IA Générative"
+public: "Salariés et demandeurs d’emploi du tertiaire dont le métier inclue la production de contenus rédactionnels ou visuels (notamment assistanat, secrétariat, marketing, communication, ressources humaines, juridique)."
+prerequis: "Première expérience professionnelle préférable, familiarité avec l'utilisation d'Internet."
 objectifsPoints:
-  - "Comprendre les bases de l'IA, ses usages et ses limites."
-  - "Prendre en main les outils no-code de référence (ChatGPT, générateurs d'images, automatisation)."
-  - "Automatiser des tâches simples de création de contenus."
-  - "Définir une stratégie d'implémentation de l'IA générative adaptée au contexte professionnel."
-  - "Créer des contenus rédactionnels et visuels accessibles et conformes."
-  - "Évaluer les enjeux éthiques et réglementaires (IA Act, RGPD)."
+  - "Définir la stratégie d'implémentation de l'IA Générative en fonction du contexte professionnel et des outils existants d'IA Générative"
+  - "Utiliser de manière optimale les outils d'IA Générative en vue de créer des contenus rédactionnels et visuels adaptés, inclusifs et évitant tout risque de violation de la confidentialité des données"
+  - "Evaluer et solutionner les problématiques éthiques et règlementaires liées à l'utilisation d'outils d'IA générative afin de créer des contenus respectant le cadre de l’IA Act et du RGPD"
 programmeModules:
-  - title: "Module 1 - Analyse du contexte et plan d'intégration"
+  - title: "C1 – Analyse du contexte et stratégie d’intégration"
     items:
-      - "Principes clés de l'IA générative et outils phares."
-      - "Cartographie des tâches répétitives et cas d'optimisation."
-      - "Plan d'intégration personnel avec priorités et jalons."
-  - title: "Module 2 - Prompting et création de contenus"
+      - "Analyse des besoins et identification des usages professionnels"
+      - "Prise en main des outils d’IA générative (ChatGPT, Gemini, Firefly, Copilot)"
+      - "Élaboration d’un plan d’intégration basé sur la création de contenus"
+  - title: "C2 – Création de contenus rédactionnels et visuels"
     items:
-      - "Méthodes de rédaction de prompts efficaces."
-      - "Création de textes et visuels avec différents outils."
-      - "Optimisation des contenus selon cible, canal et format."
-  - title: "Module 3 - Sécurité, accessibilité et conformité"
+      - "Rédaction de prompts efficaces"
+      - "Création de contenus rédactionnels (emails, articles, publications)"
+      - "Création de contenus visuels via IA"
+      - "Adaptation des contenus aux cibles et supports"
+  - title: "C3 – Sécurité et gestion des données"
     items:
-      - "Protection des données sensibles et sécurisation des usages."
-      - "Conception de contenus numériques accessibles."
-      - "Application des règles IA Act, RGPD et veille réglementaire."
+      - "Identification des données sensibles"
+      - "Prévention des risques liés à l’IA"
+      - "Bonnes pratiques de sécurisation"
+  - title: "C4 – Accessibilité des contenus"
+    items:
+      - "Conception de contenus inclusifs"
+      - "Adaptation aux différents handicaps"
+      - "Simplification et structuration de l’information"
+  - title: "C5 – Optimisation des contenus générés"
+    items:
+      - "Amélioration des contenus produits"
+      - "Ajustement du style et du format"
+      - "Optimisation des prompts"
+  - title: "C6 – Cadre légal et éthique"
+    items:
+      - "Compréhension de l’IA Act"
+      - "Application du RGPD"
+      - "Analyse des risques et conformité"
 programmePdf: "/documents/programme-etincelle-ia.pdf"
 icon: "lucide:sparkles"
 domain: "Informatique"
@@ -34,8 +47,8 @@ subdomain: "IA générative"
 badgeLabel: "NOUVEAUTE"
 badgeTone: "nouveaute"
 image: "/formation/ia-formation.webp"
-duration: "3 jours (21 heures)"
-format: "À distance (Microsoft Teams)"
+duration: "24 heures"
+format: "100 % à distance (Microsoft Teams + plateforme e-learning)"
 level: "Fondamentaux"
 distancielAvailable: true
 distancielPriceHT: 1500
@@ -47,22 +60,44 @@ nextSessionCity: "À distance"
 nextSessionDate: "Délai d'accès minimum: 15 jours"
 rating: 4.9
 reviews: 22
-eligibleCPF: false
+eligibleCPF: true
 guaranteedSession: true
 archived: false
 order: 1
 draft: false
 ---
+## Informations clés
+
+- Durée totale : 24 heures
+- Répartition : 7 heures en visioconférence (synchrone) et 17 heures en e-learning (dont 3 heures de travail encadré)
+- Format : 100 % à distance (Microsoft Teams + plateforme e-learning)
+- Tarif : 1 500 € HT
+- Référence : RS6776
+
 ## Modalités pédagogiques
 
-La formation alterne apports méthodologiques, démonstrations guidées et mises en pratique sur des cas réels simples.
+La formation alterne apports théoriques, démonstrations, exercices pratiques et cas concrets issus du contexte professionnel.
 
-## Évaluation des acquis
+Un accompagnement pédagogique individualisé est assuré dans le cadre du travail asynchrone.
 
-Évaluation continue par exercices, mises en situation professionnelles et QCM.
+## Modalités d’évaluation et de certification
+
+Le passage de l’examen de la certification RS6776, enregistrée auprès de France Compétences par Inkréa Certifications, est obligatoire. Il consiste en un écrit à rendre sous 10 jours après la fin de la formation (6 cas pratiques), suivi d'une soutenance orale de 20 minutes.
+
+En cas de financement CPF, un refus de s’y présenter pourra entraîner une demande de remboursement de la formation.
+
+## Accessibilité
+
+Si un handicap est signalé lors de l’inscription, le référent handicap propose un échange afin d’identifier les aménagements possibles.
+
+## Financement CPF
+
+Cette formation professionnelle de par son caractère certifiant peut être prise en charge par le CPF.
+
+Toute action ne rentrant pas dans le cadre de l'article L6313-1 du code du travail ne rentre pas dans ce dispositif de prise en charge.
 
 ## Livrables
 
-- Trame de prompts réutilisables.
-- Plan d'action d'intégration de l'IA sur le poste de travail.
-- Support de veille simplifiée IA Act / RGPD.
+- Modèles de prompts réutilisables
+- Plan d’intégration personnalisé
+- Supports pédagogiques
