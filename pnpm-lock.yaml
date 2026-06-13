@@ -35,6 +35,9 @@ importers:
       chart.js:
         specifier: ^4.4.0
         version: 4.5.1
+      tarteaucitronjs:
+        specifier: ^1.31.0
+        version: 1.33.0
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.6
@@ -2482,6 +2485,9 @@ packages:
   tar@7.5.7:
     resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
     engines: {node: '>=18'}
+
+  tarteaucitronjs@1.33.0:
+    resolution: {integrity: sha512-H8tpsH0ssVr1JTE0Tnt+nf+txRH4HQ0Z3pOpPUOST/1X507W1tCE0lAA3tV6CKSDp9pUDln3uC15/mjhVkqbnw==}
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
@@ -5874,6 +5880,8 @@ snapshots:
       minipass: 7.1.2
       minizlib: 3.1.0
       yallist: 5.0.0
+
+  tarteaucitronjs@1.33.0: {}
 
   tiny-inflate@1.0.3: {}
 

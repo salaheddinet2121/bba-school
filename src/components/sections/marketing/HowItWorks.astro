@@ -60,19 +60,20 @@ const {
 const bgClass = {
   default: 'bg-background',
   muted: 'bg-surface',
-  accent: 'bg-primary/5',
+  accent: 'bg-accent',
 }[background];
 
 const hasHeading = title || subtitle;
 ---
 
-<section class:list={['py-section', bgClass]}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class:list={['py-20 border-t border-border', bgClass]}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-10">
     {
       hasHeading && (
-        <div class="text-center mb-16">
-          {title && <h2 class="text-3xl sm:text-4xl font-bold text-text">{title}</h2>}
-          {subtitle && <p class="mt-4 text-lg text-text-muted max-w-2xl mx-auto">{subtitle}</p>}
+        <div class="mb-10">
+          <p class="section-kicker mb-4">Parcours</p>
+          {title && <h2 class="section-title text-4xl sm:text-5xl text-text max-w-2xl">{title}</h2>}
+          {subtitle && <p class="mt-4 text-base text-text-muted max-w-xl leading-relaxed">{subtitle}</p>}
         </div>
       )
     }
@@ -80,36 +81,18 @@ const hasHeading = title || subtitle;
     {/* Horizontal Layout */}
     {
       variant === 'horizontal' && (
-        <div class="relative">
-          <div
-            class="grid grid-cols-1 gap-8 md:gap-12 md:[grid-template-columns:repeat(var(--step-count),minmax(0,1fr))]"
-            style={`--step-count: ${steps.length};`}
-          >
-            {steps.map((step, index) => (
-              <div class="relative text-center">
-                {/* Step number or icon */}
-                <div class="relative z-10 mx-auto w-24 h-24 flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold mb-6">
-                  {step.icon ? (
-                    <Icon name={step.icon} class="w-10 h-10" />
-                  ) : showNumbers ? (
-                    <span>{index + 1}</span>
-                  ) : (
-                    <Icon name="lucide:check" class="w-10 h-10" />
-                  )}
-                </div>
-
-                {/* Optional image */}
-                {step.image && (
-                  <div class="mb-6 rounded-lg overflow-hidden border border-border">
-                    <img src={step.image} alt={step.title} class="w-full h-auto" loading="lazy" />
-                  </div>
-                )}
-
-                <h3 class="text-xl font-semibold text-text mb-3">{step.title}</h3>
-                <p class="text-text-muted leading-relaxed">{step.description}</p>
+        <div class="border-t border-border">
+          {steps.map((step, index) => (
+            <div class="grid gap-4 border-b border-border py-7 md:grid-cols-[72px_1fr] md:gap-8">
+              <div class="text-sm text-text-muted">{showNumbers ? `0${index + 1}` : ''}</div>
+              <div>
+                <h3 class="section-title text-2xl text-text">{step.title}</h3>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-text-muted">
+                  {step.description}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )
     }

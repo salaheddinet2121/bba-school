@@ -3,56 +3,66 @@ import { Icon } from 'astro-icon/components';
 import { documents } from '@/config/documents';
 
 const certificateUrl = documents.certificatQualiopi;
-const qualityPoints = [
-  'Processus pédagogique structuré et suivi qualité.',
-  'Accompagnement adapté aux besoins des apprenants.',
-  'Amélioration continue des parcours de formation.',
+
+const points = [
+  'Certification Qualiopi active',
+  'Éligible CPF — financement simplifié',
+  'Kit ou machine offerts selon la formation',
+  'Suivi qualité et accompagnement individualisé',
+  "Attestation nominative à l'issue de la formation",
 ];
 ---
 
-<section id="qualiopi" class="py-section bg-background">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <article class="rounded-2xl border border-border bg-background p-6 sm:p-8">
-      <div class="grid gap-8 lg:grid-cols-[220px_1fr] lg:items-center">
-        <div class="flex items-center justify-center rounded-xl bg-background p-5">
-          <img
-            src="/images/qualiopi.webp"
-            alt="Certification Qualiopi"
-            class="h-36 w-auto object-contain"
-            loading="lazy"
-          />
-        </div>
+<section id="qualiopi" class="py-20 border-t border-border bg-white">
+  <div class="max-w-7xl mx-auto px-6 sm:px-10">
+    <div class="grid md:grid-cols-[1fr_auto] gap-12 items-start">
 
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-primary">Bloc Qualiopi</p>
-          <h2 class="mt-3 text-3xl font-bold text-text">Une démarche qualité reconnue</h2>
-          <p class="mt-4 max-w-3xl text-text-muted">
-            SODEVA est certifié Qualiopi au titre des actions de formation. Cette certification confirme
-            notre engagement sur la qualité de conception, d'accompagnement et d'évaluation.
-          </p>
+      <div>
+        <p class="section-kicker mb-4">Certification Qualiopi</p>
+        <h2 class="section-title text-4xl sm:text-5xl text-text max-w-xl">
+          Un organisme certifié, un accompagnement sérieux
+        </h2>
+        <p class="mt-5 text-base text-text-muted max-w-lg leading-relaxed">
+          La certification Qualiopi atteste de la qualité de nos processus de formation. Elle garantit un cadre rigoureux, des contenus actualisés et un suivi adapté à chaque apprenant.
+        </p>
 
-          <ul class="mt-5 grid gap-3 sm:grid-cols-2">
-            {
-              qualityPoints.map((point) => (
-                <li class="flex items-start gap-2 text-sm text-text-muted">
-                  <Icon name="lucide:badge-check" class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{point}</span>
-                </li>
-              ))
-            }
-          </ul>
+        <ul class="mt-8 space-y-3">
+          {points.map((point) => (
+            <li class="flex items-center gap-3">
+              <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-text">
+                <Icon name="lucide:check" class="h-3 w-3 text-white" />
+              </span>
+              <span class="text-sm text-text">{point}</span>
+            </li>
+          ))}
+        </ul>
 
-          <a
-            href={certificateUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-6 inline-flex items-center rounded-md bg-primary px-5 py-2.5 font-medium text-white transition-colors hover:bg-primary-dark"
-          >
-            Voir le certificat
-            <Icon name="lucide:external-link" class="ml-2 h-4 w-4" />
-          </a>
-        </div>
+        <a
+          href={certificateUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="site-button-secondary mt-8 inline-flex items-center gap-2 rounded-none px-6 py-3"
+        >
+          Voir le certificat Qualiopi
+          <Icon name="lucide:external-link" class="h-3.5 w-3.5" />
+        </a>
       </div>
-    </article>
+
+      <div class="flex flex-col items-center gap-6 pt-2">
+        <img
+          src="/images/qualiopi.webp"
+          alt="Certification Qualiopi"
+          class="h-32 w-auto object-contain"
+          loading="lazy"
+        />
+        <img
+          src="/images/cpf.webp"
+          alt="Éligible CPF"
+          class="h-20 w-auto object-contain"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
   </div>
 </section>

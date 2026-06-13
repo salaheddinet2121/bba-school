@@ -6,7 +6,6 @@ import Cetfication from '@sections/rnq/Cetfication.astro';
 import Formation from '@sections/rnq/Formation.astro';
 import Rnq from '@sections/rnq/Rnq.astro';
 import Testomenial from '@sections/rnq/Testomenial.astro';
-import { siteConfig } from '@/config';
 import HowItWorks from '@/components/sections/marketing/HowItWorks.astro';
 
 const partnerLogos = [
@@ -17,72 +16,73 @@ const partnerLogos = [
   { name: 'Medicale', src: '/images/logos/medicale.svg' },
 ];
 
-const steps = [ { title: 'Choisir sa formation', description: 'Parmi toutes nos formations, choisissez celle qui vous correspond le mieux.', icon: 'lucide:search', }, { title: 'Traitement du dossier', description: 'Nous nous occupons pour vous de toutes les démarches administratives.', icon: 'lucide:settings', }, { title: 'Profiter de sa formation', description: 'Nos programmes sont élaborés pour répondre spécifiquement à vos attentes.', icon: 'lucide:monitor-smartphone', }, { title: 'Recevoir son attestation', description: 'Vous recevez votre attestation de formation nominative.', icon: 'lucide:badge-check', }, ];
+const steps = [
+  { title: 'Choisir sa formation', description: 'Parcourez le catalogue et sélectionnez la technique esthétique qui correspond à votre projet professionnel.', icon: 'lucide:search' },
+  { title: 'Valider son accès', description: 'Nous clarifions le format, les options de financement CPF et les modalités avant votre entrée en formation.', icon: 'lucide:settings' },
+  { title: 'Se former à distance', description: 'Suivez votre parcours en ligne à votre rythme, avec des modules ciblés et une application terrain immédiate.', icon: 'lucide:monitor-smartphone' },
+  { title: 'Obtenir son attestation', description: 'Repartez avec une attestation nominative reconnue et les compétences pour élever votre offre esthétique.', icon: 'lucide:badge-check' },
+];
 ---
 
 <MarketingLayout
-  title={`${siteConfig.name}`}
-  description="SODEVA est un organisme de formation certifié Qualiopi. Découvrez notre catalogue, nos informations RNQ et nos modalités de contact."
+  title="BBA School — Formations esthétique à distance | Qualiopi & CPF"
+  description="Centre de formation esthétique certifié Qualiopi. Plus de 39 formations à distance : Hydrofacial, Plasma pen, Microblading, Épilation définitive, Massage... Éligibles CPF."
 >
   <Hero
-    title="SODEVA, organisme de formation certifié Qualiopi"
-    subtitle="Depuis plus de 8 ans, nous accompagnons les professionnels et les entreprises avec des parcours concrets, accessibles et orientés résultats."
-    badge="Certifiée Qualiopi"
-    primaryCTA={{ label: 'Voir le catalogue', href: '/formations' }}
-    secondaryCTA={{ label: 'Contact', href: '/contact' }}
-    align="left"
-    titleSize="compact"
-    visualPosition="right"
-    rightImage={{ src: '/images/hero.webp', alt: 'Présentation du centre de formation SODEVA' }}
+    title="Formations esthétique à distance"
+    subtitle="Centre certifié Qualiopi. 39 formations professionnelles en esthétique — du soin visage à la pigmentation — disponibles à distance, éligibles CPF, avec kit offert."
+    badge="Certifié Qualiopi"
+    highlights={[
+      'Hydrofacial, Plasma pen, Carbon peel',
+      'Éligible CPF — financement simplifié',
+      'Kit ou machine offerts selon la formation',
+    ]}
+    primaryCTA={{ label: 'Voir les formations', href: '/formations' }}
+    secondaryCTA={{ label: 'Nous contacter', href: '/contact' }}
+    rightImage={{ src: '/images/beauty-collection-hero.png', alt: 'Formations esthétique à distance BBA School' }}
   />
 
   <LogoCloud
     title="Ils nous font confiance"
     logos={partnerLogos}
-    grayscale={false}
+    grayscale={true}
     logoSize="lg"
-    variant="grid" columns={5}
-    background="accent"
+    variant="grid"
+    columns={5}
+    background="default"
   />
 
   <Cetfication />
   <Formation />
+
   <HowItWorks
-    title="Votre parcours avec SODEVA"
-    subtitle="Une organisation claire pour simplifier chaque étape de votre entrée en formation."
+    title="Comment ça fonctionne"
+    subtitle="Un parcours simple, de l'inscription à l'attestation, pensé pour les professionnels de l'esthétique."
     steps={steps}
     variant="horizontal"
     background="default"
   />
-  <Rnq />
-  <section class="bg-surface py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl border border-border bg-background p-8 shadow-sm sm:p-10">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div class="max-w-3xl">
-            <p class="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
-              Réclamation
-            </p>
-            <h2 class="mt-3 text-3xl font-bold text-text">
-              Un accès direct à la médiation et à la réclamation
-            </h2>
-            <p class="mt-3 text-text-muted">
-              Le formulaire de réclamation SODEVA est disponible à tout moment pour transmettre
-              une demande, un signalement ou solliciter une médiation.
-            </p>
-          </div>
 
-          <div class="flex shrink-0">
-            <a
-              href="/rnq/reclamation"
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-            >
-              Déposer une réclamation
-            </a>
-          </div>
-        </div>
+  <Rnq />
+
+  <!-- Réclamation -->
+  <section class="border-t border-border py-16">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div class="max-w-xl">
+        <p class="section-kicker mb-3">Médiation & réclamation</p>
+        <h2 class="section-title text-2xl text-text">Un accès direct à la médiation et à la réclamation</h2>
+        <p class="mt-3 text-sm text-text-muted leading-relaxed">
+          Le formulaire de réclamation SODEVA est disponible à tout moment pour transmettre une demande, un signalement ou solliciter une médiation.
+        </p>
       </div>
+      <a
+        href="/rnq/reclamation"
+        class="site-button-secondary shrink-0 inline-flex items-center rounded-none px-6 py-3"
+      >
+        Déposer une réclamation
+      </a>
     </div>
   </section>
+
   <Testomenial />
 </MarketingLayout>

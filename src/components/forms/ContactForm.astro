@@ -68,7 +68,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
         name="firstName"
         required
         minlength="2"
-        class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+        class="luxe-input w-full px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
         placeholder="Jean"
       />
       <p class="mt-1 text-sm text-red-500 hidden" data-error="firstName"></p>
@@ -83,7 +83,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
         name="lastName"
         required
         minlength="2"
-        class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+        class="luxe-input w-full px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
         placeholder="Dupont"
       />
       <p class="mt-1 text-sm text-red-500 hidden" data-error="lastName"></p>
@@ -99,7 +99,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
       id="email"
       name="email"
       required
-      class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+      class="luxe-input w-full px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
       placeholder="jane@example.com"
     />
     <p class="mt-1 text-sm text-red-500 hidden" data-error="email"></p>
@@ -114,7 +114,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
         id="subject"
         name="subject"
         required
-        class="w-full px-4 py-3 pr-10 rounded-md border border-border bg-background text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors appearance-none cursor-pointer"
+        class="luxe-select w-full px-4 py-3 pr-10 text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors appearance-none cursor-pointer"
       >
         <option value="">Sélectionner un sujet</option>
         <option value="general">Demande générale</option>
@@ -145,7 +145,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
       rows="5"
       required
       minlength="10"
-      class="w-full px-4 py-3 rounded-md border border-border bg-background text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-colors"
+      class="luxe-textarea w-full px-4 py-3 text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none transition-colors"
       placeholder="Décrivez votre besoin..."></textarea>
     <p class="mt-1 text-sm text-red-500 hidden" data-error="message"></p>
   </div>
@@ -176,7 +176,7 @@ const { action = '/php/contact.php', method = 'POST', netlify = false, formName 
     <button
       type="submit"
       id="submit-button"
-      class="w-full sm:w-auto px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+      class="site-button-primary w-full sm:w-auto px-6 py-3 rounded-full text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <span id="button-text">Envoyer le message</span>
       <span id="button-loading" class="hidden">

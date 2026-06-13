@@ -21,12 +21,12 @@ export const navigation: Navigation = {
   header: {
     main: [
       { label: 'Accueil', href: '/' },
-      { label: 'Formations', href: '/formations' },
-      { label: "L'organisme", href: '/organisme' },
-      { label: 'Informations pratiques', href: '/informations-pratiques' },
+      { label: 'Collections', href: '/formations' },
+      { label: 'Maison', href: '/organisme' },
+      { label: 'Informations', href: '/informations-pratiques' },
       { label: 'Contact', href: '/contact' },
     ],
-    cta: [{ label: 'Contacter', href: '/contact', variant: 'primary' }],
+    cta: [{ label: 'Nous contacter', href: '/contact', variant: 'primary' }],
   },
 
   /**
@@ -35,9 +35,9 @@ export const navigation: Navigation = {
    */
   footer: {
     product: [
-      { label: 'Catalogue des formations', href: '/formations' },
-      { label: 'Formation administrative', href: '/formations' },
-      { label: 'Formation communication', href: '/formations' },
+      { label: 'Catalogue des collections', href: '/formations' },
+      { label: 'Techniques regard', href: '/formations' },
+      { label: 'Protocoles visage', href: '/formations' },
     ],
     solutions: [
       { label: 'Médiation et réclamation', href: '/rnq/reclamation' },
@@ -53,9 +53,9 @@ export const navigation: Navigation = {
       { label: 'Confidentialité', href: '/politique-confidentialite' },
     ],
     company: [
-      { label: "L'organisme", href: '/organisme' },
+      { label: 'La maison', href: '/organisme' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Horaires', href: '/contact' },
+      { label: 'Accompagnement', href: '/contact' },
     ],
     legal: [
       { label: 'Mentions légales', href: '/information' },

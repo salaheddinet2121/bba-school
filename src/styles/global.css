@@ -1,24 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
-
-
-
-
 @theme {
-  --color-primary: #fa8531;
-  --color-primary-dark: #0f0f0f; /* Use as dark background or dark variant */
-  --color-secondary: oklch(0.65 0.25 350);
+  --color-primary: oklch(0.14 0 0);
+  --color-primary-dark: oklch(0.06 0 0);
+  --color-secondary: oklch(0.14 0 0);
+  --color-pink: oklch(0.9 0.045 350);
 
-  /* Semantic Colors */
   --color-background: oklch(1 0 0);
-  --color-surface: oklch(0.98 0 0);
-  --color-text: oklch(0.15 0 0);
-  --color-text-muted: oklch(0.45 0 0);
+  --color-surface: oklch(0.982 0 0);
+  --color-text: oklch(0.14 0 0);
+  --color-text-muted: oklch(0.44 0 0);
   --color-border: oklch(0.9 0 0);
+  --color-accent: oklch(0.985 0.004 350);
+  --color-accent-strong: oklch(0.96 0.008 345);
+  --color-ink-soft: oklch(0.55 0 0);
 
-  /* Dashboard Status Colors - Light Mode */
   --color-success: oklch(0.45 0.15 145);
   --color-success-bg: oklch(0.95 0.05 145);
   --color-warning: oklch(0.46 0.15 85);
@@ -28,38 +26,51 @@
   --color-info: oklch(0.45 0.15 240);
   --color-info-bg: oklch(0.95 0.05 240);
 
-  /* Spacing */
-  --spacing-section: 6rem;
+  --spacing-section: 5rem;
   --spacing-content: 2rem;
 
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-accent: 'DM Sans', system-ui, sans-serif;
 }
 
 
-/* Base styles */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-background);
+  background: var(--color-background);
   color: var(--color-text);
-  font-family:
-    'Inter',
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Typography customizations to match theme */
+body::before {
+  content: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-secondary) 70%, white);
+  color: var(--color-text);
+}
+
 .prose {
   --tw-prose-body: var(--color-text);
   --tw-prose-headings: var(--color-text);
@@ -80,6 +91,12 @@ body {
 
 .prose a:hover {
   color: var(--color-primary-dark);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display);
 }
 
 .prose h2 {
@@ -105,35 +122,26 @@ body {
   background-color: var(--color-surface);
 }
 
-.prose tr:nth-child(even) {
-  background-color: var(--color-surface);
-}
-
-/* Accessibility - Enhanced focus states */
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-/* Remove default focus outline for mouse users, keep for keyboard */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* Ensure links have visible focus states */
 a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-/* Button focus states */
 button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-/* Form input focus states */
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
@@ -141,7 +149,310 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
-/* Reduced motion preference */
+a {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+main {
+  position: relative;
+}
+
+.accent-pink {
+  background-color: var(--color-pink);
+}
+
+@utility section-shell {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+@utility section-kicker {
+  font-family: var(--font-sans);
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@utility editorial-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+@utility heading-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+@utility heading-accent {
+  font-family: var(--font-accent);
+  letter-spacing: 0;
+}
+
+
+.site-brand-meta {
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.site-nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  color: var(--color-text-muted);
+  position: relative;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.site-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.site-nav-link:hover::after,
+.site-nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.site-action-link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.site-action-link:hover,
+.site-action-link:focus-visible {
+  color: var(--color-text);
+}
+
+.site-button-primary {
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: white;
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.site-button-primary:hover,
+.site-button-primary:focus-visible {
+  background: color-mix(in oklab, var(--color-primary) 88%, white);
+  border-color: color-mix(in oklab, var(--color-primary) 88%, white);
+  transform: none;
+}
+
+.site-button-secondary {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: oklch(0.14 0 0);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.site-button-secondary:hover,
+.site-button-secondary:focus-visible {
+  background: white;
+  border-color: color-mix(in oklab, var(--color-primary) 24%, var(--color-border));
+  color: var(--color-text);
+}
+
+.site-button-secondary.is-on-dark {
+  border-color: white;
+  background: transparent;
+  color: white;
+}
+
+.site-button-secondary.is-on-dark:hover,
+.site-button-secondary.is-on-dark:focus-visible {
+  background: white;
+  color: oklch(0.14 0 0);
+}
+
+.hero-shell,
+.logo-cloud-shell,
+.process-step-card,
+.footer-shell {
+  border: none;
+  box-shadow: none;
+}
+
+.hero-shell,
+.logo-cloud-shell,
+.process-step-card {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.hero-badge,
+.section-badge {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-title,
+.section-title {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.hero-title {
+  text-wrap: balance;
+}
+
+.hero-visual-frame {
+  border: none;
+  background: transparent;
+}
+
+.hero-visual-image {
+  box-shadow: none;
+}
+
+.hero-highlight-card {
+  border: none;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-highlight-label {
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.page-hero-shell {
+  position: relative;
+}
+
+.page-hero-inner {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.soft-panel {
+  background: linear-gradient(180deg, white 0%, color-mix(in oklab, white 92%, var(--color-accent)) 100%);
+  border: 1px solid var(--color-border);
+}
+
+.editorial-divider {
+  border-top: 1px solid var(--color-border);
+}
+
+.luxe-card {
+  border: none;
+  background: transparent;
+}
+
+.luxe-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.luxe-input,
+.luxe-select,
+.luxe-textarea {
+  border: 1px solid var(--color-border);
+  background: white;
+  border-radius: 0;
+}
+
+.luxe-input:focus,
+.luxe-select:focus,
+.luxe-textarea:focus {
+  border-color: var(--color-text);
+  outline: none;
+}
+
+.logo-cloud-shell img {
+  filter: grayscale(1);
+  opacity: 0.42;
+}
+
+.process-step-icon {
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  box-shadow: none;
+}
+
+.process-step-index {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+}
+
+.footer-shell {
+  background:
+    linear-gradient(180deg, oklch(0.11 0 0) 0%, oklch(0.08 0 0) 100%);
+  color: white;
+  border-top: none;
+}
+
+.footer-shell .footer-heading {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  color: white;
+}
+
+.footer-shell .footer-muted,
+.footer-shell .footer-link {
+  color: oklch(0.72 0 0);
+}
+
+.footer-shell .footer-link:hover,
+.footer-shell .footer-link:focus-visible {
+  color: white;
+}
+
+.footer-shell .footer-divider {
+  border-color: oklch(0.22 0 0);
+}
+
+.footer-shell .footer-cta {
+  background: var(--color-pink);
+  color: var(--color-text);
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+.footer-shell .footer-cta:hover,
+.footer-shell .footer-cta:focus-visible {
+  background: color-mix(in oklab, var(--color-pink) 85%, white);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -153,7 +464,6 @@ select:focus-visible {
   }
 }
 
-/* ── Google Maps placeholder (shown when consent not given) ── */
 .googlemapsembed .map-placeholder {
   display: flex;
   flex-direction: column;

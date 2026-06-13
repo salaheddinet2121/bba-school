@@ -1,350 +1,91 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import PageHeader from '@sections/content/PageHeader.astro';
 import { Icon } from 'astro-icon/components';
-import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
+import { beautyFormations } from '@/data/beauty-formations';
 
-type FormationEntry = CollectionEntry<'formations'>;
+const offers = [
+  { price: '1 300 €', label: '3 formations au choix' },
+  { price: '1 650 €', label: '4 formations au choix' },
+  { price: '2 950 €', label: '8 formations au choix' },
+];
 
-const formations = await getCollection(
-  'formations',
-  ({ data }: { data: FormationEntry['data'] }) => !data.draft
-);
-
-const results = [...formations].sort((a: FormationEntry, b: FormationEntry) => {
-  const orderDiff = a.data.order - b.data.order;
-  if (orderDiff !== 0) return orderDiff;
-  return a.data.title.localeCompare(b.data.title, 'fr', { sensitivity: 'base' });
-});
-
-const getCardPrice = (formation: FormationEntry): number | null => {
-  const prices = [
-    formation.data.distancielAvailable ? formation.data.distancielPriceHT ?? formation.data.priceHT : null,
-    formation.data.presentielAvailable ? formation.data.presentielPriceHT ?? formation.data.priceHT : null,
-  ].filter((value): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0);
-
-  if (prices.length > 0) return Math.min(...prices);
-  if (formation.data.priceHT > 0) return formation.data.priceHT;
-  return null;
-};
-
-const getCardPriceLabel = (formation: FormationEntry): string => {
-  const cardPrice = getCardPrice(formation);
-  if (cardPrice !== null) return `${cardPrice.toLocaleString('fr-FR')} EUR HT`;
-  return formation.data.pricingText ?? 'Tarif sur demande';
-};
-
-const totalResults = results.length;
-
-const allowedDomains = ['Informatique', 'Livraison', 'Création d’entreprise', 'Boucherie', 'Commerce'] as const;
-const normalizeDomain = (rawDomain: string) => {
-  const value = rawDomain.toLowerCase();
-  if (value.includes('commerce') || value.includes('distribution') || value.includes('vente')) {
-    return 'Commerce';
-  }
-  if (value.includes('boucher')) return 'Boucherie';
-  if (value.includes('création') || value.includes('creation') || value.includes('entrepris')) {
-    return 'Création d’entreprise';
-  }
-  if (
-    value.includes('livr') ||
-    value.includes('logist') ||
-    value.includes('supply') ||
-    value.includes('management')
-  ) {
-    return 'Livraison';
-  }
-  return 'Informatique';
-};
-const domainCounts = results.reduce(
-  (acc, item) => {
-    const key = normalizeDomain(item.data.domain);
-    acc[key] += 1;
-    return acc;
-  },
-  {
-    Informatique: 0,
-    Livraison: 0,
-    'Création d’entreprise': 0,
-    Boucherie: 0,
-    Commerce: 0,
-  } as Record<(typeof allowedDomains)[number], number>
-);
-
-const domainEntries = allowedDomains.map((domain) => ({ domain, count: domainCounts[domain] }));
+// Group by category
+const byCategory = beautyFormations.reduce((acc, f) => {
+  if (!acc[f.category]) acc[f.category] = [];
+  acc[f.category].push(f);
+  return acc;
+}, {} as Record<string, typeof beautyFormations>);
 ---
 
 <MarketingLayout
-  title={`Formations - ${siteConfig.name}`}
-  description="Votre recherche de formations SODEVA : filtrez par domaine et consultez les parcours avec badges et visuels."
+  title={`Nos formations — ${siteConfig.name}`}
+  description="39 formations esthétique à distance certifiées Qualiopi : Hydrofacial, Plasma pen, Microblading, Épilation définitive et bien plus. Éligibles CPF, kit offert."
 >
-  <section class="hero-search">
-    <div class="hero-overlay">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
-        <h1 class="mt-4 text-3xl sm:text-4xl font-bold text-white">Nos formations</h1>
-        <p class="text-white/80 ">Explorez notre catalogue complet de formations adaptées à vos besoins.</p>
-      </div>
-    </div>
-  </section>
+  <PageHeader
+    title="Nos formations"
+    subtitle="39 formations esthétique à distance, éligibles CPF. Kit ou machine offerts selon la formation."
+    align="left"
+  />
 
-  <section class="py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 gap-8 lg:grid-cols-[340px_1fr]">
-        <aside class="space-y-6">
-          <h2 class="text-2xl font-semibold text-primary-dark">Filtrer par</h2>
+  <section class="py-16 border-t border-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
 
-          <div class="rounded-2xl border border-border bg-background p-6">
-            <button
-              id="domain-dropdown-toggle"
-              type="button"
-              class="mb-4 flex w-full items-center justify-between text-left"
-              aria-expanded="true"
-              aria-controls="domain-filters-panel"
-            >
-              <h3 class="text-xl font-semibold text-primary-dark">Domaines</h3>
-              <Icon id="domain-dropdown-icon" name="lucide:chevron-up" class="h-5 w-5 text-primary transition-transform" />
-            </button>
-
-            <div id="domain-filters-panel">
-              <div class="space-y-3 text-primary-dark" id="domain-filters">
-                <label class="flex items-center gap-2.5 text-sm leading-5">
-                  <input
-                    type="checkbox"
-                    class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
-                    data-domain-filter="all"
-                    checked
-                  />
-                  <span>Tous ({totalResults})</span>
-                </label>
-                {
-                  domainEntries.map((item) => (
-                    <label class="flex items-center gap-2.5 text-sm leading-5">
-                      <input
-                        type="checkbox"
-                        class="mt-0.5 h-4 w-4 shrink-0 rounded border-border"
-                        data-domain-filter={item.domain}
-                      />
-                      <span>{item.domain} ({item.count})</span>
-                    </label>
-                  ))
-                }
-              </div>
+      <!-- Offres multi-formations -->
+      <div class="mb-16">
+        <p class="section-kicker mb-6">Offres groupées</p>
+        <div class="grid sm:grid-cols-3 gap-px bg-border">
+          {offers.map((offer, i) => (
+            <div class:list={['p-8', i === 1 ? 'accent-pink' : 'bg-white']}>
+              <p class="section-title text-4xl text-text">{offer.price}</p>
+              <p class="mt-2 text-sm text-text-muted">{offer.label}</p>
             </div>
-          </div>
-        </aside>
-
-        <div>
-          <p class="text-2xl font-semibold text-primary-dark">
-            <span id="results-count">{totalResults}</span>
-            {' '}
-            résultats pour votre recherche
-          </p>
-          <p class="mt-1 text-sm text-text-muted">Formations disponibles selon le domaine sélectionné.</p>
-
-          <div class="mt-6 space-y-6" id="formation-results">
-            {
-              results.map((formation) => (
-                <article
-                  class="rounded-2xl border border-border bg-background p-5 formation-card"
-                  data-domain={normalizeDomain(formation.data.domain)}
-                >
-                  <div class="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
-                    <div class="w-full">
-                      <div class="grid gap-5 md:grid-cols-[200px_1fr]">
-                        <div class="overflow-hidden rounded-xl bg-surface">
-                          {formation.data.image ? (
-                            <img
-                              src={formation.data.image}
-                              alt={formation.data.title}
-                              class="h-full min-h-36 w-full object-cover"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div class="flex h-full min-h-36 items-center justify-center bg-linear-to-br from-slate-100 to-slate-200 text-sm font-medium text-text-muted">
-                              VISUEL
-                            </div>
-                          )}
-                        </div>
-
-                        <div>
-                          <h2 class="text-xl font-semibold leading-tight text-primary-dark">
-                            {formation.data.title}
-                          </h2>
-                          <p class="mt-2 text-sm font-medium text-text-muted">
-                            {normalizeDomain(formation.data.domain)}
-                          </p>
-                          <p class="mt-3 text-sm leading-relaxed text-text-muted">
-                            {formation.data.description}
-                          </p>
-                          {
-                            formation.data.rating > 0 && formation.data.reviews > 0 && (
-                              <div class="mt-3 flex items-center gap-2 text-primary">
-                                <div class="flex items-center gap-1">
-                                  {Array.from({ length: 5 }).map(() => (
-                                    <Icon name="lucide:star" class="h-4 w-4 fill-current" />
-                                  ))}
-                                </div>
-                            
-                              </div>
-                            )
-                          }
-                        </div>
-                      </div>
-
-                      <div class="mt-6 border-t border-border pt-4">
-                        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-text-muted">
-                          <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:clock-3" class="h-4 w-4" />
-                            {formation.data.duration}
-                          </span>
-                          <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:map-pin" class="h-4 w-4" />
-                            {formation.data.format}
-                          </span>
-                          <span class="inline-flex items-center gap-2">
-                            <Icon name="lucide:chart-column" class="h-4 w-4" />
-                            {formation.data.level}
-                          </span>
-                          {formation.data.guaranteedSession && (
-                            <span class="inline-flex items-center gap-2 rounded-md bg-primary/15 px-3 py-1.5 text-xs font-semibold text-primary-dark">
-                              <Icon name="lucide:badge-check" class="h-4 w-4" />
-                              SESSION GARANTIE
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="flex min-w-fit flex-row items-end justify-between gap-5 xl:flex-col xl:items-end">
-                      <div class="text-right">
-                        <p class="text-xl font-bold text-[#0f0f0f]">
-                          {getCardPriceLabel(formation)}
-                        </p>
-                        <p class="mt-2 inline-flex items-center gap-2 text-sm text-text-muted">
-                          <Icon name="lucide:hash" class="h-4 w-4" />
-                          Ref {formation.data.reference}
-                        </p>
-                      </div>
-                      <a
-                        href={`/formation/${formation.id}`}
-                        aria-label={`Voir ${formation.data.title}`}
-                        class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white"
-                      >
-                        <Icon name="lucide:arrow-right" class="h-5 w-5" />
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              ))
-            }
-          </div>
+          ))}
+        </div>
+        <div class="mt-4 flex items-center justify-between border-t border-border pt-4">
+          <p class="text-sm text-text-muted">Contactez-nous pour composer votre sélection.</p>
+          <a href="/contact" class="site-button-primary inline-flex items-center gap-2 rounded-none px-5 py-2.5">
+            Nous contacter
+            <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </a>
         </div>
       </div>
+
+      <!-- Catalogue par catégorie -->
+      <div class="space-y-12">
+        {Object.entries(byCategory).map(([category, formations]) => (
+          <div>
+            <p class="section-kicker mb-4">{category}</p>
+            <div class="border-t border-border">
+              {formations.map((f) => (
+                <div class="grid grid-cols-[1fr_auto] items-baseline gap-8 border-b border-border py-4">
+                  <div class="flex items-baseline gap-3">
+                    <span class="text-base text-text">{f.title}</span>
+                    {f.note && (
+                      <span class="text-xs text-text-muted shrink-0">{f.note}</span>
+                    )}
+                  </div>
+                  <span class="text-base font-medium text-text tabular-nums shrink-0">{f.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA bas de page -->
+      <div class="mt-16 border-t border-border pt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <p class="section-title text-2xl text-text">Prêt à vous former ?</p>
+          <p class="mt-2 text-sm text-text-muted">Contactez-nous pour démarrer votre parcours.</p>
+        </div>
+        <a href="/contact" class="site-button-primary shrink-0 inline-flex items-center gap-2 rounded-none px-6 py-3">
+          Demander une formation
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+
     </div>
   </section>
 </MarketingLayout>
-
-<style>
-  .hero-search {
-    background-image:
-      linear-gradient(100deg, rgb(15 15 15 / 86%), rgb(250 133 49 / 45%)),
-      url('/images/hero.webp');
-    background-position: center;
-    background-size: cover;
-  }
-</style>
-
-<script>
-  function initFormationFilters() {
-    const filterContainer = document.getElementById('domain-filters');
-    const resultsContainer = document.getElementById('formation-results');
-    const resultCountEl = document.getElementById('results-count');
-    const dropdownToggle = document.getElementById('domain-dropdown-toggle');
-    const dropdownPanel = document.getElementById('domain-filters-panel');
-    const dropdownIcon = document.getElementById('domain-dropdown-icon');
-
-    if (
-      !filterContainer ||
-      !resultsContainer ||
-      !resultCountEl ||
-      !dropdownToggle ||
-      !dropdownPanel ||
-      !dropdownIcon
-    ) {
-      return;
-    }
-
-    if (filterContainer.dataset.initialized === 'true') return;
-    filterContainer.dataset.initialized = 'true';
-
-    const checkboxes = Array.from(
-      filterContainer.querySelectorAll<HTMLInputElement>(
-        'input[type="checkbox"][data-domain-filter]'
-      )
-    );
-    const cards = Array.from(resultsContainer.querySelectorAll<HTMLElement>('.formation-card'));
-    const allFilter = filterContainer.querySelector<HTMLInputElement>(
-      'input[data-domain-filter="all"]'
-    );
-
-    const syncAllToggle = () => {
-      const domainChecks = checkboxes.filter((el) => el !== allFilter);
-      const selectedDomains = domainChecks.filter((el) => el.checked);
-      if (!allFilter) return;
-      allFilter.checked = selectedDomains.length === 0;
-    };
-
-    const applyFilters = () => {
-      const selectedDomains = checkboxes
-        .filter((el) => el !== allFilter && el.checked)
-        .map((el) => el.getAttribute('data-domain-filter'))
-        .filter((value): value is string => Boolean(value));
-
-      let visibleCount = 0;
-
-      cards.forEach((card) => {
-        const domain = card.getAttribute('data-domain');
-        const show = selectedDomains.length === 0 || (domain && selectedDomains.includes(domain));
-        card.style.display = show ? '' : 'none';
-        if (show) visibleCount += 1;
-      });
-
-      resultCountEl.textContent = String(visibleCount);
-    };
-
-    const setDropdownState = (isOpen) => {
-      dropdownToggle.setAttribute('aria-expanded', String(isOpen));
-      dropdownPanel.classList.toggle('hidden', !isOpen);
-      dropdownIcon.classList.toggle('rotate-180', !isOpen);
-    };
-
-    dropdownToggle.addEventListener('click', () => {
-      const isOpen = dropdownToggle.getAttribute('aria-expanded') === 'true';
-      setDropdownState(!isOpen);
-    });
-
-    checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', (event) => {
-        const target = event.currentTarget;
-        if (!(target instanceof HTMLInputElement)) return;
-
-        if (target === allFilter && target.checked) {
-          checkboxes.forEach((el) => {
-            if (el !== allFilter) el.checked = false;
-          });
-        } else if (target !== allFilter && target.checked && allFilter instanceof HTMLInputElement) {
-          allFilter.checked = false;
-        }
-
-        syncAllToggle();
-        applyFilters();
-      });
-    });
-
-    setDropdownState(true);
-    applyFilters();
-  }
-
-  document.addEventListener('DOMContentLoaded', initFormationFilters);
-  document.addEventListener('astro:page-load', initFormationFilters);
-</script>

@@ -115,9 +115,15 @@ const grayscaleClass = grayscale
   : '';
 ---
 
-<section class:list={['py-12', bgClass]}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {title && <p class="text-center text-sm font-medium text-text-muted mb-8">{title}</p>}
+<section class:list={['border-t border-border py-14', bgClass]}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-10">
+    {
+      title && (
+        <div class="mb-8 text-center">
+          <p class="text-sm font-medium text-text-muted">{title}</p>
+        </div>
+      )
+    }
 
     {/* Default variant - static row */}
     {
@@ -225,7 +231,7 @@ const grayscaleClass = grayscale
     {/* Grid variant */}
     {
       variant === 'grid' && (
-        <div class={`grid ${columnClasses[columns]} gap-8 items-center justify-items-center`}>
+        <div class={`grid ${columnClasses[columns]} gap-x-10 gap-y-8 items-center justify-items-center`}>
           {logos.map((logo) =>
             logo.href ? (
               <a

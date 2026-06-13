@@ -9,21 +9,21 @@
 import type { SocialLinks, LegalConfig } from '../lib/types';
 
 /** Site name displayed in header, footer, and meta tags */
-export const name = import.meta.env.SITE_NAME || 'SODEVA';
+export const name = import.meta.env.SITE_NAME || 'BBA School';
 
 /** Site description for SEO and meta tags */
 export const description =
   import.meta.env.SITE_DESCRIPTION ||
-  'Centre de formation certifié Qualiopi pour le développement des compétences professionnelles';
+  'Centre de formation esthétique certifié Qualiopi. 39 formations à distance — Hydrofacial, Plasma pen, Microblading, Massage — éligibles CPF avec kit offert.';
 
 /** Production URL of your site (used for sitemap, RSS, canonical URLs) */
 export const url = import.meta.env.SITE_URL || 'https://sodeva.fr';
 
 /** Author name for meta tags and copyright */
-export const author = import.meta.env.SITE_AUTHOR || 'SODEVA';
+export const author = import.meta.env.SITE_AUTHOR || 'BBA School';
 
 /** Path to logo file (relative to /public) */
-export const logo = '/logo.webp';
+export const logo = '/logo.svg';
 
 /** Path to Open Graph image (relative to /public) */
 export const ogImage = '/images/og-image.jpg';

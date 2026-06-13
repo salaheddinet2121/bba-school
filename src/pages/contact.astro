@@ -10,26 +10,29 @@ const office = contact.address;
 
 <MarketingLayout
   title={`Contact - ${siteConfig.name}`}
-  description="Contactez SODEVA pour vos besoins de formation et d'accompagnement."
+  description="Contactez-nous pour decouvrir les formations beaute a distance, les offres multi-formations et l accompagnement a l inscription."
 >
   <PageHeader
     title="Contact"
-    subtitle="Une question sur nos parcours, vos besoins d'adaptation ou vos inscriptions ? Notre équipe vous répond rapidement."
+    subtitle="Une question sur une technique, une offre multi-formations ou votre inscription ? Nous vous guidons avec une reponse claire et rapide."
     align="left"
     maxWidth="lg"
+    background="accent"
   />
 
   <section class="py-section bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-2xl font-bold text-text mb-8">Envoyer un message</h2>
+        <div class="luxe-card rounded-[2rem] p-6 sm:p-8">
+          <p class="section-kicker">Prise de contact</p>
+          <h2 class="section-title mb-8 mt-4 text-3xl text-text">Parlons de votre selection de formations</h2>
           <ContactForm />
         </div>
 
         <div class="space-y-8">
-          <div>
-            <h2 class="text-2xl font-bold text-text mb-4">Autres moyens de contact</h2>
+          <div class="luxe-card rounded-[2rem] p-6 sm:p-8">
+            <p class="section-kicker">Acces direct</p>
+            <h2 class="section-title mb-4 mt-4 text-3xl text-text">Autres moyens de contact</h2>
             <div class="space-y-3">
               {
                 contactMethods.map((method) => (
@@ -45,8 +48,9 @@ const office = contact.address;
             </div>
           </div>
 
-          <div>
-            <h2 class="text-2xl font-bold text-text mb-4">Adresse</h2>
+          <div class="luxe-card rounded-[2rem] p-6 sm:p-8">
+            <p class="section-kicker">Adresse</p>
+            <h2 class="section-title mb-4 mt-4 text-3xl text-text">Notre maison</h2>
             <div class="flex items-start gap-3 text-text-muted">
               <Icon name="lucide:map-pin" class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <address class="not-italic">
@@ -58,8 +62,9 @@ const office = contact.address;
             </div>
           </div>
 
-          <div>
-            <h2 class="text-2xl font-bold text-text mb-4">Questions fréquentes</h2>
+          <div class="luxe-card rounded-[2rem] p-6 sm:p-8">
+            <p class="section-kicker">Questions frequentes</p>
+            <h2 class="section-title mb-4 mt-4 text-3xl text-text">Ce que l on nous demande souvent</h2>
             <div class="space-y-4">
               {
                 contactFAQs.map((faq) => (

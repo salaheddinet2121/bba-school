@@ -1,166 +1,109 @@
 ---
-/**
- * Header - Site header with responsive navigation
- *
- * @description
- * A sticky site header that includes logo, navigation links, theme toggle,
- * and a mobile-friendly hamburger menu. Navigation items are automatically
- * filtered based on feature flags from site config.
- *
- * @example
- * ```astro
- * <Header />
- * ```
- */
 import { siteConfig } from '@/config';
 import { Icon } from 'astro-icon/components';
-import ThemeToggle from '@ui/ThemeToggle.astro';
 import type { FeatureFlags } from '@/lib/types';
 
 const { features, navigation } = siteConfig;
 const { header: headerNav } = navigation;
 
-// Filter navigation items based on feature flags
 const mainNavItems = headerNav.main.filter(
   (item) => !item.feature || features[item.feature as keyof FeatureFlags]
 );
 
-// Separate CTA buttons by variant
-const ghostCTAs = headerNav.cta.filter((cta) => cta.variant === 'ghost');
 const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 ---
 
-<header
-  id="site-header"
-  class="sticky top-0 z-50 p-1.5 bg-background/80 backdrop-blur-md border-b border-surface"
->
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo / Site Name -->
-      <a href="/" class="flex items-center gap-2 font-semibold text-lg text-text">
-        {
-          siteConfig.logo ? (
-            <img src={siteConfig.logo.replace(/\.svg$/, '.webp')} alt={siteConfig.name} class="h-8 w-auto" />
-          ) : (
-            siteConfig.name
-          )
-        }
-      </a>
+<header id="site-header" class="sticky top-0 z-50 border-b border-border/90 bg-white/95 backdrop-blur">
+  <!-- Logo row -->
+  <div class="flex items-center justify-between px-6 py-3 md:px-10 md:py-5">
+    <a href="/" class="flex items-center shrink-0">
+      {
+        siteConfig.logo ? (
+          <img src={siteConfig.logo} alt={siteConfig.name} class="h-14 w-auto md:h-18" />
+        ) : (
+          <span class="font-display text-2xl tracking-wide">{siteConfig.name}</span>
+        )
+      }
+    </a>
 
-      <!-- Desktop Navigation - Center -->
-      <div class="hidden md:flex items-center gap-6">
-        {
-          mainNavItems.map((item) => (
-            <a
-              href={item.href}
-              class="text-text-muted hover:text-text transition-colors text-sm font-medium rounded-md px-2 py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus:outline-none"
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </div>
-
-      <!-- Desktop Actions - Right -->
-      <div class="hidden md:flex items-center gap-4">
-        {
-          ghostCTAs.map((cta) => (
-            <a
-              href={cta.href}
-              class="text-text-muted hover:text-text transition-colors text-sm font-medium rounded-md px-2 py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus:outline-none"
-            >
-              {cta.label}
-            </a>
-          ))
-        }
-        {
-          primaryCTA && (
-            <a
-              href={primaryCTA.href}
-              class="px-4 py-2 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              {primaryCTA.label}
-            </a>
-          )
-        }
-      </div>
-
-      <!-- Mobile menu button -->
-      <div class="flex items-center gap-2 md:hidden">
-        <button
-          id="mobile-menu-button"
-          type="button"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          class="p-2 rounded-md hover:bg-surface transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <Icon
-            name="lucide:menu"
-            id="menu-icon-open"
-            class="w-6 h-6 text-text"
-            aria-hidden="true"
-          />
-          <Icon
-            name="lucide:x"
-            id="menu-icon-close"
-            class="hidden w-6 h-6 text-text"
-            aria-hidden="true"
-          />
-        </button>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<!-- Mobile Navigation Overlay -->
-<div
-  id="mobile-menu"
-  class="fixed inset-0 z-40 hidden md:hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Mobile navigation menu"
->
-  <!-- Backdrop -->
-  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
-  <!-- Menu Panel -->
-  <nav
-    id="mobile-menu-panel"
-    class="absolute left-0 right-0 bg-surface border-b border-background shadow-lg"
-    aria-label="Mobile navigation"
-  >
-    <div class="px-4 py-4 space-y-1">
+    <nav
+      class="hidden md:flex items-center justify-center gap-10 px-10 py-3 flex-1"
+      aria-label="Navigation principale"
+    >
       {
         mainNavItems.map((item) => (
           <a
             href={item.href}
-            class="block px-3 py-3 rounded-md text-text-muted hover:text-text hover:bg-background transition-colors text-base font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+            class="site-nav-link py-1 text-sm transition-colors"
           >
             {item.label}
           </a>
         ))
       }
-      <!-- Divider -->
-      <div class="border-t border-border my-2"></div>
-      <!-- CTA links -->
+    </nav>
+
+    <div class="flex items-center gap-4 shrink-0">
       {
-        ghostCTAs.map((cta) => (
+        primaryCTA && (
           <a
-            href={cta.href}
-            class="block px-3 py-3 rounded-md text-text-muted hover:text-text hover:bg-background transition-colors text-base font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
+            href={primaryCTA.href}
+            class="hidden md:inline-flex site-button-primary items-center rounded-none px-5 py-2.5 text-[0.78rem]"
           >
-            {cta.label}
+            {primaryCTA.label}
+          </a>
+        )
+      }
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="flex items-center md:hidden text-text-muted"
+      >
+        <Icon name="lucide:menu" id="menu-icon-open" class="w-5 h-5" aria-hidden="true" />
+        <Icon name="lucide:x" id="menu-icon-close" class="hidden w-5 h-5" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 hidden md:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu mobile"
+>
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/40"></div>
+  <nav
+    id="mobile-menu-panel"
+    class="absolute left-0 right-0 bg-white shadow-lg"
+    aria-label="Navigation mobile"
+  >
+    <div class="divide-y divide-border">
+      {
+        mainNavItems.map((item) => (
+          <a
+            href={item.href}
+            class="block px-6 py-4 text-sm text-text transition-colors hover:bg-surface"
+          >
+            {item.label}
           </a>
         ))
       }
       {
         primaryCTA && (
-          <a
-            href={primaryCTA.href}
-            class="block px-3 py-3 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors text-base font-medium text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
-          >
-            {primaryCTA.label}
-          </a>
+          <div class="p-4">
+            <a
+              href={primaryCTA.href}
+              class="site-button-primary block w-full rounded-none px-4 py-3 text-center text-xs"
+            >
+              {primaryCTA.label}
+            </a>
+          </div>
         )
       }
     </div>
@@ -200,16 +143,11 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
     document.body.style.overflow = '';
   }
 
-  function toggleMobileMenu() {
-    const isExpanded = mobileMenuButton?.getAttribute('aria-expanded') === 'true';
-    if (isExpanded) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  }
+  mobileMenuButton?.addEventListener('click', () => {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    isExpanded ? closeMobileMenu() : openMobileMenu();
+  });
 
-  mobileMenuButton?.addEventListener('click', toggleMobileMenu);
   mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
 
   document.addEventListener('keydown', (e) => {
