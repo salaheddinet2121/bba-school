@@ -21,10 +21,10 @@ const imageByCategory: Record<string, string> = {
 };
 
 export const beautyFormations: BeautyFormation[] = [
-  { title: 'Soin du visage', category: 'Visage', price: '500€', note: 'Kit offert', image: imageByCategory.Visage },
+  { title: 'Soin du visage', category: 'Visage', price: '600€', note: 'Kit offert', image: imageByCategory.Visage },
   { title: 'Plasma pen', category: 'Visage', price: '700€', note: 'Kit offert', image: imageByCategory.Visage },
   { title: 'Carbon peel', category: 'Visage', price: '1300€', note: 'Kit offert', image: imageByCategory.Visage },
-  { title: 'Dermaplaning', category: 'Visage', price: '500€', note: 'Kit offert', image: imageByCategory.Visage },
+  { title: 'Dermaplaning', category: 'Visage', price: '600€', note: 'Kit offert', image: imageByCategory.Visage },
   { title: 'Nanoneedling', category: 'Visage', price: '700€', note: 'Kit offert', image: imageByCategory.Visage },
   { title: 'Hydrofacial', category: 'Visage', price: '1100€', note: 'Kit offert', image: imageByCategory.Visage },
   { title: 'Peeling aux algues', category: 'Visage', price: '900€', note: 'Kit offert', image: imageByCategory.Visage },
@@ -52,7 +52,7 @@ export const beautyFormations: BeautyFormation[] = [
   { title: 'Spray tan', category: 'Teint', price: '950€', note: 'Kit offert', image: imageByCategory.Teint },
   { title: 'Blanchiment intime laser', category: 'Laser', price: '1000€', image: imageByCategory.Laser },
   { title: 'Manucure russe', category: 'Ongles', price: '600€', image: imageByCategory.Ongles },
-  { title: 'Vernis semi-permanent', category: 'Ongles', price: '500€', image: imageByCategory.Ongles },
+  { title: 'Vernis semi-permanent', category: 'Ongles', price: '600€', image: imageByCategory.Ongles },
   { title: 'Gel X', category: 'Ongles', price: '600€', image: imageByCategory.Ongles },
   { title: 'Ombre brows', category: 'Pigmentation', price: '950€', note: 'Machine offerte', image: imageByCategory.Pigmentation },
   { title: 'Microblading', category: 'Pigmentation', price: '950€', note: 'Kit offert', image: imageByCategory.Pigmentation },
